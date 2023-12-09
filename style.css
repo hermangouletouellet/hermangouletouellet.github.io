@@ -1,0 +1,274 @@
+
+body {
+    margin:0;
+    background:#dddddd;
+    font-family:'Courier New', Courier, monospace;
+}
+
+ul {
+    padding:0;
+}
+ul li {
+    list-style-type:none;
+}
+ul.bullet {
+    padding-left:15px;
+}
+ul.bullet li {
+    list-style-type:disc;
+}
+
+a {
+    text-decoration:none;
+    color:#405990;
+}
+a:hover {
+    text-decoration:underline;
+}
+
+header {
+    position:sticky;
+    top:0;
+    left:0;
+}
+
+h1 {
+    text-align:center;
+}
+
+#name-banner {
+    display:block;
+    height:100px;
+    line-height:100px;
+    background-size:cover;
+    background-color:rgb(110, 120, 133);
+    color:black;
+    font-size:35px;
+    font-weight:bold;
+    padding-left:10%;
+}
+
+ul.menu {
+    background-color:#9a9a9a;
+}
+
+ul.menu li {
+    text-align:center;
+    font-weight:bold;
+}
+
+#main-menu {
+    width:100%;
+    height:50px;
+    line-height:50px;
+    margin:0;
+}
+
+#main-menu li {
+    float: left;
+    padding-left:5%
+}
+
+/* the hidden checkbox used to open the menu */
+#menu-button {
+    display:none;
+}
+
+/* the menu icon made of three horizontal lines */
+#menu-icon {
+    display: none;
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    width: 30px;
+    height: 30px;
+    z-index: 2; 
+    cursor:pointer;
+}
+
+#menu-icon .line{
+    display: block;
+    height: 5px;
+    width: 100%;
+    border-radius: 10px;
+    background: whitesmoke;
+}
+
+/* space between the lines */
+#menu-icon > .line + .line {
+    margin-top: 5px;
+}
+
+/* the lines become a cross if the menu is open */
+#menu-icon #line1 {
+    transform-origin: 100% 0%;
+    transition: transform 0.4s ease-in-out;
+}
+
+#menu-icon #line2 {
+    transition: transform 0.2s ease-in-out;
+}
+  
+#menu-icon #line3 {
+    transform-origin: 100% 100%;
+    transition: transform 0.4s ease-in-out;
+}
+
+#menu-button:checked + #menu-icon #line1 {
+    transform: rotate(-45deg);
+}
+
+#menu-button:checked + #menu-icon #line2 {
+    transform: scaleY(0);
+}
+
+#menu-button:checked + #menu-icon #line3 {
+    transform: rotate(45deg);
+}
+
+
+/* The menu is hidden from view and we only show it when the button is checked */
+/* #hamburger-menu {
+    position: fixed;
+    top: -16px;
+    right: -250px;
+    width: 150px;
+    height: 100%;
+    transition: 0.3s;
+} */
+
+/* #hamburger-menu li {
+    padding-top: 30px;
+} */
+
+/* #menu-button:checked ~ #hamburger-menu {
+    right: 0;
+} */
+
+
+/* We add an overlay to grey out the rest of the page when the menu is open */
+.overlay{
+    visibility:hidden;
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    opacity:0.5;
+    overflow:hidden;
+    background:black;
+    z-index:-1;
+}
+
+/* #menu-button:checked ~ .overlay {
+    visibility: visible;
+} */
+
+
+main {
+    margin:5% 10%;
+}
+
+div#presentation, div#research-topic {
+    text-align:justify;
+}
+
+img#portrait {
+    float:right;
+    width:30%;
+    margin-left:2%;
+    margin-bottom:2%;
+}
+
+footer {
+    border-top: 1px solid black;
+    font-size: 14px;
+    margin:10%;
+    margin-top:7%;
+}
+
+.footer-wrapper {
+    width:100%;
+    display:flex;
+    margin:0;
+}
+
+.footer-column#contact {
+    width:75%;
+}
+
+.footer-column#social-media {
+    font-size:16px;
+}
+
+#last-update {
+    margin-top:5%;
+    width:100%;
+    text-align: center;
+    font-size:12px;
+}
+
+
+@media screen and (max-width: 610px) {
+    #name-banner {
+        font-size: 30px;
+    }
+    #main-menu {
+        font-size:14px;
+        padding-left:10px;
+    }
+    .footer-wrapper {
+        display:inline;
+    }
+    .footer-column#contact {
+        width:100%;
+    }
+}
+
+@media screen and (max-width:510px) {
+    #name-banner {
+        font-size: 28px;
+    }
+    #menu-icon {
+        display: inline;
+    }
+    /* The menu is hidden from view and we only show it when the button is checked */
+    #main-menu {
+        position:fixed;
+        top:0;
+        right:-200px;
+        width:150px;
+        height:100%;
+        transition:0.3s;
+        font-size:16px;
+        line-height:normal;
+    }
+    #main-menu li {
+        float:none;
+        padding-top:40px;
+        padding-left:0;
+    }
+    #menu-button:checked ~ #main-menu {
+        right:0;
+    }
+    #menu-button:checked ~ .overlay {
+        visibility: visible;
+    }
+    main {
+        font-size: 14px;
+    }
+    .footer-column#social-media {
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 370px) {
+    #name-banner {
+        font-size: 22px;
+        height: 70px;
+        line-height: 70px;
+    }
+    /* footer {
+        font-size:12px;
+    } */
+}
