@@ -1,7 +1,7 @@
 
 body {
     margin:0;
-    color:#231f20
+    color:#231f20;
     background:#eeeeee;
     font-family: "Verdana", Verdana, sans-serif;
 }
@@ -21,7 +21,7 @@ ul.bullet li {
 
 a {
     text-decoration:none;
-    color:#f5eff1;
+    color:#231f20;
 }
 a:hover {
     text-decoration:underline;
