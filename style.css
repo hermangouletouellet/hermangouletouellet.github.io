@@ -2,7 +2,7 @@
 body {
     margin:0;
     background:#dddddd;
-    font-family:'Courier New', Courier, monospace;
+    font-family:'Verdana', Verdana, sans-serif;
 }
 
 ul {
@@ -41,7 +41,7 @@ h1 {
     height:100px;
     line-height:100px;
     background-size:cover;
-    background-color:#060e9f;
+    background-color:#002e4f;
     color:#f5eff1;
     font-size:35px;
     font-weight:bold;
