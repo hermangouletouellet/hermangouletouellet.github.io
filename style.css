@@ -5,7 +5,63 @@
     --lightgray: #f5eff1;
 }
 
+/*
+ * default link settings
+ */
+a:link {
+    font-weight: 500;
+    color: var(--darkblue);
+}
+
+a:visited {
+    font-weight: 500;
+    color: var(--darkblue);
+}
+
+/* 
+ * navigation bar 
+ */
+.navbar {
+    position: fixed; 
+    display: block;
+    top: 0;
+    height: 40px;
+    width: 100%;
+    align:center;
+    border-bottom: 2px solid var(--darkblue);
+    background: var(--lightgray);
+}
+
+.navbar-right {
+    float: right;
+}
+
+.navbar a {
+    font-family: 'Jost', sans-serif;
+    float: left;
+    font-weight: 400;
+    color: var(--gray);
+    text-align: center;
+    margin: .5em 20px;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.navbar a:hover {
+    color: var(--darkgray);
+}
+
+.navbar a.active {
+    font-weight: 500;
+    color: var(--darkblue);
+}
+
+
+/* 
+ * other kinds of links 
+ */
 a#button {
+    font-family: 'Jost', sans-serif;
     font-weight: 300;
     color: var(--darkblue);
     text-align: center;
@@ -23,91 +79,55 @@ a:hover#button {
     font-weight: 400;
 }
 
-
-a:link {
-    font-weight: 500;
-    color: var(--darkblue);
-}
-
-a:visited {
-    font-weight: 500;
-    color: var(--darkblue);
-}
-
-.navbar {
-    position: fixed; 
-    top: 0;
-    width: 100%;
-    overflow: hidden;
-    align:center;
-    padding-right: 12px;
-}
-
-.navbar a {
-    float: right;
-    font-weight: 400;
-    color: var(--gray);
-    text-align: center;
-    padding: 14px 14px;
-    text-decoration: none;
-    font-size: 16px;
-    border-bottom: 2px solid var(--darkblue);
-    background: var(--lightgray);
-}
-
-.navbar a:hover {
-    color: var(--darkgray);
-}
-
-.navbar a.active {
-    font-weight: 500;
-    color: var(--darkblue);
-}
-
-li{
-    margin: 15px 0;
-}
-
+/*
+ * Main styles
+ */
 body {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
     margin: 0;
     font-size: 16px;
     line-height: 24px;
     color: var(--darkgray);
     background: var(--lightgray);
-    font-family: 'Roboto', sans-serif;
 }
 
 h1 {
+    font-family: 'Jost', sans-serif;
     color: var(--darkblue);
-    font-weight: 500;
+    font-size: 32px;
+    font-weight: 400;
 }
 
 h2 {
-    padding-top: 2pt;
-    font-size: 20px;
-    font-weight: 500;
+    font-family: 'Jost', sans-serif;
+    padding-top: 10px;
+    font-size: 18px;
+    font-weight: 400;
 }
 
 #title-banner {
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
     display: block;
     background-size: cover;
-    height:40px;
+    line-height:1.5em;
     color: var(--darkblue);
     font-size:38px;
-    font-weight: lighter;
     padding-left:10%;
     padding-top:80px;
 }
 
 #name-banner {
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
     display: block;
     background-size: cover;
-    height:50px;
     color: var(--darkblue);
     font-size:38px;
-    font-weight: lighter;
-    padding-left:10%;
-    padding-top:80px;
+    line-height: 48px;
+    overflow: hidden;
+    margin-top:70px;
 }
 
 main {
@@ -116,14 +136,7 @@ main {
 
 img#portrait {
     float:left;
-    margin-top:50px;
-    margin-left:2%;
-    margin-right:3%;
-}
-
-
-img#logos {
-    float:right;
+    margin-top:0px;
     margin-left:2%;
     margin-right:3%;
 }
@@ -140,20 +153,6 @@ footer {
 address {
   display: block;
   font-style: normal;
-}
-
-.footer-wrapper {
-    width:100%;
-    display:flex;
-    margin:0;
-}
-
-.footer-column#contact {
-    width:75%;
-}
-
-.footer-column#social-media {
-    font-size:16px;
 }
 
 #last-update {
