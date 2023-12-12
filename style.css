@@ -111,8 +111,8 @@ h2 {
     font-weight: 300;
     display: block;
     background-size: cover;
-    line-height:1.5em;
     color: var(--darkblue);
+    line-height:1.5em;
     font-size:38px;
     padding-left:10%;
     padding-top:80px;
@@ -124,9 +124,9 @@ h2 {
     display: block;
     background-size: cover;
     color: var(--darkblue);
+    line-height:1.5em;
     font-size:38px;
-    line-height: 48px;
-    overflow: hidden;
+    margin-left:10%;
     margin-top:70px;
 }
 
