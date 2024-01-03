@@ -1,8 +1,25 @@
 :root {
+    --green: #26bc18;
     --darkblue: #002e4f;
     --darkgray: #231f20;
     --gray: #594e4f;
     --lightgray: #f5eff1;
+}
+
+th {
+    text-align: left;
+    padding-top: 10px;
+}
+
+td {
+    vertical-align: top;
+}
+
+th#centered {
+    text-align: center;
+}
+td#centered {
+    text-align: center;
 }
 
 /*
@@ -184,5 +201,19 @@ address {
     .footer-column#contact {
         width:100%;
     }
+.navbar a {
+        font-size: 12px;
+    }
 }
 
+table {
+    table-layout: fixed;
+    width: 100%;
+    border-spacing: 0 10px;
+}
+
+abstract {
+    padding: 1% 1% 2% 2%;
+    display: none;
+    font-style: italic;
+}
