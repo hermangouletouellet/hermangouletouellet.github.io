@@ -9,17 +9,29 @@
         <link rel="stylesheet" href="../../style.css" />
         <title>Exposés</title>
 
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
         <script>
-        function toggle(id) {
-            var elt = document.getElementById(id);
-            var disp = elt.style.display;
-            if (disp == 'block') {
-                elt.style.display = 'none';
-            } else {
-                elt.style.display = 'block';
+            function toggle(id) {
+                var elt = document.getElementById(id);
+                var disp = elt.style.display;
+                if (disp == 'block') {
+                    elt.style.display = 'none';
+                } else {
+                    elt.style.display = 'block';
+                }
             }
-        }
-        </script>
+
+            $(function(){
+                $("#includedContent").load("../../fr/contact.html"); 
+            });
+
+            window.onload = function () {
+                let date = new Date(document.lastModified); 
+                let options = {year:'numeric', month:'long',day:'numeric',
+                };
+                document.getElementById("updated").innerHTML = date.toLocaleDateString('fr-CA',options);
+            }
+        </script> 
     </head>
     <body>
         <div class="navbar">
@@ -251,18 +263,10 @@ Following a correspondence due to Almeida, every uniformly recurrent language de
             </table>
         </main>
 		<footer>
-            <h4> Contact </h4>
-            <address>
-                <div>
-                Université Technique de Prague, Thákurova 9, Prague 160 00, République Tchèque
-                </div>
-                <div>
-                herman.goulet.ouellet@fit.cvut.cz
-                </div>
-            </address>
+            <div id="includedContent"></div>
             <br>
 			<div id="last-update">
-				Mise à jour: 16 juillet 2024.
+                Mise à jour: <span id="updated"></span>
 			</div>
 		</footer>
 	</body>

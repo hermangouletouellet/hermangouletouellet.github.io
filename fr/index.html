@@ -4,12 +4,28 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width,initial-scale=1" />
 		<meta name="description" content="Site web de Herman Goulet-Ouellet" />
+
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Playfair+Display&family=Roboto:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap" rel="stylesheet">
 		<link rel="stylesheet" href="../style.css" />
+
 		<title>Herman</title>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script> 
+            $(function(){
+                $("#includedContent").load("contact.html"); 
+            });
+
+            window.onload = function () {
+                let date = new Date(document.lastModified); 
+                let options = {year:'numeric', month:'long',day:'numeric',
+                };
+                document.getElementById("updated").innerHTML = date.toLocaleDateString('fr-CA',options);
+            }
+        </script> 
     </head>
     <body>
         <div class="navbar">
@@ -38,18 +54,10 @@
     J'ai obtenu mon baccalauréat puis ma maîtrise en mathématiques à l'<a href="https://uqam.ca/">Université du Québec à Montréal</a>. J'ai ensuite complété un doctorat en mathématiques à l'<a href="https://www.uc.pt/">Université de Coimbra</a> en 2022, sous la direction de <a href="https://cmup.fc.up.pt/cmup/jalmeida/">Jorge Almeida</a> and <a href="https://apps.uc.pt/mypage/faculty/uc26448/en">Alfredo Costa</a>. Ma thèse, intitulée <a href="assets/files/thesis.pdf" download>Schützenberger groups of minimal shift spaces</a>, porte sur les liens entre la dynamique symbolique, la combinatoire des mots et les semigroupes profinis. 
 		</main>
 		<footer>
-            <h4> Contact </h4>
-            <address>
-                <div>
-                Université Technique de Prague, Thákurova 9, Prague 160 00, République Tchèque
-                </div>
-                <div>
-                herman.goulet.ouellet@fit.cvut.cz
-                </div>
-            </address>
+            <div id="includedContent"></div>
             <br>
 			<div id="last-update">
-				Mise à jour: 22 avril 2024.
+                Mise à jour: <span id="updated"></span>
 			</div>
 		</footer>
 	</body>

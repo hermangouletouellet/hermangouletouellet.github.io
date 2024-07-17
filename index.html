@@ -4,12 +4,27 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width,initial-scale=1" />
 		<meta name="description" content="Herman Goulet-Ouellet personnal website" />
+
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Playfair+Display&family=Roboto:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap" rel="stylesheet">
 		<link rel="stylesheet" href="style.css" />
+
 		<title>Herman Goulet-Ouellet</title>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script> 
+            $(function(){
+                $("#includedContent").load("contact.html"); 
+            });
+            window.onload = function () {
+                let date = new Date(document.lastModified); 
+                let options = {year:'numeric', month:'long',day:'numeric',
+                };
+                document.getElementById("updated").innerHTML = date.toLocaleDateString('en-GB',options);
+            }
+        </script>
     </head>
     <body>
         <div class="navbar">
@@ -38,18 +53,10 @@ I am a postdoctoral researcher working in mathematics and theoretical computer s
 I did my bachelor and master's degree in mathematics at <a href="https://uqam.ca/">Université du Québec à Montréal</a>. I completed a PhD in mathematics at the <a href="https://www.uc.pt/en">University of Coimbra</a> in 2022, under the direction of <a href="https://cmup.fc.up.pt/cmup/jalmeida/">Jorge Almeida</a> and <a href="https://apps.uc.pt/mypage/faculty/uc26448/en">Alfredo Costa</a>. My thesis, titled <a href="assets/files/thesis.pdf" download>Schützenberger groups of minimal shift spaces</a>, focuses on the links between symbolic dynamics, combinatorics on words and profinite semigroups. 
 		</main>
 		<footer>
-            <h4> Contact </h4>
-            <address>
-                <div>
-                Czech Technical University in Prague, Thákurova 9, Prague 160 00, Czech Republic
-                </div>
-                <div>
-                herman.goulet.ouellet@fit.cvut.cz
-                </div>
-            </address>
+            <div id="includedContent"></div>
             <br>
 			<div id="last-update">
-				Updated: April 22, 2024
+                Updated: <span id="updated"></span>
 			</div>
 		</footer>
 	</body>

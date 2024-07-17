@@ -1,13 +1,39 @@
 <!DOCTYPE html>
-<html lang="en-US">
+<html lang="fr-CA">
     <head>
         <meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width,initial-scale=1" />
 		<meta name="description" content="List of publications by Herman Goulet-Ouellet" />
+
         <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Playfair+Display&family=Roboto:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="../../style.css" />
+
         <title>Publications</title>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script>
+            function toggle(id) {
+                var elt = document.getElementById(id);
+                var disp = elt.style.display;
+                if (disp == 'block') {
+                    elt.style.display = 'none';
+                } else {
+                    elt.style.display = 'block';
+                }
+            }
+
+            $(function(){
+                $("#includedContent").load("../../fr/contact.html"); 
+            });
+
+            window.onload = function () {
+                let date = new Date(document.lastModified); 
+                let options = {year:'numeric', month:'long',day:'numeric',
+                };
+                document.getElementById("updated").innerHTML = date.toLocaleDateString('fr-CA',options);
+            }
+        </script> 
     </head>
     <body>
         <div class="navbar">
@@ -153,30 +179,11 @@ La dernière partie de la thèse est dédiée à l'étude des sous-groupes engen
             </table>
         </main>
 		<footer>
-            <h4> Contact </h4>
-            <address>
-                <div>
-                Université Technique de Prague, Thákurova 9, Prague 160 00, République Tchèque
-                </div>
-                <div>
-                herman.goulet.ouellet@fit.cvut.cz
-                </div>
-            </address>
+            <div id="includedContent"></div>
             <br>
 			<div id="last-update">
-				Mise à jour: 16 juillet 2024.
+                Mise à jour: <span id="updated"></span>
 			</div>
 		</footer>
 	</body>
-    <script>
-    function toggle(id) {
-        var elt = document.getElementById(id);
-        var disp = elt.style.display;
-        if (disp == 'block') {
-            elt.style.display = 'none';
-        } else {
-            elt.style.display = 'block';
-        }
-    }
-    </script>
 </html>
