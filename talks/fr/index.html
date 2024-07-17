@@ -8,6 +8,18 @@
         <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Playfair+Display&family=Roboto:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="../../style.css" />
         <title>Exposés</title>
+
+        <script>
+        function toggle(id) {
+            var elt = document.getElementById(id);
+            var disp = elt.style.display;
+            if (disp == 'block') {
+                elt.style.display = 'none';
+            } else {
+                elt.style.display = 'block';
+            }
+        }
+        </script>
     </head>
     <body>
         <div class="navbar">
@@ -28,35 +40,108 @@
             <table>
                 <tr>
                     <th> Conférences </th>
+                    <th style="width:8ex" id="centered">Abstract</th>
                 </tr>
-                <tr>
-                    <td> 
-                        <a href="">Profinite approach to conjugacy of substitutive shifts</a>. <i>Dyadisc 6</i>, Amiens, France. 5 juillet 2023. Conférencier invité. 
+                <tr> 
+                    <td>
+                        <strong>Relative invertibility for primitive substitutions</strong>. <em>Theoretical and Computational Algebra 2024</em>, Aveiro, Portugal. 3 juillet 2024. 
+                        <abstract id="tca2024">
+I will be exploring notions of relative invertibility, defined as invertibility on the completion of the free group with respect to the profinite pseudometric determined by a given class of finite groups. For instance, "ordinary" invertibility corresponds to invertibility with respect to the class of all finite groups, while unimodularity ("Abelian" invertibility) corresponds to invertibility with respect to the class of all finite Abelian groups. Another potentially interesting is "metabelian" invertibility, which corresponds to invertibility on the quotient F/F'' of the free group by its second derived subgroup. I will also discuss the link between invertibility conditions and return words, a topic related to some recent (unpublished) work of Bastián Espinoza. My talk will feature ongoing joint work with Jorge Almeida and Alfredo Costa. 
+                        </abstract>
+                    </td>
+                    <td id="centered">
+                        <input type="checkbox" onclick="toggle('tca2024')">
+                    </td>
+                </tr>
+                <tr> 
+                    <td>
+                        <strong>Profinite bridges between semigroup theory and symbolic dynamics</strong>. <em>North British Semigroups and Applications Network 2024</em>, Manchester, Royaume-Uni. 21 juin, 2024. 
+                        <abstract id="nbsan2024">
+My talk will explore the relationship between free profinite semigroups and symbolic dynamics, a line of research which goes back to the work of Almeida in the early 2000s. I will start by presenting Almeida's fundamental theorem, which gives a bijection between minimal shift spaces (a central object of symbolic dynamics) and maximal regular J-classes of free profinite semigroups. I will then survey a number of interesting features of this bijection from the point of view of semigroup theory, and discuss interesting applications from the point of view of symbolic dynamics.
+                        </abstract>
+                    </td>
+                    <td id="centered">
+                        <input type="checkbox" onclick="toggle('nbsan2024')">
+                    </td>
+                </tr>
+                <tr> 
+                    <td>
+                        <strong>Return words and derived sequences</strong>. <em>Student conference on Combinatorics on Words</em>, Janov nad Nisou, République Tchèque. 17 mai 2024. 
+                        <abstract id="janov2024">
+This is an introductory talk on the notions of return words and derived sequences. I will present the basic definitions, give some examples, and survey a few important results.
+                        </abstract>
+                    </td>
+                    <td id="centered">
+                        <input type="checkbox" onclick="toggle('janov2024')">
                     </td>
                 </tr>
                 <tr>
                     <td> 
-                        <a href="">On substitutions preserving their return sets</a>. <i>Words 2023</i>, Umea, Suède. 15 juin 2023. 
+                        <strong>Profinite approach to conjugacy of substitutive shifts</strong>. <em>Dyadisc 6</em>, Amiens, France. 5 juillet 2023. 
+                        <abstract id="dyadisc6">
+    Following the work of Durand and Leroy (2022), topological conjugacy of minimal substitutive shifts is decidable. But beyond the high theoretical interest of this result, the methods employed in the proof seem difficult to use in practice since they involve potentially heavy computations. However, in certain cases, conjugacy classes can be efficiently distinguished by looking at some weaker invariants that are easy to compute. 
+
+    In this talk, I will present one way of producing such invariants which relies on the profinite representation of minimal shifts introduced by Almeida. Within this framework, numerical invariants for primitive substitutions arise from a transparent relationship between 1) the prime factors in the coefficients of the characteristic polynomial and 2) the Sylow subgroups of a pronilpotent group associated with the substitution. With concrete examples, I will illustrate the strengths and weaknesses of these invariants.
+                        </abstract>
+                    </td>
+                    <td id="centered">
+                        <input type="checkbox" onclick="toggle('dyadisc6')">
                     </td>
                 </tr>
                 <tr>
                     <td> 
-                        <a href="">Forays beyond dendricity</a>. <i>Numeration 2023</i>, Liège, Belgique. 26 mai 2023. 
+                        <strong>On substitutions preserving their return sets</strong>. <em>Words 2023</em>, Umea, Suède. 15 juin 2023. 
+                        <abstract id="words2023">
+We consider the question of whether or not a given primitive substitution preserves its sets of return words — or return sets for short. More precisely, we study the property asking that the image of the return set to a word equals the return set to the image of that word. We show that, for bifix encodings (where images of letters form a bifix code), this property holds for all but finitely many words. On the other hand, we also show that every conjugacy class of Sturmian substitutions contains a member for which the property fails infinitely often. Various applications and examples of these results are presented, including a description of the subgroups generated by the return sets in the shift of the Thue– Morse substitution. Up to conjugacy, these subgroups can be sorted into strictly decreasing chains of isomorphic subgroups weaving together a simple pattern. This is in stark contrast with the Sturmian case, and more generally with the dendric case (including in particular the Arnoux–Rauzy case), where it is known that all return sets generate the free group over the underlying alphabet.                   
+                        </abstract>
+                    </td>
+                    <td id="centered">
+                        <input type="checkbox" onclick="toggle('words2023')">
                     </td>
                 </tr>
                 <tr>
                     <td> 
-                        <a href="">Pronilpotent quotients associated with primitive substitutions</a>. <i>18e journées Montoise d'informatique théorique</i>, Prague, République Tchèque. 5 septembre 2022. 
+                        <strong>Forays beyond dendricity</strong>. <em>Numeration 2023</em>, Liège, Belgique. 26 mai 2023. 
+                    </td>
+                    <td id="centered">
+                        <input type="checkbox" disabled>
                     </td>
                 </tr>
                 <tr>
                     <td> 
-                        <a href="">A pronilpotent look at maximal subgroups of free profinite monoids</a>. <i>Topology, Algebra, and Categories in Logic (TACL)</i>, Coimbra, Portugal. 24 juin 2022. 
+                        <strong>Pronilpotent quotients associated with primitive substitutions</strong>. <em>18e journées Montoise d'informatique théorique</em>, Prague, République Tchèque. 5 septembre 2022. 
+                        <abstract id="mons18">
+In the early 2000s, Almeida discovered a connection between symbolic dynamics and free profinite monoids. He showed in particular that to each minimal shift space corresponds a maximal subgroup of the free profinite monoid. This profinite group, known as the Schützenberger group of the shift space, can be thought of as a dynamical invariant. In many cases, this invariant is well understood: for instance, Sturmian shift spaces all have for Schützenberger group a free profinite group of rank 2. But not all cases are so straightforward: the Schützenberger group of the shift space of the Thue–Morse substitution is not free, not even relative to some pseudovariety of finite groups. The work we present aims to gain further insight into the structure of the Schützenberger groups of minimal shift spaces corresponding to primitive substitutions. We do this essentially by taking a closer look at their finite nilpotent quotients. In practical terms, this amounts to computing their maximal pronilpotent quotients. 
+
+Our main findings include some tests (i.e. necessary conditions) for absolute and relative freeness of the Schützenberger groups corresponding to primitive aperiodic substitutions. One such test, particularly easy to perform, can be stated as follows: for the Schützenberger group of a primitive aperiodic substitution to be absolutely free, it is necessary that the product of the non-zero eigenvalues (with multiplicities) of its composition matrix, a quantity known as the pseudodeterminant, be 1 in absolute value. In particular, we deduce that primitive aperiodic substitutions of constant length never produce free Schützenberger groups. Somewhat surprisingly, our work also produces computable invariants for the suspension flows of shift spaces generated by primitive aperiodic substitutions, such as the set of primes dividing the pseudodeterminant of the composition matrix.
+                        </abstract>
+                    </td>
+                    <td id="centered">
+                        <input type="checkbox" onclick="toggle('mons18')">
                     </td>
                 </tr>
                 <tr>
                     <td> 
-                        <a href="">Suffix-connected languages</a>. <i>Encontro Nacional da Sociedade Portuguesa de Matematica</i>, Portugal. 24 juillet 2022. En ligne.
+                        <strong>A pronilpotent look at maximal subgroups of free profinite monoids</strong>. <em>Topology, Algebra, and Categories in Logic (TACL)</em>, Coimbra, Portugal. 24 juin 2022. 
+                        <abstract id="tacl2022">
+In the early 2000s, Almeida established a connection between symbolic dynamics and free profinite monoids. He showed that to each uniformly recurrent language corresponds a maximal subgroup of the free profinite monoid. This profinite group, known as a Schützenberger group, is obtained by intersecting the topological closure of the language with the infinite part of the profinite monoid in which it lives. It can be thought of as an invariant for the language. In many cases, this invariant is well understood: for instance, for a Sturmian language, the Schützenberger group must be a free profinite group of rank 2. But not all cases are so straightforward. A notable example is the Schützenberger group of the language of the Thue-Morse word, which is not free, not even relative to some pseudovariety of finite groups. The work we present aims to gain further insight into the structure of the Schützenberger groups of languages defined by primitive substitutions, by taking a closer look at their finite nilpotent quotients. In practical terms, this amounts to computing their maximal pronilpotent quotients.
+
+Sometimes, features of a profinite group, such as failure of freeness, are witnessed by its pronilpotent quotients. Using this, we devise a number of tests for freeness, both relative and absolute, of the Schützenberger groups corresponding to primitive aperiodic substitutions. One such test, particularly easy to perform, is as follows: for the Schützenberger group of a primitive aperiodic substitution to be absolutely free, it is necessary that the product of the non-zero eigenvalues of its incidence matrix be 1 in absolute value. Notably, all primitive substitutions of constant length, and in particular the Thue–Morse substitution, fail this condition. 
+                        </abstract>
+                    </td>
+                    <td id="centered">
+                        <input type="checkbox" onclick="toggle('tacl2022')">
+                    </td>
+                </tr>
+                <tr>
+                    <td> 
+                        <strong>Suffix-connected languages</strong>. <em>Encontro Nacional da Sociedade Portuguesa de Matematica</em>, Portugal. 24 juillet 2022. En ligne.
+                        <abstract id="enspm2022">
+Inspired by a series of papers initiated in 2015 by Berthé et al., we introduce a new condition called suffix-connectedness. We show that the groups generated by the return sets of a uniformly recurrent suffix-connected language lie in a single conjugacy class of subgroups of the free group. Moreover, the rank of the subgroups in this conjugacy class only depends on the number of connected components in the extension graph of the empty word. We also show how to explicitly compute a representative of this conjugacy class using the first order Rauzy graph. Finally, we provide an example of suffix-connected, uniformly recurrent language that contains infinitely many disconnected words. 
+                        </abstract>
+                    </td>
+                    <td id="centered">
+                        <input type="checkbox" onclick="toggle('enspm2022')">
                     </td>
                 </tr>
                 <tr>
@@ -64,37 +149,95 @@
                 </tr>
                 <tr>
                     <td>
-                        <a href="">Density of group languages in minimal shifts</a>. <i>Séminaire SymPA</i>, Amiens France. 30 janvier 2024. En ligne.
+                        <strong>Density of group languages in shift spaces</strong>. <em>Algebra, logic and topology seminar</em>, Université de Coimbra, Portugal. June 27, 2024.
+                        <abstract id="cmuc2024">
+I will present new results about densities of regular languages in minimal shift spaces. Our work is focused on the density of group languages, i.e. languages recognized by morphisms onto finite groups. Working within the skew product of the shift space and the recognizing group, a simple formula is derived for the density, which holds under the condition that the minimal components of the skew product are ergodic. In the process, we give a description of these minimal components and relate them with subgroups generated by return words. We also give some sufficient conditions under which the skew product is ergodic.
+
+This is an ongoing collaboration with Valérie Berthé, Carl-Fredrik Nyberg-Brodda, Dominique Perrin and Karl Petersen. 
+                        </abstract>
+                    </td>
+                    <td id="centered">
+                        <input type="checkbox" onclick="toggle('cmuc2024')">
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <a href="">Densité des langages rationnels dans les espaces symboliques</a>. <i>Séminaire du LACIM</i>, Montréal, Canada. 12 janvier 2024.
+                        <strong>Density of group languages in minimal shifts</strong>. <em>Séminaire SymPA</em>, Université de Picardie Jules Verne, Amiens, France. 30 janvier 2024. En ligne.
+                        <abstract id="upjv2024">
+In this talk, I will present new results about densities of regular languages in minimal shift spaces. Our work is focused on the density of group languages, i.e. languages recognized by morphisms onto finite groups. Working within the skew product of the shift space and the recognizing group, a simple formula is derived for the density, which holds under the condition that the minimal components of the skew product are ergodic. In the process, we give a description of these minimal components and relate them with subgroups generated by return words. We also give some sufficient conditions under which the skew product is ergodic.
+
+This is an ongoing work in collaboration with Valérie Berthé, Carl-Fredrik Nyberg Brodda, Dominique Perrin and Karl Petersen. 
+                        </abstract>
+                    </td>
+                    <td id="centered">
+                        <input type="checkbox" onclick="toggle('upjv2024')">
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <a href="">Density of rational languages under invariant measures</a>. <i>One World Combinatorics on Words</i>. 24 october 2023. En ligne.
+                        <strong>Densité des langages rationnels dans les espaces symboliques</strong>. <em>Séminaire du LACIM</em>, Montréal, Canada. 12 janvier 2024.
+                        <abstract id="lacim2024">
+Dans les années 80, Hansel et Perrin, poursuivant les travaux de Schützenberger, se penchent sur la notion de densité naturelle des langages. Dans leur étude, la densité d'un langage est calculée relativement à des mesures de Bernoulli, mesures définies sur le monoïde libre par morphismes. Je présenterai des travaux récents portant sur les densités naturelles calculées relativement aux mesures ergodiques d'espaces symboliques. Dans ce contexte, la densité permet de mesurer la présence (ou absence) d'une propriété rationnelle à l'intérieur d'un espace symbolique donné. J'expliquerai comment et sous quelles conditions il est possible de calculer ces densités, plus particulièrement pour les langages à groupes, langages ayant pour monoïdes syntaxiques des groupes finis. Sous certaines conditions qui dépendent à la fois de l'espace symbolique, du langage et de son groupe syntaxique, la densité est réduite à une formule simple. Cette réduction fait intervenir des notions de théorie ergodique, de combinatoire des mots et de dynamique symbolique.
+
+En collaboration avec: Valérie Berthé, Carl-Fredrik Nyberg-Brodda, Dominique Perrin et Karl Petersen.
+                        </abstract>
+                    </td>
+                    <td id="centered">
+                        <input type="checkbox" onclick="toggle('lacim2024')">
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <a href="">Obstructions to return preservation for episturmian morphisms</a>. <i>Discrete mathematics</i>, Liège, Belgique. 29 septembre 2023.
+                        <strong>Density of rational languages under invariant measures</strong>. <em>One World Combinatorics on Words</em>. 24 october 2023. En ligne.
+                        <abstract id="owcow2023">
+The notion of density for languages was studied by Schützenberger in the 60s and by Hansel and Perrin in the 80s. In both cases, the authors focused on densities defined by Bernoulli measures. In this talk, I will present new results about densities of regular languages under invariant measures of minimal shift spaces. We introduce a compatibility condition which implies convergence of the density to a constant depending only on the given rational language. This result can be seen as a form of equidistribution property. The compatibility condition can be stated either in terms in terms of return words or of a skew product. The passage between the two forms is made more transparent using simple combinatorial tools inspired by ergodic theory and cohomology. This is joint work with Valérie Berthé, Carl-Fredrik Nyberg-Brodda, Dominique Perrin and Karl Petersen.
+                        </abstract>
+                    </td>
+                    <td id="centered">
+                        <input type="checkbox" onclick="toggle('owcow2023')">
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <a href="">Monoïdes profinis et dynamique symbolique</a>. <i>LACIM, UQAM</i>, Montréal, Canada. 25 août 2023.
+                        <strong>Obstructions to return preservation for episturmian morphisms</strong>. <em>Séminaire de mathétiques discrètes</em>, Université de Liège, Belgique. 29 septembre 2023.
+                        <abstract id="liege2023">
+I will present ongoing work on the "return preservation property" which asks for a morphism to preserve its own return sets. After recalling motivation for studying this property and some general results, I will discuss the episturmian case. The main result in that direction is that primitive episturmian morphisms have infinitely many obstructions to return preservation. The technique for building these obstructions involves an analysis of episturmian conjugacy classes and how they act on Rauzy graphs. This is joint work with Valérie Berthé. 
+                        </abstract>
+                    </td>
+                    <td id="centered">
+                        <input type="checkbox" onclick="toggle('liege2023')">
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <a href="">What lies inside free profinite monoids</a>. <i>Automata and applications</i>, Paris, France. 21 avril 2023. 
+                        <strong>Monoïdes profinis et dynamique symbolique</strong>. <em>Séminaire du LACIM</em>, Montréal, Canada. 25 août 2023.
+                    </td>
+                    <td id="centered">
+                        <input type="checkbox" disabled>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <a href="">Freeness of Schützenberger groups of primitive substitutions</a>. <i>Semigroups, automata and languages</i>, Université de Porto, Portugal.
+                        <strong>What lies inside free profinite monoids</strong>. <em>Automates et applications</em>, Institut de recherche en informatique fondamentale, Paris, France. 21 avril 2023. 
+                        <abstract id="irif2023">
+Free profinite monoids are compact totally disconnected monoids obtained in a natural way by "completing" free monoids, similar in a way to how Q is obtained from R. Inside free profinite monoids, various combinatorial or algebraic statements about languages admit topological counterparts. A well-known example of this is the topological characterization of regular languages: a language is regular if and only if its topological closure in the free profinite monoid is open. A second, much subtler example is the correspondence with symbolic dynamics discovered by Almeida in the late 2000s. He showed that minimal shift spaces can be represented inside free profinite monoids as regular J-classes. 
+
+In the first part of the talk, I will present basic concepts related with free profinite monoids and survey some key results, including the connections with regular languages and with symbolic dynamics. In the second part, I will explain how free profinite monoids can be used in a practical way to study dynamical systems defined by primitive substitutions. More precisely, I will explain how Almeida's representation produces easy-to-compute numerical invariants for these systems.
+                        </abstract>
+                    </td>
+                    <td id="centered">
+                        <input type="checkbox" onclick="toggle('irif2023')">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <strong>Freeness of Schützenberger groups of primitive substitutions</strong>. <em>Semigroups, automata and languages</em>, Université de Porto, Portugal.
+                        <abstract id="cmup2023">
+Following a correspondence due to Almeida, every uniformly recurrent language determines a maximal subgroup of the free profinite monoid in which it lives, known as the Schützenberger group of the language. These groups are projective profinite groups, but interestingly, they are not always free. Several instances of this have been known early on, with the language of the Thue-Morse substitution being a prime example. In the case of uniformly recurrent languages determined by primitive substitutions, the Schützenberger group admits a profinite presentation of a very special kind (Almeida and Costa, 2013). We make use of this result to study freeness of Schützenberger groups, both absolute and relative. While many aspects of this question remain widely open, we obtain some effective ways to test for absolute freeness of these groups. As an application, we give an example of a primitive invertible substitution whose Schützenberger group is not free (this constitutes a counter-example to a statement put forward by Almeida in 2005). We also show how in some cases, relative invertibility imposes a lower bound (so to speak) on relative freeness.
+                        </abstract>
+                    </td>
+                    <td id="centered">
+                        <input type="checkbox" onclick="toggle('cmup2023')">
                     </td>
                 </tr>
                 <tr>
@@ -102,7 +245,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <a href="">Suffix-connected languages</a>. <i>Dyadisc 4, Amiens, France.</i> Affiche présentée en ligne.
+                        <strong>Suffix-connected languages</strong>. <em>Dyadisc 4, Amiens, France.</em> Affiche présentée en ligne.
                     </td>
                 </tr>
             </table>
@@ -119,7 +262,7 @@
             </address>
             <br>
 			<div id="last-update">
-				Mise à jour: 22 avril 2024.
+				Mise à jour: 16 juillet 2024.
 			</div>
 		</footer>
 	</body>
