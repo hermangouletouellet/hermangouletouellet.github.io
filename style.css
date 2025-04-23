@@ -46,7 +46,7 @@ a:visited {
     width: 100%;
     align:center;
     border-bottom: 2px solid var(--darkblue);
-    background: var(--lightgray);
+    background:inherit;
 }
 
 .navbar-right {
@@ -87,7 +87,7 @@ a#button {
     text-decoration: none;
     font-size: 16px;
     border-bottom: 2px solid var(--darkblue);
-    background: var(--lightgray);
+    background:white;
 }
 
 a:hover#button {
@@ -106,7 +106,7 @@ body {
     font-size: 16px;
     line-height: 24px;
     color: var(--darkgray);
-    background: var(--lightgray);
+    background: white;
 }
 
 h1 {
