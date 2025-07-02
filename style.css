@@ -1,6 +1,6 @@
 :root {
     --green: #26bc18;
-    --darkblue: #002e4f;
+    --darkblue: #02488c;
     --darkgray: #231f20;
     --gray: #594e4f;
     --lightgray: #f5eff1;
@@ -153,9 +153,9 @@ main {
 
 img#portrait {
     float:left;
-    margin-top:0px;
+    margin-top:50px;
     margin-left:2%;
-    margin-right:3%;
+    margin-right:2%;
 }
 
 footer {
