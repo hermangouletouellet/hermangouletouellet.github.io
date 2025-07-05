@@ -7,8 +7,11 @@
 }
 
 th {
+    font-family: 'Jost', sans-serif;
+    color: var(--darkblue);
     text-align: left;
     padding-top: 10px;
+    font-size: 20px;
 }
 
 td {
@@ -132,7 +135,7 @@ h2 {
     line-height:1.5em;
     font-size:38px;
     padding-left:10%;
-    padding-top:80px;
+    padding-top:5%;
 }
 
 #name-banner {
@@ -144,16 +147,16 @@ h2 {
     line-height:1.5em;
     font-size:38px;
     margin-left:10%;
-    margin-top:70px;
+    margin-top:5%;
 }
 
 main {
-    margin:5% 10%;
+    margin:3% 10%;
 }
 
 img#portrait {
     float:left;
-    margin-top:50px;
+    margin-top:4%;
     margin-left:2%;
     margin-right:2%;
 }

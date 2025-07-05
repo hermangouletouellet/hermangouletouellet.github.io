@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="en-US">
+<html lang="fr-CA">
     <head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width,initial-scale=1" />
-		<meta name="description" content="Herman Goulet-Ouellet personnal website" />
+		<meta name="description" content="Site web de Herman Goulet-Ouellet" />
 
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,49 +18,55 @@
             $(function(){
                 $("#includedContent").load("contact.html"); 
             });
+
             window.onload = function () {
                 let date = new Date(document.lastModified); 
                 let options = {year:'numeric', month:'long',day:'numeric',
                 };
-                document.getElementById("updated").innerHTML = date.toLocaleDateString('en-CA',options);
+                document.getElementById("updated").innerHTML = date.toLocaleDateString('fr-CA',options);
             }
-        </script>
+        </script> 
     </head>
     <body>
         <div class="navbar">
-            <a class="active" href="./">Home</a>
+            <a class="active" href="./">Accueil</a>
             <a href="publications/">Publications</a>
-            <a href="talks/">Talks</a>
+            <a href="exposes/">Exposés</a>
             <div class="navbar-right">
-                <a href="fr/">fr</a>
-                <a class="active" href="./">en</a>
-            </div> 
+                <a class="active" href="./">fr</a>
+                <a href="en/">en</a>
+            </div>
         </div> 
 		<header id="top-banner">
-            <img id="portrait" src="assets/img/portrait.png" alt="A picture of me" style="width:150px;height:150px;">
+            <img id="portrait" src="../assets/img/photo_3.png" alt="Ma photo" style="width:180px;height:180px;">
             <br>
             <div id="name-banner">
                 Herman Goulet-Ouellet
             </div>
+            <p>
+            <h2>
+            Professeur adjoint au département de mathématiques et statistiques de l'Université de Moncton. 
+            </h2>
         </header>
 		<main>
-            <h1> About me </h1>
-            <p>
-            Since July 2025, I am an adjoint professor at the <a href="https://www.umoncton.ca/umcm-sciences-mathstat/">department of mathematics and statistics at Moncton University</a>. Before that, I was a postdoc in Paris (at the <a href="https://www.irif.fr/">Institut de Recherche en Informatique Fondamentale</a> working with <a href="https://www.irif.fr/~berthe/">Valérie Berthé</a>) and then in Prague (at the <a href = "https://www.cvut.cz/en">Czech Technical University</a> working with <a href="https://staroste.pages.fit/">Štěpán Starosta</a>). I completed a PhD in mathematics at the <a href="https://www.uc.pt/en">University of Coimbra</a> in 2022, under the direction of <a href="https://cmup.fc.up.pt/cmup/jalmeida/">Jorge Almeida</a> and <a href="https://apps.uc.pt/mypage/faculty/uc26448/en">Alfredo Costa</a>. My thesis, titled <a href="assets/files/thesis.pdf" download>Schützenberger groups of minimal shift spaces</a>, focuses on the links between symbolic dynamics, combinatorics on words and profinite semigroups. 
+
+            <a href="https://www.umoncton.ca/umcm-sciences-mathstat/">
+            <img src="../assets/img/H_MATHEMATIQUES_STATISTIQUE.png" alt="Logo de l'Université de Moncton" style="width:400px;margin-bottom:10px">
+            </a>
             <p>
 
-            My main research interests are in symbolic dynamics, combinatorics on words, automata theory and semigroup theory, in particular profinite semigroups. I am especially interested in the various connections between these areas. My work also has a strong experimental component, using software like <a href="https://www.sagemath.org/">SageMath</a>, <a href="https://www.python.org/">Python</a> and <a href="https://www.gap-system.org/">Gap</a>. 
-            <p>
+            Mes intérêts de recherche sont la dynamique symbolique, la combinatoire des mots, la théorie des automates et la théorie des semigroupes, en particulier les semigroupes profinis. Je suis particulièrement intéressé par les connexions entre ces différents sujets. Mon travail comporte aussi une forte composante expérimentale, avec l'utilisation d'outils comme <a href="https://www.sagemath.org/">SageMath</a>, <a href="https://www.python.org/">Python</a> et <a href="https://www.gap-system.org/">Gap</a> pour guider ma recherche. 
+            <p> 
 
             <br>
-            <a id="button" href="assets/files/cv_fr.pdf" download>CV (fr)</a>
-            <a id="button" href="assets/files/cv_en.pdf" download>CV (en)</a>
+            <a id="button" href="../assets/files/cv_fr.pdf" download>CV (fr)</a>
+            <a id="button" href="../assets/files/cv_en.pdf" download>CV (en)</a>
 		</main>
 		<footer>
             <div id="includedContent"></div>
             <br>
 			<div id="last-update">
-                Updated: <span id="updated"></span>
+                Mise à jour: <span id="updated"></span>
 			</div>
 		</footer>
 	</body>
