@@ -1,0 +1,49 @@
+
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>EspacesPropres</title>
+    <script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script>
+    <script>
+    // Make the div with id 'mycell' a Sage cell
+    sagecell.makeSagecell({inputLocation:  '#mycell',
+                           template:       sagecell.templates.minimal,
+                           evalButtonText: 'Activer'});
+    // Make *any* div with class 'compute' a Sage cell
+    sagecell.makeSagecell({inputLocation: 'div.compute',
+                           evalButtonText: 'Évaluer'});
+    </script>
+  </head>
+  <body>
+  <h1>Visualisation: espaces propres et vecteurs propres</h1>
+
+  <h2>Espaces propres de f(x,y)=(x+y,x)</h2>
+  Cliquez sur "Activer" pour débuter la visualisation.
+    <div id="mycell"><script type="text/x-sage">
+@interact
+def _(angle = slider(0,2*pi,.01,0,"angle")):
+    f = lambda x,y:(x+y,x)
+    v=vector([cos(angle),sin(angle)])
+    ard = arrow(v,f(*v),arrowsize=2,color=Color("#BBBBBB"),linestyle="--")
+    arv = arrow((0,0),v,arrowsize=3,color=Color("#0077BB"))
+    arf = arrow((0,0),f(*v),arrowsize=3,linestyle="--",color=Color("#CC3311"))
+    c = circle((0,0),1,linestyle='--',color="black")
+    p = plot(1/golden_ratio*x,(x,-2,2),color=Color("#CC3311"),thickness=1) + \
+        plot(-golden_ratio*x,(x,-1,1),color=Color("#CC3311"),thickness=1) + \
+        c+ard+ arv +arf
+    display(p)
+    </script></div>
+
+<h2>Champs de vecteurs de f(x+y,x)</h2>
+Cliquez sur "Évaluer" pour exécuter le code.
+    <div class="compute"><script type="text/x-sage">
+M.<x,y> = EuclideanSpace()
+F = M.vector_field(x+y, x, (x,-10,10), name='u')
+espaces_propres = plot(1/golden_ratio*x,(x,-20,20),color=Color("#CC3311"),thickness=1) + \
+    plot(-golden_ratio*x,(x,-10,10),color=Color("#CC3311"),thickness=1)
+F.plot(color=Color("#0077BB"),arrowsize=2) + espaces_propres
+</script></div>
+  </body>
+</html>
