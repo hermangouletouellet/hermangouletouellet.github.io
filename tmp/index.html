@@ -29,7 +29,7 @@ def f(n=slider(0,20,1,0,"itérations")):
     P = [point((cos(k*(1-alpha)*2*pi),sin(k*(1-alpha)*2*pi)),color="black",size=50) for k in range(n+1)]
     T = [text("x_"+str(k),(1.1*cos(k*(1-alpha)*2*pi),1.1*sin(k*(1-alpha)*2*pi)),color="black") for k in range(n+1)]
     x = WordMorphism('a->ab,b->a')
-    W = text(str(x.fixed_point('a')[:n]), (0,-1.4),fontsize=20,color="black")
+    W = text(str(x.fixed_point('a')[:n]), (0,-1.4),fontsize=15,color="black")
     display(sum(P)+sum(T)+W+Ia+Ib)
     </script></div>
   </body>
