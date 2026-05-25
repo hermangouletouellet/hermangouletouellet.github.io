@@ -24,6 +24,9 @@
                 }
             }
             $(function(){
+                $("mathjax").load("../../mathjax.html")
+            });
+            $(function(){
                 $("#includedContent").load("../../en/contact.html"); 
             });
             window.onload = function () {
@@ -32,7 +35,8 @@
                 };
                 document.getElementById("updated").innerHTML = date.toLocaleDateString('en-CA',options);
             }
-        </script> 
+        </script>
+        <mathjax></mathjax> 
     </head>
     <body>
         <div class="navbar">
@@ -178,8 +182,39 @@ We consider the question of whether or not a given primitive substitution preser
                 </tr>
                 <tr>
                     <td>
+                        J. Almeida, A. Costa and H. Goulet-Ouellet. <a href="https://doi.org/10.48550/arXiv.2509.00991">Profinite approach to S-adic shift spaces I: Saturating directive sequences</a> (2025). <a href="https://arxiv.org/abs/2509.00991">arxiv:2509.00991</a>
+                        <abstract id="pre/Almeida2025a">
+This paper is the first in a series of three, about (relatively)
+free profinite semigroups and S-adic representations of minimal
+shift spaces. We associate to each primitive S-adic directive
+sequence $\boldsymbol{\sigma}$ a <em>profinite image</em> in the free profinite
+semigroup over the alphabet of the induced minimal shift space. When
+this profinite image contains a $\mathcal{J}$-maximal maximal subgroup
+of the free profinite semigroup (which, up to isomorphism, is called
+the <em>Schützenberger group</em> of the shift space), we say that
+$\boldsymbol{\sigma}$ is <em>saturating</em>. We show that if $\boldsymbol{\sigma}$ is
+recognizable, then it is saturating. Conversely, we use the notion
+of saturating sequence to obtain several sufficient conditions for
+$\boldsymbol{\sigma}$ to be recognizable: $\boldsymbol{\sigma}$ consists of pure encodings;
+or $\boldsymbol{\sigma}$ is eventually recognizable, saturating and consists of
+encodings; or $\boldsymbol{\sigma}$ is eventually recognizable, recurrent,
+bounded and consists of encodings. For the most part, we do not
+assume that $\boldsymbol{\sigma}$ has finite alphabet rank although we establish
+that this combinatorial property has important algebraic
+consequences, namely that the rank of the Schützenberger group is
+also finite, whose maximum possible value we also determine.
+We also show that for every  minimal shift space of finite topological rank,
+the rank of its Schützenberger group  is a lower bound of the topological rank.
+                        </abstract>
+                    </td>
+                    <td id="centered">
+                        <input type="checkbox" onclick="toggle('pre/Almeida2025a')">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
                         J. Almeida, A. Costa, H. Goulet-Ouellet. <a href="https://doi.org/10.48550/arXiv.2507.08580">Open multiplication in relatively free profinite semigroupoids</a> (2025). <a href="https://arxiv.org/abs/2507.08580">arxiv:2507.08580</a>
-                        <abstract id="pre/Almeida2025">0
+                        <abstract id="pre/Almeida2025">
 The purpose of this paper is to extend some useful results, such as the multiplication being open, previously known for suitable finitely generated relatively free profinite semigroups, to relatively free profinite semigroupoids over finite-vertex graphs. This extension is used to give a profinite characterization of recurrent words over infinite alphabets and to establish new results about stabilizers in relatively free profinite semigroups and semigroupoids. 
                         </abstract>
                     </td>
