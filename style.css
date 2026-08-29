@@ -220,3 +220,18 @@ abstract {
     display: none;
     font-style: italic;
 }
+
+.pub-link {
+    margin-top: 6px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.arxiv-link {
+    display: inline-flex;
+    align-items: center;
+    vertical-align: middle; 
+    text-decoration: none;
+    background-clip: content-box;
+}
