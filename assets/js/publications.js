@@ -25,115 +25,107 @@
 
     const TYPE_ORDER = ["journal", "proceedings", "preprint", "thesis"];
 
-    const lang = typeof SITE_LANG !== "undefined" ? SITE_LANG : "fr";
+    const LANG = typeof SITE_LANG !== "undefined" ? SITE_LANG : "fr";
 
-    let abstractsCache=null;
-
-    window.toggleAbstract = async function (id, checkbox) {
-        const elt = document.getElementById(id);
+    window.toggleAbstract = function (id, checkbox) {
+        const elt = document.getElementById(`abstract-${id}`);
         if (!elt) return;
-
-        if (elt.style.display === "block") {
-            elt.style.display = "none";
-            return;
-        }
-
-        if (!abstractsCache) {
-            try {
-                const response = await fetch("/data/publications_abstracts.json");
-                abstractsCache = await response.json();
-            } catch (err) {
-                console.error("Failed to load abstracts.json:", err);
-                elt.innerHTML = "<em>Error loading abstract.</em>";
-                elt.style.display = "block";
-                return;
-            }
-        }
-
-        const entry = abstractsCache[id];
-        const text = entry ? (entry[lang] || entry["abstract_en"] || "") : "";
-
-        elt.innerHTML = text || "<em>No abstract available.</em>";
-        elt.style.display = "block";
+        elt.style.display = checkbox.checked ? "block" : "none";
     };
-
-    // TODO check if used
-    window.toggle = function (id) {
-        const elt = document.getElementById(id);
-        if (!elt) return;
-        elt.style.display = elt.style.display === "block" ? "none" : "block";
-    };
-
-    // TODO inline this
-    function fillTokens(html, strings) {
-        return html
-            .replace(/\{\{in\}\}/g, strings.in)
-            .replace(/\{\{ed\}\}/g, strings.ed);
-    }
 
     function buildArxivLink(arxivId) {
-        if (!arxivId) return "";
-        const url = "https://arxiv.org/abs/${arxivId}"
-        return `
-            <a href="${url}" target="_blank" rel="noopener noreferrer" title="View on arXiv">
-                <img src="/assets/img/arxiv-logo.svg" alt="arXiv" width="30" height="30">
-            </a>`;
+            if (!arxivId) return "";
+            const url = `https://arxiv.org/abs/${arxivId}`
+            return `
+                <a href="${url}" target="_blank" rel="noopener noreferrer" title="View on arXiv">
+                    <img src="/assets/img/arxiv-logo.svg" alt="arXiv" style="pub-icon">
+                </a>`;
     }
 
     function buildDoiLink(doi) {
-    if (!doi) return "";
-    const url = "https://doi.org/${doi}"
-    return `
-        <a href="${url}" target="_blank" rel="noopener noreferrer" title="View DOI">
-            <img src="/assets/img/doi-logo.svg" alt="DOI" width="30" height="30">
-        </a>`;
+        if (!doi) return "";
+        const url = `https://doi.org/${doi}`
+        return `
+            <a href="${url}" target="_blank" rel="noopener noreferrer" title="View DOI">
+                <img src="/assets/img/doi-logo.svg" alt="DOI" style="pub-icon">
+            </a>`;
     }
 
     function buildHalLink(halId) {
-    if (!halId) return "";
-    const url = "https://hal.science/${halId}"
-    return `
-        <a href="${url}" target="_blank" rel="noopener noreferrer" title="View HAL">
-            <img src="/assets/img/hal-logo.svg" alt="HAL" width="30" height="30">
-        </a>`;
+        if (!halId) return "";
+        const url = `https://hal.science/${halId}`
+        return `
+            <a href="${url}" target="_blank" rel="noopener noreferrer" title="View HAL">
+                <img src="/assets/img/hal-logo.svg" alt="HAL" style="pub-icon">
+            </a>`;
     }
 
-    function buildExtraLink(url, label) {
+    function buildUrlLink(url) {
         if (!url) return "";
-        return ` <a href="${url}">${label}</a>`;
+        return `
+            <a href="${url}" target="_blank" rel="noopener noreferrer" title="View Link">
+                <img src="/assets/img/external-link.svg" alt="Link" style="pub-icon">
+            </a>`;
+    }
+
+    function buildCitation(row, strings) {
+        let html = `${row.authors}. <strong>${row.title}</strong>.`;
+
+        if (row.type === "journal" && row.journal) {
+            html += ` <em>${row.journal}</em>, ${row.year}.`;
+        } else if (row.type === "proceedings") {
+            // Example handling for proceedings using the "In" translation
+            const venue = row.booktitle || row.journal || "Proceedings";
+            html += ` ${strings.in} <em>${venue}</em>, ${row.year}.`;
+        } else if (row.type === "thesis") {
+            const school = row.school || row.institution || "";
+            html += ` <em>${school}</em>, ${row.year}.`;
+        } else if (row.year) {
+            html += ` ${row.year}.`;
+        }
+
+        return html;
     }
 
     function renderRow(row, strings) {
         const tr = document.createElement("tr");
 
         const tdCitation = document.createElement("td");
-        let citationHtml = fillTokens(row.citation_html, strings);
-
-        // Creating container with link icons
-        const arxivHtml = buildArxivLink(row.arxiv);
-        const doiHtml = buildDoiLink(row.doi);
-        const halHtml = buildHalLink(row.hall);
-
-        if (arxivHtml || doiHtml || halHtml) {
-            citationHtml += `<div class="pub-link">${doiHtml}${arxivHtml}${halHtml}</div>`;
-        }
-
+        let citationHtml = buildCitation(row, strings);
         tdCitation.innerHTML = citationHtml;
 
-        const abstractEl = document.createElement("abstract");
-        abstractEl.id = row.id;
-        abstractEl.style.display = "none";
-        tdCitation.appendChild(abstractEl);
+        const arxivHtml = buildArxivLink(row.arxiv);
+        const doiHtml = buildDoiLink(row.doi);
+        const halHtml = buildHalLink(row.hal);
+        const urlHtml = buildUrlLink(row.url);
+
+        if (arxivHtml || doiHtml || halHtml || urlHtml) {
+            const linksDiv = document.createElement("div");
+            linksDiv.className = "pub-links";
+            linksDiv.innerHTML = `${doiHtml}${arxivHtml}${halHtml}${urlHtml}`;
+            tdCitation.appendChild(linksDiv);
+        }
+
+        const abstractText = row.abstract?.[LANG] || row.abstract?.en;
+
+        if (abstractText && typeof abstractText === "string") {
+            const abstractEl = document.createElement("div");
+            abstractEl.id = `abstract-${row.id}`;
+            abstractEl.className = "pub-abstract";
+            abstractEl.style.display = "none";
+            abstractEl.innerHTML = abstractText;
+            tdCitation.appendChild(abstractEl);
+        }
 
         const tdAbstractToggle = document.createElement("td");
         tdAbstractToggle.id = "centered";
 
-        if (row.has_abstract === "true" || row.has_abstract === "1") {
+        if (abstractText && typeof abstractText === "string") {
             const checkbox = document.createElement("input");
             checkbox.type = "checkbox";
-            checkbox.setAttribute("onclick", `toggleAbstract('${row.id}', this)`);
+            checkbox.onclick = () => toggleAbstract(row.id, checkbox);
             tdAbstractToggle.appendChild(checkbox);
-        }
+        }   
 
         tr.appendChild(tdCitation);
         tr.appendChild(tdAbstractToggle);
@@ -154,7 +146,7 @@
     }
 
     function render(rows) {
-        const strings = T[lang];
+        const strings = T[LANG];
         const table = document.getElementById("pub-table");
         if (!table) return;
         table.innerHTML = "";
@@ -178,23 +170,15 @@
         }
     }
 
-    function init() {
-        Papa.parse(CSV_PATH, {
-            download: true,
-            header: true,
-            skipEmptyLines: true,
-            complete: function (results) {
-                render(results.data);
-            },
-            error: function (err) {
-                console.error("Failed to load publications.csv:", err);
-                const table = document.getElementById("pub-table");
-                if (table) {
-                    table.innerHTML =
-                        '<tr><td>Unable to load publications data.</td></tr>';
-                }
-            },
-        });
+    async function init() {
+        try {
+            const response = await fetch("/data/publications.json");
+            render(await response.json());
+        } catch (err) {
+            console.error("Data load failed:", err);
+            const table = document.getElementById("pub-table");
+            if (table) table.innerHTML = '<tr><td colspan="2">Error loading publications.</td></tr>';
+        }
     }
 
     if (document.readyState === "loading") {

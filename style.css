@@ -25,9 +25,6 @@ td#centered {
     text-align: center;
 }
 
-/*
- * default link settings
- */
 a:link {
     font-weight: 500;
     color: var(--darkblue);
@@ -38,9 +35,6 @@ a:visited {
     color: var(--darkblue);
 }
 
-/* 
- * navigation bar 
- */
 .navbar {
     position: fixed; 
     display: block;
@@ -221,17 +215,20 @@ abstract {
     font-style: italic;
 }
 
-.pub-link {
-    margin-top: 6px;
+.pub-links {
     display: flex;
+    gap: 1em;
     align-items: center;
-    gap: 8px;
+    margin: 1em;
 }
 
-.arxiv-link {
-    display: inline-flex;
-    align-items: center;
-    vertical-align: middle; 
-    text-decoration: none;
-    background-clip: content-box;
+.pub-icon {
+    height: 100%; 
+    width: auto;
+    object-fit: contain;
+}
+
+img[alt="arXiv"],img[alt="HAL"],img[alt="DOI"],img[alt="Link"] {
+    height: 1.5em;
+    width: auto;
 }
