@@ -1,3 +1,4 @@
+/* color palette */
 :root {
     --green: #26bc18;
     --darkblue: #02488c;
@@ -6,6 +7,7 @@
     --lightgray: #f5eff1;
 }
 
+/* table headers */
 th {
     font-family: 'Jost', sans-serif;
     color: var(--darkblue);
@@ -14,10 +16,12 @@ th {
     font-size: 20px;
 }
 
+/* table data */
 td {
     vertical-align: top;
 }
 
+/* shorthand for centering headers and data */
 th#centered {
     text-align: center;
 }
@@ -25,6 +29,7 @@ td#centered {
     text-align: center;
 }
 
+/* link styles default and visited */
 a:link {
     font-weight: 500;
     color: var(--darkblue);
@@ -35,6 +40,7 @@ a:visited {
     color: var(--darkblue);
 }
 
+/* styling for navbar */
 .navbar {
     position: fixed; 
     display: block;
@@ -45,11 +51,9 @@ a:visited {
     border-bottom: 2px solid var(--darkblue);
     background:inherit;
 }
-
 .navbar-right {
     float: right;
 }
-
 .navbar a {
     font-family: 'Jost', sans-serif;
     float: left;
@@ -60,20 +64,16 @@ a:visited {
     text-decoration: none;
     font-size: 16px;
 }
-
 .navbar a:hover {
     color: var(--darkgray);
 }
-
 .navbar a.active {
     font-weight: 500;
     color: var(--darkblue);
 }
 
 
-/* 
- * other kinds of links 
- */
+/* style for buttons */
 a#button {
     font-family: 'Jost', sans-serif;
     font-weight: 300;
@@ -86,7 +86,6 @@ a#button {
     border-bottom: 2px solid var(--darkblue);
     background:white;
 }
-
 a:hover#button {
     color: var(--darkgray);
     border-bottom: 3px solid var(--darkgray);
@@ -97,6 +96,8 @@ a:hover#button {
  * Main styles
  */
 body {
+    opacity: 0;
+    transition: opacity 0.1s ease-in;
     font-family: 'Roboto', sans-serif;
     font-weight: 300;
     margin: 0;
@@ -104,15 +105,20 @@ body {
     line-height: 24px;
     color: var(--darkgray);
     background: white;
+    padding-top: 40px;
 }
 
+body.loaded {
+    opacity: 1;
+}
+
+/* headers */
 h1 {
     font-family: 'Jost', sans-serif;
     color: var(--darkblue);
     font-size: 32px;
     font-weight: 400;
 }
-
 h2 {
     font-family: 'Jost', sans-serif;
     padding-top: 10px;

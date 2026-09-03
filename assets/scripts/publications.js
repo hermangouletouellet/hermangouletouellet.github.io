@@ -2,6 +2,7 @@
 (function () {
     "use strict";
 
+    // language depend names
     const T = {
         fr: {
             journal: "Revues scientifiques",
@@ -23,10 +24,13 @@
         },
     };
 
-    const TYPE_ORDER = ["journal", "proceedings", "preprint", "thesis"];
+    // types of publications
+    const PUB_TYPES = ["journal", "proceedings", "preprint", "thesis"];
 
-    const LANG = typeof SITE_LANG !== "undefined" ? SITE_LANG : "fr";
+    // language of the site, defaults to french
+    const LANG = (document.documentElement.lang || "fr").split("-")[0];
 
+    // toggle logic for abstract
     window.toggleAbstract = function (id, checkbox) {
         const elt = document.getElementById(`abstract-${id}`);
         if (!elt) return;
@@ -157,7 +161,7 @@
             byType[row.type].push(row);
         }
 
-        for (const type of TYPE_ORDER) {
+        for (const type of PUB_TYPES) {
             const group = byType[type];
             if (!group || group.length === 0) continue;
 

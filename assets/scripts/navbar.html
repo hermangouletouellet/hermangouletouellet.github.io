@@ -1,0 +1,13 @@
+<div class="navbar">
+    <a href="/">Accueil</a>
+    <a href="/publications/">Publications</a>
+    <a href="/exposes/">Exposés</a>
+    <div class="navbar-right">
+        <a href="./">fr</a>
+        <a href="en/">en</a>
+    </div>
+</div>
+
+<script>
+    $(`.navbar a[href="${window.location.pathname}"]`).addClass('active');
+</script>
