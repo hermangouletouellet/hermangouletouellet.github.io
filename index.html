@@ -1,42 +1,31 @@
 <!doctype html>
 <html lang="fr-CA">
     <head>
+        <!-- metadata -->
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width,initial-scale=1" />
 		<meta name="description" content="Site web de Herman Goulet-Ouellet" />
 
+        <!-- fonts and style -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Playfair+Display&family=Roboto:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap" rel="stylesheet">
-		<link rel="stylesheet" href="style.css" />
+        <link rel="stylesheet" href="../style.css" />
 
-		<title>Herman Goulet-Ouellet</title>
+        <!-- scripts -->
+        <script>MathJax = {tex: {inlineMath: {'[+]': [['$', '$']]}}};</script>
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" defer></script>
+        <script src="/assets/scripts/footer.js" defer></script>
+        <script src="/assets/scripts/navbar.js" defer></script>
+        <script src="/assets/scripts/fade-in.js" defer></script>
+		
+        <!-- page title -->
+        <title>Herman Goulet-Ouellet</title>
 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-        <script> 
-            $(function(){
-                $("#includedContent").load("contact.html"); 
-            });
-
-            window.onload = function () {
-                let date = new Date(document.lastModified); 
-                let options = {year:'numeric', month:'long',day:'numeric',
-                };
-                document.getElementById("updated").innerHTML = date.toLocaleDateString('fr-CA',options);
-            }
-        </script> 
     </head>
     <body>
-        <div class="navbar">
-            <a class="active" href="./">Accueil</a>
-            <a href="publications/">Publications</a>
-            <a href="exposes/">Exposés</a>
-            <div class="navbar-right">
-                <a class="active" href="./">fr</a>
-                <a href="en/">en</a>
-            </div>
-        </div> 
+        
 		<header id="top-banner">
             <img id="portrait" src="../assets/img/photo_3.png" alt="Ma photo" style="width:180px;height:180px;">
             <br>
@@ -48,6 +37,7 @@
             Professeur adjoint au département de mathématiques et statistiques de l'Université de Moncton. 
             </h2>
         </header>
+
 		<main>
 
             <a href="https://www.umoncton.ca/umcm-sciences-mathstat/">
@@ -78,12 +68,5 @@ Pour plus d'information, consulter le site web de la conférence (en anglais): <
 The interplay of symbolic dynamics with algebra unfolds in a variety of ways, reflecting the overall richness of the fields. This includes the study of dynamical invariants like dimension groups, associated with the space of invariant measures, or Schützenberger groups, associated with the structure of free profinite semigroups; structural work on automorphism groups of symbolic systems, which also relate to semigroup theory via the construction of Ellis semigroups; relationships with subgroups of the free group, for instance via the theory of codes; cohomological methods linked with cocycles and coboundary, often applied to the study of continuous eigenvalues of symbolic systems; various results exploring the relationship between automatic sequences and power series over finite fields; algebraic methods used in the study of specific systems, like interval exchanges or hypercubic billiards; or the study of symbolic systems, particularly of finite type, over general classes of groups.
             </ul>
 		</main>
-		<footer>
-            <div id="includedContent"></div>
-            <br>
-			<div id="last-update">
-                Mise à jour: <span id="updated"></span>
-			</div>
-		</footer>
 	</body>
 </html>
