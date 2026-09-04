@@ -42,7 +42,7 @@
             const url = `https://arxiv.org/abs/${arxivId}`
             return `
                 <a href="${url}" target="_blank" rel="noopener noreferrer" title="View on arXiv">
-                    <img src="/assets/img/arxiv-logo.svg" alt="arXiv" style="pub-icon">
+                    arxiv
                 </a>`;
     }
 
@@ -51,7 +51,7 @@
         const url = `https://doi.org/${doi}`
         return `
             <a href="${url}" target="_blank" rel="noopener noreferrer" title="View DOI">
-                <img src="/assets/img/doi-logo.svg" alt="DOI" style="pub-icon">
+                doi
             </a>`;
     }
 
@@ -60,7 +60,7 @@
         const url = `https://hal.science/${halId}`
         return `
             <a href="${url}" target="_blank" rel="noopener noreferrer" title="View HAL">
-                <img src="/assets/img/hal-logo.svg" alt="HAL" style="pub-icon">
+                hal
             </a>`;
     }
 
@@ -68,7 +68,7 @@
         if (!url) return "";
         return `
             <a href="${url}" target="_blank" rel="noopener noreferrer" title="View Link">
-                <img src="/assets/img/external-link.svg" alt="Link" style="pub-icon">
+                url
             </a>`;
     }
 
