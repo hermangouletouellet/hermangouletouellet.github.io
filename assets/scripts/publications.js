@@ -2,8 +2,8 @@
 (function () {
     "use strict";
 
-    // language depend names
-    const T = {
+    // language depend strings
+    const LANG_STR = {
         fr: {
             journal: "Revues scientifiques",
             proceedings: "Actes de conférences",
@@ -37,53 +37,55 @@
         elt.style.display = checkbox.checked ? "block" : "none";
     };
 
+    //FIXME language dependent tooltips
     function buildArxivLink(arxivId) {
             if (!arxivId) return "";
             const url = `https://arxiv.org/abs/${arxivId}`
-            return `
-                <a href="${url}" target="_blank" rel="noopener noreferrer" title="View on arXiv">
-                    arxiv
-                </a>`;
+            return `<a href="${url}" target="_blank" rel="noopener noreferrer" title="View on arXiv"> arxiv </a>`;
     }
 
+    //FIXME language dependent tooltips
     function buildDoiLink(doi) {
         if (!doi) return "";
         const url = `https://doi.org/${doi}`
-        return `
-            <a href="${url}" target="_blank" rel="noopener noreferrer" title="View DOI">
-                doi
-            </a>`;
+        return `<a href="${url}" target="_blank" rel="noopener noreferrer" title="View DOI"> doi </a>`;
     }
 
+    //FIXME language dependent tooltips
     function buildHalLink(halId) {
         if (!halId) return "";
         const url = `https://hal.science/${halId}`
-        return `
-            <a href="${url}" target="_blank" rel="noopener noreferrer" title="View HAL">
-                hal
-            </a>`;
+        return `<a href="${url}" target="_blank" rel="noopener noreferrer" title="View HAL"> hal </a>`;
     }
 
+    //FIXME language dependent tooltips
     function buildUrlLink(url) {
         if (!url) return "";
-        return `
-            <a href="${url}" target="_blank" rel="noopener noreferrer" title="View Link">
-                url
-            </a>`;
+        return `<a href="${url}" target="_blank" rel="noopener noreferrer" title="View Link"> url </a>`;
     }
 
     function buildCitation(row, strings) {
-        let html = `${row.authors}. <strong>${row.title}</strong>.`;
+
+        let html = `${row.authors}. <em>${row.title}</em>,`;
 
         if (row.type === "journal" && row.journal) {
-            html += ` <em>${row.journal}</em>, ${row.year}.`;
+            html += ` ${row.journal},` ;
+            html += (row.volume) ? ` <strong>${row.volume}</strong> (${row.year})` : ` (${row.year})` ;
+            if (row.issue) html += `, no. ${row.issue}`;
+            if (row.artno) html += `, art. ${row.artno}`;
+            if (row.pages) html += `, pp. ${row.pages}`;
+            html += ".";
+
+        //FIXME fix proceedings formatting
         } else if (row.type === "proceedings") {
-            // Example handling for proceedings using the "In" translation
             const venue = row.booktitle || row.journal || "Proceedings";
             html += ` ${strings.in} <em>${venue}</em>, ${row.year}.`;
+
+        //FIXME fix thesis formatting
         } else if (row.type === "thesis") {
             const school = row.school || row.institution || "";
             html += ` <em>${school}</em>, ${row.year}.`;
+            
         } else if (row.year) {
             html += ` ${row.year}.`;
         }
@@ -150,7 +152,7 @@
     }
 
     function render(rows) {
-        const strings = T[LANG];
+        const strings = LANG_STR[LANG];
         const table = document.getElementById("pub-table");
         if (!table) return;
         table.innerHTML = "";
