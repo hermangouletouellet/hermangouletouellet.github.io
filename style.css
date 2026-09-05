@@ -22,6 +22,7 @@ td {
 }
 
 /* shorthand for centering headers and data */
+/* FIXME soon deprecated */
 th#centered {
     text-align: center;
 }
@@ -92,22 +93,21 @@ a:hover#button {
     font-weight: 400;
 }
 
-/*
- * Main styles
- */
+/* main style for body */
 body {
     opacity: 0;
-    transition: opacity 0.1s ease-in;
+    transition: opacity 0.2s ease-in;
     font-family: 'Roboto', sans-serif;
     font-weight: 300;
     margin: 0;
-    font-size: 16px;
-    line-height: 24px;
+    font-size: 18px;
+    line-height: 1.5;
     color: var(--darkgray);
     background: white;
     padding-top: 40px;
 }
 
+/* fade-in when loaded */
 body.loaded {
     opacity: 1;
 }
@@ -126,6 +126,7 @@ h2 {
     font-weight: 400;
 }
 
+/* banner displaying current page title */
 #title-banner {
     font-family: 'Jost', sans-serif;
     font-weight: 300;
@@ -138,6 +139,7 @@ h2 {
     padding-top:5%;
 }
 
+/* banner displaying name on home page */
 #name-banner {
     font-family: 'Jost', sans-serif;
     font-weight: 300;
@@ -150,10 +152,12 @@ h2 {
     margin-top:5%;
 }
 
+/* generic margins */
 main {
     margin:3% 10%;
 }
 
+/* style for floating picture on home page */
 img#portrait {
     float:left;
     margin-top:4%;
@@ -161,6 +165,7 @@ img#portrait {
     margin-right:2%;
 }
 
+/* footer style */
 footer {
     border-top: 1px solid var(--darkblue);
     font-size: 14px;
@@ -170,6 +175,7 @@ footer {
     margin-top:5%;
 }
 
+/* container for displaying address (contact info) */
 address {
   display: block;
   font-style: normal;
@@ -182,7 +188,6 @@ address {
     font-size:13px;
     font-weight: lighter;
 }
-
 
 @media screen and (max-width: 683px) {
     #name-banner {
@@ -237,4 +242,25 @@ abstract {
 img[alt="arXiv"],img[alt="HAL"],img[alt="DOI"],img[alt="Link"] {
     height: 1.5em;
     width: auto;
+}
+
+.abstract-wrapper {
+    display: grid;
+    grid-template-rows: 0fr;
+    opacity: 0;
+    transition: grid-template-rows 0.5s ease, opacity 0.45s ease;
+    overflow: hidden;
+}
+
+.abstract-wrapper.is-expanded {
+    grid-template-rows: 1fr;
+    opacity: 1;
+}
+
+.abstract-inner {
+    min-height: 0;
+    padding: 1em 2em;
+    color: var(--darkgray);
+    font-size: 0.95em;
+    line-height: 1.8;
 }

@@ -4,24 +4,14 @@
 
     // language depend strings
     const LANG_STR = {
-        fr: {
-            journal: "Revues scientifiques",
-            proceedings: "Actes de conférences",
-            preprint: "Prépublications",
-            thesis: "Thèse",
-            abstractCol: "Résumé",
-            in: "Dans",
-            ed: "Éd. par",
-        },
-        en: {
-            journal: "Peer-reviewed journals",
-            proceedings: "Conference proceedings",
-            preprint: "Preprints",
-            thesis: "Thesis",
-            abstractCol: "Abstract",
-            in: "In",
-            ed: "Ed. by",
-        },
+        journal: { fr: "Revues scientifiques", en: "Peer-reviewed journals" },
+        proceedings: { fr: "Actes de conférences", en: "Conference proceedings" },
+        preprint: { fr: "Prépublications", en: "Preprints" },
+        thesis: { fr: "Thèse", en: "Thesis" },
+        abstract: { fr: "Résumé", en: "Abstract" },
+        and: { fr: "et", en: "and"},
+        in: { fr: "dans", en: "in" },
+        ed: { fr: "éd. par", en: "ed. by" },
     };
 
     // types of publications
@@ -34,57 +24,64 @@
     window.toggleAbstract = function (id, checkbox) {
         const elt = document.getElementById(`abstract-${id}`);
         if (!elt) return;
-        elt.style.display = checkbox.checked ? "block" : "none";
+        elt.classList.toggle("is-expanded", checkbox.checked);    
     };
 
     //FIXME language dependent tooltips
     function buildArxivLink(arxivId) {
-            if (!arxivId) return "";
-            const url = `https://arxiv.org/abs/${arxivId}`
-            return `<a href="${url}" target="_blank" rel="noopener noreferrer" title="View on arXiv"> arxiv </a>`;
+        if (!arxivId) return "";
+        let url = `https://arxiv.org/abs/${arxivId}`
+        let tooltip = (LANG === "en") ? "View on arXiv" : "Voir sur arXiv";
+        return `<a href="${url}" target="_blank" rel="noopener noreferrer" title="${tooltip}"> arXiv </a>`;
     }
 
-    //FIXME language dependent tooltips
     function buildDoiLink(doi) {
         if (!doi) return "";
-        const url = `https://doi.org/${doi}`
-        return `<a href="${url}" target="_blank" rel="noopener noreferrer" title="View DOI"> doi </a>`;
+        let url = `https://doi.org/${doi}`
+        let tooltip = (LANG === "en") ? "DOI link" : "Lien DOI";
+        return `<a href="${url}" target="_blank" rel="noopener noreferrer" title="${tooltip}"> doi </a>`;
     }
 
-    //FIXME language dependent tooltips
     function buildHalLink(halId) {
         if (!halId) return "";
-        const url = `https://hal.science/${halId}`
-        return `<a href="${url}" target="_blank" rel="noopener noreferrer" title="View HAL"> hal </a>`;
+        let url = `https://hal.science/${halId}`
+        let tooltip = (LANG === "en") ? "View on HAL" : "Voir sur HAL" ;
+        return `<a href="${url}" target="_blank" rel="noopener noreferrer" title="${tooltip}"> hal </a>`;
     }
 
-    //FIXME language dependent tooltips
     function buildUrlLink(url) {
         if (!url) return "";
-        return `<a href="${url}" target="_blank" rel="noopener noreferrer" title="View Link"> url </a>`;
+        let tooltip = (LANG === "en") ? "Citation URL" : "URL de la citation";
+        return `<a href="${url}" target="_blank" rel="noopener noreferrer" title="${tooltip}"> url </a>`;
     }
 
-    function buildCitation(row, strings) {
+    function buildCitation(row) {
+        let authorStr = (row.authors.length>1) 
+            ? [row.authors.slice(0,-1).join(", "),row.authors.slice(-1)[0]].join(` ${LANG_STR.and[LANG]} `)
+            : row.authors[0];
 
-        let html = `${row.authors}. <em>${row.title}</em>,`;
+        let html = `${authorStr}. <em>${row.title}</em>,`;
 
         if (row.type === "journal" && row.journal) {
-            html += ` ${row.journal},` ;
-            html += (row.volume) ? ` <strong>${row.volume}</strong> (${row.year})` : ` (${row.year})` ;
+            html += ` ${row.journal}` ;
+            html += (row.volume) ? `, <strong>${row.volume}</strong> (${row.year})` : ` (${row.year})` ;
             if (row.issue) html += `, no. ${row.issue}`;
             if (row.artno) html += `, art. ${row.artno}`;
             if (row.pages) html += `, pp. ${row.pages}`;
             html += ".";
 
-        //FIXME fix proceedings formatting
         } else if (row.type === "proceedings") {
-            const venue = row.booktitle || row.journal || "Proceedings";
-            html += ` ${strings.in} <em>${venue}</em>, ${row.year}.`;
+            html += ` ${LANG_STR.in[LANG]}: <em>${row.booktitle}</em>`;
+            if (row.editors) html += `, ${LANG_STR.ed[LANG]}: ${row.editors}`;
+            html += ` (${row.year})`
+            if (row.series) html += `, ${row.series}`;
+            if (row.volume) html += `, vol. ${row.volume}`;
+            if (row.artno) html += `, art. ${row.artno}`;
+            if (row.pages) html += `, pp. ${row.pages}`;
+            html += ".";
 
-        //FIXME fix thesis formatting
         } else if (row.type === "thesis") {
-            const school = row.school || row.institution || "";
-            html += ` <em>${school}</em>, ${row.year}.`;
+            html += ` <em>${row.institution}</em>, ${row.year}.`;
             
         } else if (row.year) {
             html += ` ${row.year}.`;
@@ -93,11 +90,11 @@
         return html;
     }
 
-    function renderRow(row, strings) {
+    function renderRow(row) {
         const tr = document.createElement("tr");
 
         const tdCitation = document.createElement("td");
-        let citationHtml = buildCitation(row, strings);
+        let citationHtml = buildCitation(row);
         tdCitation.innerHTML = citationHtml;
 
         const arxivHtml = buildArxivLink(row.arxiv);
@@ -112,19 +109,26 @@
             tdCitation.appendChild(linksDiv);
         }
 
+        tr.appendChild(tdCitation);
+
+
         const abstractText = row.abstract?.[LANG] || row.abstract?.en;
 
         if (abstractText && typeof abstractText === "string") {
-            const abstractEl = document.createElement("div");
-            abstractEl.id = `abstract-${row.id}`;
-            abstractEl.className = "pub-abstract";
-            abstractEl.style.display = "none";
-            abstractEl.innerHTML = abstractText;
-            tdCitation.appendChild(abstractEl);
+            const abstractWrapper = document.createElement("div");
+            abstractWrapper.id = `abstract-${row.id}`;
+            abstractWrapper.className = "abstract-wrapper";
+
+            const abstractInner = document.createElement("div");
+            abstractInner.className = "abstract-inner";
+            abstractInner.innerHTML = abstractText;
+
+            abstractWrapper.appendChild(abstractInner);
+            tdCitation.appendChild(abstractWrapper);
         }
 
         const tdAbstractToggle = document.createElement("td");
-        tdAbstractToggle.id = "centered";
+        tdAbstractToggle.style.textAlign = "center";
 
         if (abstractText && typeof abstractText === "string") {
             const checkbox = document.createElement("input");
@@ -133,26 +137,24 @@
             tdAbstractToggle.appendChild(checkbox);
         }   
 
-        tr.appendChild(tdCitation);
         tr.appendChild(tdAbstractToggle);
         return tr;
     }
 
-    function renderSectionHeader(label, strings) {
+    function renderSectionHeader(label) {
         const tr = document.createElement("tr");
         const th1 = document.createElement("th");
         th1.textContent = label;
         const th2 = document.createElement("th");
-        th2.id = "centered";
+        th2.style.textAlign = "center";
         th2.style.width = "8ex";
-        th2.textContent = strings.abstractCol;
+        th2.textContent = LANG_STR.abstract[LANG];
         tr.appendChild(th1);
         tr.appendChild(th2);
         return tr;
     }
 
     function render(rows) {
-        const strings = LANG_STR[LANG];
         const table = document.getElementById("pub-table");
         if (!table) return;
         table.innerHTML = "";
@@ -169,9 +171,9 @@
 
             group.sort((a, b) => parseInt(b.year, 10) - parseInt(a.year, 10));
 
-            table.appendChild(renderSectionHeader(strings[type], strings));
+            table.appendChild(renderSectionHeader(LANG_STR[type][LANG]));
             for (const row of group) {
-                table.appendChild(renderRow(row, strings));
+                table.appendChild(renderRow(row));
             }
         }
     }
