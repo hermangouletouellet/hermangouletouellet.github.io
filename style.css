@@ -248,13 +248,13 @@ img[alt="arXiv"],img[alt="HAL"],img[alt="DOI"],img[alt="Link"] {
     display: grid;
     grid-template-rows: 0fr;
     opacity: 0;
-    transition: grid-template-rows 0.5s ease, opacity 0.45s ease;
-    overflow: hidden;
+    transition: opacity 0.3s ease 0s, grid-template-rows 0.4s ease 0.3s;
 }
 
 .abstract-wrapper.is-expanded {
     grid-template-rows: 1fr;
     opacity: 1;
+    transition: grid-template-rows 0.3s ease 0s, opacity 0.4s ease 0.3s;
 }
 
 .abstract-inner {
@@ -263,4 +263,5 @@ img[alt="arXiv"],img[alt="HAL"],img[alt="DOI"],img[alt="Link"] {
     color: var(--darkgray);
     font-size: 0.95em;
     line-height: 1.8;
+    overflow: hidden;
 }
