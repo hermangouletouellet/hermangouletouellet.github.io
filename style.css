@@ -220,11 +220,6 @@ table {
     border-spacing: 0 10px;
 }
 
-abstract {
-    padding: 1% 1% 2% 2%;
-    display: none;
-    font-style: italic;
-}
 
 .pub-links {
     display: flex;
@@ -244,6 +239,12 @@ img[alt="arXiv"],img[alt="HAL"],img[alt="DOI"],img[alt="Link"] {
     width: auto;
 }
 
+abstract {
+    padding: 1% 1% 2% 2%;
+    display: none;
+    font-style: italic;
+}
+
 .abstract-wrapper {
     display: grid;
     grid-template-rows: 0fr;
@@ -259,9 +260,15 @@ img[alt="arXiv"],img[alt="HAL"],img[alt="DOI"],img[alt="Link"] {
 
 .abstract-inner {
     min-height: 0;
-    padding: 1em 2em;
+    padding: 0 2em;
     color: var(--darkgray);
     font-size: 0.95em;
     line-height: 1.8;
     overflow: hidden;
+    transition: padding 0.3s ease 0.3s;
+}
+
+.abstract-wrapper.is-expanded .abstract-inner {
+    padding: 1em 2em;
+    transition: padding 0.3s ease;
 }
