@@ -31,9 +31,9 @@ function injectHead(htmlFilePath) {
     let updatedHtml;
 
     if (headBlockRegex.test(html)) {
-        updatedHtml = html.replace(headBlockRegex, headContent.trim());
+        updatedHtml = html.replace(headBlockRegex, () => headContent);
     } else {
-        updatedHtml = html.replace('</head>', `${headContent.trim()}\n</head>`);
+        updatedHtml = html.replace('</head>', () => `${headContent}\n</head>`);
     }
 
     if (html !== updatedHtml) {
