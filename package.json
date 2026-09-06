@@ -1,0 +1,6 @@
+{
+    "scripts": {
+        "build:head": "node build-head.js",
+        "build": "node build-head.js"
+    }
+}
