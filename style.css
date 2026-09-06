@@ -48,7 +48,7 @@ a:visited {
     top: 0;
     height: 40px;
     width: 100%;
-    align:center;
+    text-align:center;
     border-bottom: 2px solid var(--darkblue);
     background:inherit;
 }
@@ -168,7 +168,7 @@ img#portrait {
 /* footer style */
 footer {
     border-top: 1px solid var(--darkblue);
-    font-size: 14px;
+    font-size: 16px;
     margin-bottom:2%;
     margin-left:10%;
     margin-right:10%;
@@ -269,6 +269,19 @@ abstract {
 }
 
 .abstract-wrapper.is-expanded .abstract-inner {
-    padding: 1em 2em;
+    padding: 1em 2em 2em;
     transition: padding 0.3s ease;
+}
+
+.address-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.logo-content {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
 }

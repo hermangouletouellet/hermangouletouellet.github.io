@@ -176,6 +176,12 @@
                 table.appendChild(renderRow(row));
             }
         }
+
+        if (window.MathJax && typeof MathJax.whenReady === 'function') {
+            MathJax.whenReady(() => {
+                MathJax.typesetPromise([table]).catch((err) => console.error('MathJax error:', err));
+            });
+        }
     }
 
     async function init() {

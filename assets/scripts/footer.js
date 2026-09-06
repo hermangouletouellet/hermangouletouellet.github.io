@@ -13,19 +13,31 @@ window.addEventListener("DOMContentLoaded", () => {
 
     const contactHeader = document.createElement("h4");
     contactHeader.textContent = "Contact";
-    footer.appendChild(contactHeader)
+    footer.appendChild(contactHeader);
 
-    const address = document.createElement("address");
+    let addressContainer = document.createElement("div");
+    addressContainer.className = "address-content";
 
-    const addrDiv = document.createElement("div");
-    addrDiv.textContent = addressLines.join(", ");
+    let address = document.createElement("div");
+    address.className = "address-text";
+    address.innerHTML = `
+        <div> ${addressLines.join(", ")} </div>
+        <div> herman.goullet-ouellet@umoncton.ca </div>`;
+    addressContainer.appendChild(address);
 
-    const emailDiv = document.createElement("div");
-    emailDiv.textContent = "herman.goullet-ouellet@umoncton.ca";
+    let umoncton = document.createElement("a");
+    umoncton.href = "https://www.umoncton.ca/umcm-sciences-mathstat/";
+    umoncton.innerHTML = `<img src="/assets/img/H_RESEAU.svg" alt="Logo de l'Université de Moncton" style="height:4em;">`;
+    let nserc = document.createElement("a");
+    nserc.href = "https://nserc-crsng.canada.ca/fr";
+    nserc.innerHTML = `<img src="/assets/img/NSERC_RGB.svg" alt="Logo du CRSNG" style="height:4em;">`;
+    let logoDiv = document.createElement("div");
+    logoDiv.className = "logo-content";
+    logoDiv.appendChild(umoncton);
+    logoDiv.appendChild(nserc)
+    addressContainer.appendChild(logoDiv);
 
-    address.appendChild(addrDiv);
-    address.appendChild(emailDiv);
-    footer.appendChild(address);
+    footer.appendChild(addressContainer);
 
     footer.appendChild(document.createElement("br"));
 
@@ -35,7 +47,7 @@ window.addEventListener("DOMContentLoaded", () => {
     let options = { year: "numeric", month: "long", day: "numeric" };
     let lang = document.documentElement.lang || navigator.language || 'fr-CA';
     let dateStr = date.toLocaleDateString(lang, options)
-    updateDiv.innerHTML = (lang.slice(0,2)==="en" ? "Updated: " : "Mise à jour: ") + dateStr;
+    updateDiv.innerHTML = (lang.slice(0,2)==="en" ? "Last updated: " : "Dernière mise à jour: ") + dateStr;
 
     footer.appendChild(updateDiv);
 
