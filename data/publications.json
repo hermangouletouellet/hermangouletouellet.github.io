@@ -75,7 +75,7 @@
     "type": "journal",
     "year": 2023,
     "authors": [
-      "J. Almeida", "H. Goulet-Ouellet", "O. Klima"
+      "J. Almeida", "H. Goulet-Ouellet", "O. Klíma"
     ],
     "title": "What makes a Stone topological algebra profinite",
     "journal": "Algebra Universalis",
@@ -224,14 +224,15 @@
     }
   },
   {
-    "id": "pre/Almeida2025",
-    "type": "preprint",
-    "year": 2025,
+    "id": "Almeida2026",
+    "type": "journal",
+    "year": 2026,
+    "journal": "Semigroup Forum",
     "authors": [
       "J. Almeida", "A. Costa", "H. Goulet-Ouellet"
     ],
     "title": "Open multiplication in relatively free profinite semigroupoids",
-    "doi": "10.48550/arXiv.2507.08580",
+    "doi": "10.1007/s00233-026-10663-1",
     "arxiv": "2507.08580",
     "abstract": {
       "en": "The purpose of this paper is to extend some useful results, such as the multiplication being open, previously known for suitable finitely generated relatively free profinite semigroups, to relatively free profinite semigroupoids over finite-vertex graphs. This extension is used to give a profinite characterization of recurrent words over infinite alphabets and to establish new results about stabilizers in relatively free profinite semigroups and semigroupoids.",
