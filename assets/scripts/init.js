@@ -1,7 +1,5 @@
 (function () {
 
-    const LANG = (document.documentElement.lang || "fr").split("-")[0];
-
     const elements = [
         // meta properties
         { tag: "meta", name: "viewport", content: "width=device-width,initial-scale=1" },
