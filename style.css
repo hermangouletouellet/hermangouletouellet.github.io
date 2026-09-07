@@ -95,9 +95,9 @@ a:hover#button {
 
 /* main style for body */
 body {
-    opacity: 0;
-    transition: opacity 0.2s ease-in;
     font-family: 'Roboto', sans-serif;
+    opacity: 1;
+    transition: opacity 0.5s ease-in;
     font-weight: 300;
     margin: 0;
     font-size: 18px;
@@ -107,9 +107,8 @@ body {
     padding-top: 40px;
 }
 
-/* fade-in when loaded */
-body.loaded {
-    opacity: 1;
+html.hidden body {
+    opacity: 0;
 }
 
 /* headers */
