@@ -4,7 +4,7 @@
         <meta name="description" content="Website of Herman Goulet-Ouellet" />
         <title>Herman Goulet-Ouellet</title>
 
-<!-- HEAD_START -->
+<!-- fragment:head -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <script> document.documentElement.classList.add('hidden'); </script>
@@ -21,10 +21,9 @@
     };
 </script>
 <script src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" defer></script>
-<script src="/assets/scripts/footer.js" defer></script>
 <script src="/assets/scripts/navbar.js" defer></script>
 <script src="/assets/scripts/fade-in.js" defer></script>
-<!-- HEAD_END -->
+<!-- /fragment:head -->
 </head>
     <body>
 
@@ -63,4 +62,46 @@ The interplay of symbolic dynamics with algebra unfolds in a variety of ways, re
             </ul>
 		</main>
 	</body>
+    <!-- fragment:footer -->
+<footer>
+    <h4>Contact</h4>
+    <div class="address-content">
+        <div class="address-text">
+            <div>
+                Département de mathématiques et de statistique,
+                Université de Moncton,
+                60 Notre-Dame-du-Sacré-Coeur Street,
+                Moncton E1A 3E9,
+                Nouveau-Brunswick,
+                Canada
+            </div>
+            <div>herman.goullet-ouellet@umoncton.ca</div>
+        </div>
+        <div class="logo-content">
+            <a href="https://www.umoncton.ca/umcm-sciences-mathstat/">
+                <img src="/assets/img/H_RESEAU.svg" alt="Logo de l'Université de Moncton" style="height: 4em;">
+            </a>
+            <a href="https://nserc-crsng.canada.ca/fr">
+                <img src="/assets/img/NSERC_RGB.svg" alt="Logo du CRSNG" style="height: 4em;">
+            </a>
+        </div>
+    </div>
+    <br>
+    <div id="last-update"></div>
+
+    <script>
+        (() => {
+            const updateDiv = document.getElementById("last-update");
+            if (!updateDiv) return;
+
+            const date = new Date(document.lastModified);
+            const options = { year: "numeric", month: "long", day: "numeric" };
+            const lang = document.documentElement.lang || navigator.language || 'fr-CA';
+            const dateStr = date.toLocaleDateString(lang, options);
+
+            updateDiv.textContent = (lang.slice(0, 2) === "en" ? "Last updated: " : "Dernière mise à jour : ") + dateStr;
+        })();
+    </script>
+</footer>
+<!-- /fragment:footer -->
 </html>
