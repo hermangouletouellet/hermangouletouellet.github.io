@@ -76,22 +76,23 @@ function processHtmlFile(filePath) {
         return;
     }
 
-    const fragmentRegex = /<!-- fragment:([\w-]+) -->[\s\S]*?<!-- \/fragment:\1 -->/g;
+    const fragmentRegex = /([ \t]*)<!-- fragment:([\w-]+) -->[\s\S]*?<!-- \/fragment:\2 -->/g;
 
-    const updatedHtml = html.replace(fragmentRegex, (match, fragmentName) => {
+    const updatedHtml = html.replace(fragmentRegex, (match, indent, fragmentName) => {
 
         if (IS_STRIP_MODE) {
-            return `<!-- fragment:${fragmentName} -->\n<!-- /fragment:${fragmentName} -->`;
+            return `${indent}<!-- fragment:${fragmentName} -->${indent}\n<!-- /fragment:${fragmentName} -->`;
         }
 
-        const content = getFragment(fragmentName);
+        let content = getFragment(fragmentName);
 
         if (content === null) {
             const warnMsg = `[WARN] Fragment '${fragmentName}' referenced in ${path.relative(__dirname, filePath)} does not exist.`;
             console.warn(warnMsg);
             return match; 
         } else {
-            return `<!-- fragment:${fragmentName} -->\n${content}\n<!-- /fragment:${fragmentName} -->`;
+            content = indent + content.replace(/\r?\n/g, `\n${indent}`)
+            return `${indent}<!-- fragment:${fragmentName} -->\n${content}\n${indent}<!-- /fragment:${fragmentName} -->`;
         }
     });
 
