@@ -1,11 +1,9 @@
-setVisible = () => { 
-    document.documentElement.classList.remove('hidden');
-}
-
 if (document.readyState === 'complete') {
-    setVisible();
+    document.documentElement.classList.remove('hidden');
 } else {
-    window.addEventListener('load', setVisible);
+    window.addEventListener('load', () => {
+        document.documentElement.classList.remove('hidden');
+    });
 }
 
 window.addEventListener('pageshow', (event) => {

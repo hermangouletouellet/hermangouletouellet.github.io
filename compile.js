@@ -23,10 +23,10 @@
 const fs = require('fs');
 const path = require('path');
 
-const FRAGMENTS_DIR = path.join(__dirname, 'assets', 'fragments');
+const FRAGMENTS_DIR = path.join(__dirname,require('./package.json').config.FRAGMENTS_DIR);
 const fragmentCache = new Map();
 
-const IS_STRIP_MODE = process.argv.includes('--strip');
+const STRIP_MODE = process.argv.includes('--strip');
 
 function getFragment(name) {
     if (!fragmentCache.has(name)) {
@@ -80,8 +80,8 @@ function processHtmlFile(filePath) {
 
     const updatedHtml = html.replace(fragmentRegex, (match, indent, fragmentName) => {
 
-        if (IS_STRIP_MODE) {
-            return `${indent}<!-- fragment:${fragmentName} -->${indent}\n<!-- /fragment:${fragmentName} -->`;
+        if (STRIP_MODE) {
+            return `${indent}<!-- fragment:${fragmentName} -->${indent}\n${indent}<!-- /fragment:${fragmentName} -->`;
         }
 
         let content = getFragment(fragmentName);

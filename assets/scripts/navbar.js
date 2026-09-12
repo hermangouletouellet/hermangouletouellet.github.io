@@ -22,7 +22,6 @@ document.addEventListener("DOMContentLoaded", function() {
         navbar.appendChild(a);
     }
 
-    // 3. Create the right-side container for language toggles
     const rightDiv = document.createElement('div');
     rightDiv.className = 'navbar-right';
 

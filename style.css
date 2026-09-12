@@ -50,8 +50,10 @@ a:visited {
     width: 100%;
     text-align:center;
     border-bottom: 2px solid var(--darkblue);
-    background:inherit;
+    background-color: white;
+    z-index: 1000;
 }
+
 .navbar-right {
     float: right;
 }

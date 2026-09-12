@@ -14,5 +14,7 @@
     };
 </script>
 <script src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" defer></script>
-<script src="/assets/scripts/navbar.js" defer></script>
-<script src="/assets/scripts/fade-in.js" defer></script>
+<script>
+    onload = () => document.documentElement.classList.remove('hidden');
+    onpageshow = e => e.persisted && (document.documentElement.classList.add('hidden'), requestAnimationFrame(onload));
+</script>

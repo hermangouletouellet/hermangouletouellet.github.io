@@ -1,0 +1,16 @@
+<div class="navbar">
+	<a href="/en/">Home</a>
+	<a href="/publications/en/">Publications</a>
+	<a href="/exposes/en/">Talks</a>
+<div class="navbar-right">
+    <a href="../">fr</a>
+    <a href="./" class="active">en</a>
+</div>
+</div>
+<script>
+	(() => {
+		const path = window.location.pathname.replace(/index\.html$/, '');
+		const activeLink = document.querySelector(`.navbar a[href="${path}"]`);
+		if (activeLink) activeLink.classList.add('active');
+	})();
+</script>

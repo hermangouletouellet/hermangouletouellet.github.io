@@ -22,12 +22,34 @@
             };
         </script>
         <script src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" defer></script>
-        <script src="/assets/scripts/navbar.js" defer></script>
-        <script src="/assets/scripts/fade-in.js" defer></script>
+        <script>
+            onload = () => document.documentElement.classList.remove('hidden');
+            onpageshow = e => e.persisted && (document.documentElement.classList.add('hidden'), requestAnimationFrame(onload));
+        </script>
         <!-- /fragment:head -->
     </head>
 
     <body>
+        <header>
+            <!-- fragment:navbar-fr -->
+            <div class="navbar">
+            	<a href="/">Accueil</a>
+            	<a href="/publications/">Publications</a>
+            	<a href="/exposes/">Exposés</a>
+                <div class="navbar-right">
+                    <a href="./" class="active">fr</a>
+                    <a href="en/">en</a>
+                </div>
+            </div>
+            <script>
+                (() => {
+                    const path = window.location.pathname.replace(/index\.html$/, '');
+                    const link = document.querySelector(`.navbar a[href="${path}"]`);
+                    if (link) link.classList.add('active');
+                })();
+            </script>
+            <!-- /fragment:navbar-fr -->
+        </header>
         <header id="top-banner">
             <div id="title-banner">
                 Exposés

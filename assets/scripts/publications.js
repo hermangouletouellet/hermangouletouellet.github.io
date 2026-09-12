@@ -2,7 +2,6 @@
 (function () {
     "use strict";
 
-    // language depend strings
     const LANG_STR = {
         journal: { fr: "Revues scientifiques", en: "Peer-reviewed journals" },
         proceedings: { fr: "Actes de conférences", en: "Conference proceedings" },
@@ -14,20 +13,16 @@
         ed: { fr: "éd. par", en: "ed. by" },
     };
 
-    // types of publications
     const PUB_TYPES = ["journal", "proceedings", "preprint", "thesis"];
 
-    // language of the site, defaults to french
     const LANG = (document.documentElement.lang || "fr").split("-")[0];
 
-    // toggle logic for abstract
     window.toggleAbstract = function (id, checkbox) {
         const elt = document.getElementById(`abstract-${id}`);
         if (!elt) return;
         elt.classList.toggle("is-expanded", checkbox.checked);    
     };
 
-    //FIXME language dependent tooltips
     function buildArxivLink(arxivId) {
         if (!arxivId) return "";
         let url = `https://arxiv.org/abs/${arxivId}`
