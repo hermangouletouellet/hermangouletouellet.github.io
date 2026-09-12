@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const beautify = require('js-beautify');
-const pkg = require('./package.json');
+const pkg = require('../package.json');
 
 const typeNames = {
     "conference": { "fr": "Conférences", "en": "Conferences" },
@@ -124,8 +124,8 @@ Script: /talks.js
 }
 
 
-const dataPath = path.join(__dirname, pkg.config.DATA_DIR);
-const fragmentsPath = path.join(__dirname, pkg.config.FRAGMENTS_DIR);
+const dataPath = path.join(__dirname, "../", pkg.config.DATA_DIR);
+const fragmentsPath = path.join(__dirname, "../", pkg.config.FRAGMENTS_DIR);
 
 const rows = JSON.parse(fs.readFileSync(path.join(dataPath,"talks.json"), 'utf8'));
 

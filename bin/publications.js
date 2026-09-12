@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const beautify = require('js-beautify');
-const pkg = require('./package.json');
+const pkg = require('../package.json');
 
 const langStr = {
     journal: { fr: "Revues scientifiques", en: "Peer-reviewed journals" },
@@ -169,8 +169,8 @@ Script: /publications.js
 }
 
 
-const dataPath = path.join(__dirname, pkg.config.DATA_DIR);
-const fragmentsPath = path.join(__dirname, pkg.config.FRAGMENTS_DIR);
+const dataPath = path.join(__dirname, "../", pkg.config.DATA_DIR);
+const fragmentsPath = path.join(__dirname, "../", pkg.config.FRAGMENTS_DIR);
 
 const rows = JSON.parse(fs.readFileSync(path.join(dataPath,"publications.json"), 'utf8'));
 

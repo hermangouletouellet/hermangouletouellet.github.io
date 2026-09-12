@@ -2,12 +2,12 @@
     "name": "fragment-ssg",
     "version": "1.0.0", 
     "config":{
-        "FRAGMENTS_DIR":"assets/fragments",
+        "FRAGMENTS_DIR":"fragments/",
         "DATA_DIR":"data/"
     },
     "scripts": {
-        "build": "node publications.js && node talks.js && node compile.js",
-        "strip": "node compile.js --strip"
+        "build": "node bin/publications.js && node bin/talks.js && node bin/compile.js",
+        "strip": "node bin/compile.js --strip"
     },
     "devDependencies":{
         "js-beautify": "^2.0.0"
