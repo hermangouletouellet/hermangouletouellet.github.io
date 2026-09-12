@@ -43,15 +43,14 @@ function buildRow(row,lang) {
 
     const talkHtml = buildTalk(row,lang);
 
-    const abstractText = row.abstract?.[lang] || row.abstract?.en;
     let abstractHtml = null;
     let checkboxHtml = null;
 
-    if (abstractText && typeof abstractText === "string") {
+    if (row.abstract) {
         abstractHtml = [
             `<div id="${row.id}" class="abstract-wrapper">`,
             `<div class="abstract-inner">`,
-            `${abstractText}`,
+            `${row.abstract}`,
             `</div>`,
             `</div>`
         ].join("\n");

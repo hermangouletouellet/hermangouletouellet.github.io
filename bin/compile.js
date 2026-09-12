@@ -23,7 +23,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const FRAGMENTS_DIR = path.join(__dirname,require('../package.json').config.FRAGMENTS_DIR);
+const FRAGMENTS_DIR = path.join(__dirname,"../",require('../package.json').config.FRAGMENTS_DIR);
 const fragmentCache = new Map();
 
 const STRIP_MODE = process.argv.includes('--strip');
@@ -118,5 +118,5 @@ function processDirectory(currentDir) {
     }
 }
 
-processDirectory(__dirname);
+processDirectory(path.join(__dirname,"../"));
 console.log('Build finished.');
