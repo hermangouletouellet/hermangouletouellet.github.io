@@ -3,7 +3,7 @@ const path = require('path');
 const beautify = require('js-beautify');
 const pkg = require('./package.json');
 
-const LANG_STR = {
+const langStr = {
     journal: { fr: "Revues scientifiques", en: "Peer-reviewed journals" },
     proceedings: { fr: "Actes de conférences", en: "Conference proceedings" },
     preprint: { fr: "Prépublications", en: "Preprints" },
@@ -13,8 +13,6 @@ const LANG_STR = {
     in: { fr: "dans", en: "in" },
     ed: { fr: "éd. par", en: "ed. by" },
 };
-
-const PUB_TYPES = ["journal", "proceedings", "preprint", "thesis"];
 
 function buildArxivLink(arxivId,lang) {
     if (!arxivId) return "";
@@ -45,7 +43,7 @@ function buildUrlLink(url,lang) {
 
 function buildCitation(row,lang) {
     let authorStr = (row.authors.length>1) 
-        ? [row.authors.slice(0,-1).join(", "),row.authors.slice(-1)[0]].join(` ${LANG_STR.and[lang]} `)
+        ? [row.authors.slice(0,-1).join(", "),row.authors.slice(-1)[0]].join(` ${langStr.and[lang]} `)
         : row.authors[0];
 
     let html = `${authorStr}. <em>${row.title}</em>,`;
@@ -59,8 +57,8 @@ function buildCitation(row,lang) {
         html += ".";
 
     } else if (row.type === "proceedings") {
-        html += ` ${LANG_STR.in[lang]}: <em>${row.booktitle}</em>`;
-        if (row.editors) html += `, ${LANG_STR.ed[lang]}: ${row.editors}`;
+        html += ` ${langStr.in[lang]}: <em>${row.booktitle}</em>`;
+        if (row.editors) html += `, ${langStr.ed[lang]}: ${row.editors}`;
         html += ` (${row.year})`
         if (row.series) html += `, ${row.series}`;
         if (row.volume) html += `, vol. ${row.volume}`;
@@ -123,10 +121,10 @@ function buildRow(row,lang) {
         return [
             `<tr>`,
             `<th>`,
-            LANG_STR[type][lang],
+            langStr[type][lang],
             `</th>`,
             `<th style="text-align: center; width: 8ex;">`,
-            LANG_STR.abstract[lang],
+            langStr.abstract[lang],
             `</th>`,
             `</tr>`
         ].join("\n");
@@ -142,7 +140,7 @@ function buildTable(rows,lang) {
 
     let rowsHtml = [];
 
-    for (const type of PUB_TYPES) {
+    for (const type in groups) {
         const group = groups[type];
         if (!group) continue;
         group.sort((a, b) => parseInt(b.year, 10) - parseInt(a.year, 10));
@@ -153,7 +151,15 @@ function buildTable(rows,lang) {
 
     tableHtml = `<table id="pub-table">\n${rowsHtml.join('\n')}\n</table>`
 
-    return beautify.html(tableHtml, {
+    const banner = `<!-- 
+=============================================================================
+AUTO-GENERATED FILE
+Data: /data/publications.json
+Script: /publications.js
+=============================================================================
+-->\n`;
+
+    return beautify.html(banner+tableHtml, {
         indent_size: 4,
         wrap_line_length: 0,
         preserve_newlines: true,

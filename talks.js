@@ -106,7 +106,15 @@ function buildTable(rows,lang) {
 
     tableHtml = `<table id="talk-table">\n${rowsHtml.join('\n')}\n</table>`
 
-    return beautify.html(tableHtml, {
+    const banner = `<!-- 
+=============================================================================
+AUTO-GENERATED FILE
+Data: /data/talks.json
+Script: /talks.js
+=============================================================================
+-->\n`;
+
+    return beautify.html(banner+tableHtml, {
         indent_size: 4,
         wrap_line_length: 0,
         preserve_newlines: true,
