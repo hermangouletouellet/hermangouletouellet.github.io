@@ -6,7 +6,7 @@
         "DATA_DIR":"data/"
     },
     "scripts": {
-        "build": "node publications.js && node compile.js",
+        "build": "node publications.js && node talks.js && node compile.js",
         "strip": "node compile.js --strip"
     },
     "devDependencies":{
