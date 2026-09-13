@@ -18,7 +18,7 @@ const beautifySettings = {
     decode_entities: false
 }
 
-const EXPIRATION_MONTHS = 12; // how many months news item should persist
+const EXPIRATION_MONTHS = 6; // how many months news item should persist
 const MAX_ITEMS = 5; // maximal number of items in newsfeed
 
 function createPost(filePath) {
