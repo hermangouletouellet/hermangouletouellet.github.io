@@ -6,9 +6,10 @@
         "build:publications": "node bin/publications.js",
         "build:talks": "node bin/talks.js", 
         "build:newsfeed": "node bin/newsfeed.js", 
-        "build:include": "node bin/include.js",
-        "build": "node bin/publications.js && node bin/talks.js && node bin/include.js",
-        "strip": "node bin/include.js --strip"
+        "build": "npm run build:publications && npm run build:talks && npm run build:newsfeed",
+        "compile": "node bin/include.js",
+        "strip": "node bin/include.js --strip",
+        "generate": "npm run build && npm run compile"
     },
     "devDependencies":{
         "js-beautify": "^2.0.0",

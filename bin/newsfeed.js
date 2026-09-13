@@ -18,16 +18,23 @@ const beautifySettings = {
     decode_entities: false
 }
 
-const EXPIRATION_MONTHS = 6; // how many months news item should persist
+const EXPIRATION_MONTHS = 12; // how many months news item should persist
 const MAX_ITEMS = 5; // maximal number of items in newsfeed
 
 function createPost(filePath) {
     const markdown = fs.readFileSync(filePath, "utf8");
     const post = fm(markdown);
+    post.date = new Date(post.attributes.date);
+
+    const dateStr = post.date.toLocaleDateString(
+        post.attributes.language,
+        { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' }
+    );
+
     const postHtml = 
         `<tr>
         <th class="news-title">${post.attributes.title}</th>
-        <th class="news-date">${post.attributes.date}</th>
+        <td class="news-date" style="text-align: right;">${dateStr}</td>
         </tr>
         <tr>
         <td colspan="2" class="news-body">
@@ -35,7 +42,6 @@ function createPost(filePath) {
         </td>
         </tr>`;
     post.html = beautify.html(postHtml,beautifySettings); 
-    post.date = new Date(post.attributes.date);
     return post;
 }
 
