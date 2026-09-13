@@ -1,6 +1,6 @@
 ---
 title: MSCS conference
-date: 2026-09-15
+date: 2026-09-13
 language: en
 ---
 
