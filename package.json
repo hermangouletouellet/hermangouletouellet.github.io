@@ -1,15 +1,18 @@
 {
     "name": "fragment-ssg",
     "version": "1.0.0", 
-    "config":{
-        "FRAGMENTS_DIR":"fragments/",
-        "DATA_DIR":"data/"
-    },
+    "type": "module",
     "scripts": {
-        "build": "node bin/publications.js && node bin/talks.js && node bin/compile.js",
-        "strip": "node bin/compile.js --strip"
+        "build:publications": "node bin/publications.js",
+        "build:talks": "node bin/talks.js", 
+        "build:newsfeed": "node bin/newsfeed.js", 
+        "build:include": "node bin/include.js",
+        "build": "node bin/publications.js && node bin/talks.js && node bin/include.js",
+        "strip": "node bin/include.js --strip"
     },
     "devDependencies":{
-        "js-beautify": "^2.0.0"
+        "js-beautify": "^2.0.0",
+        "front-matter": "^4.0.0",
+        "marked" : "^18.0.0"
     }
 }

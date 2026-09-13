@@ -20,17 +20,17 @@
  * - Any warning or error triggers writing to logs/build.log
  */
 
-const fs = require('fs');
-const path = require('path');
+import fs from 'fs';
+import path from 'path';
+import { PATHS } from "./config.js";
 
-const FRAGMENTS_DIR = path.join(__dirname,"../",require('../package.json').config.FRAGMENTS_DIR);
 const fragmentCache = new Map();
 
 const STRIP_MODE = process.argv.includes('--strip');
 
 function getFragment(name) {
     if (!fragmentCache.has(name)) {
-        const fragmentPath = path.join(FRAGMENTS_DIR, `${name}.html`);
+        const fragmentPath = path.join(PATHS.fragments, `${name}.html`);
         if (fs.existsSync(fragmentPath)) {
             fragmentCache.set(name, fs.readFileSync(fragmentPath, 'utf8'));
         } else {
@@ -70,7 +70,7 @@ function processHtmlFile(filePath) {
     let html = fs.readFileSync(filePath, 'utf8');
 
     try {
-        validateTags(html, path.relative(__dirname, filePath));
+        validateTags(html, path.relative(PATHS.root, filePath));
     } catch (err) {
         console.error(`[ERROR] ${err.message}`);
         return;
@@ -87,7 +87,7 @@ function processHtmlFile(filePath) {
         let content = getFragment(fragmentName);
 
         if (content === null) {
-            const warnMsg = `[WARN] Fragment '${fragmentName}' referenced in ${path.relative(__dirname, filePath)} does not exist.`;
+            const warnMsg = `[WARN] Fragment '${path.join(PATHS.fragments, `${fragmentName}.html`) }' referenced in ${path.relative(PATHS.root, filePath)} does not exist.`;
             console.warn(warnMsg);
             return match; 
         } else {
@@ -98,7 +98,7 @@ function processHtmlFile(filePath) {
 
     if (html !== updatedHtml) {
         fs.writeFileSync(filePath, updatedHtml, 'utf8');
-        console.log(`Updated: ${path.relative(__dirname, filePath)}`);
+        console.log(`Updated: ${path.relative(PATHS.root, filePath)}`);
     }
 }
 
@@ -110,7 +110,7 @@ function processDirectory(currentDir) {
 
         if (entry.isDirectory()) {
             if (['node_modules', '.git', '.github', 'assets'].includes(entry.name)) continue;
-            if (path.resolve(fullPath) === FRAGMENTS_DIR) continue;
+            if (path.resolve(fullPath) === PATHS.fragments) continue;
             processDirectory(fullPath);
         } else if (entry.isFile() && entry.name.endsWith('.html')) {
             processHtmlFile(fullPath);
@@ -118,5 +118,5 @@ function processDirectory(currentDir) {
     }
 }
 
-processDirectory(path.join(__dirname,"../"));
+processDirectory(path.join(PATHS.root,"../"));
 console.log('Build finished.');

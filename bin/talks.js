@@ -1,7 +1,7 @@
-const fs = require('fs');
-const path = require('path');
-const beautify = require('js-beautify');
-const pkg = require('../package.json');
+import fs from 'fs';
+import path from 'path';
+import beautify from "js-beautify";
+import { PATHS } from "./config.js";
 
 const typeNames = {
     "conference": { "fr": "Conférences", "en": "Conferences" },
@@ -54,7 +54,7 @@ function buildRow(row,lang) {
             `</div>`,
             `</div>`
         ].join("\n");
-        onclickHtml = `document.getElementById('${row.id}').classList.toggle('is-expanded', this.checked)`
+        const onclickHtml = `document.getElementById('${row.id}').classList.toggle('is-expanded', this.checked)`
         checkboxHtml = `<input type="checkbox" onclick="${onclickHtml}">`;
     }   
 
@@ -103,7 +103,7 @@ function buildTable(rows,lang) {
         rowsHtml.push(...group.map(row => buildRow(row,lang)));
     }
 
-    tableHtml = `<table id="talk-table">\n${rowsHtml.join('\n')}\n</table>`
+    const tableHtml = `<table id="talk-table">\n${rowsHtml.join('\n')}\n</table>`
 
     const banner = `<!-- 
 =============================================================================
@@ -123,15 +123,11 @@ Script: /talks.js
 }
 
 
-const dataPath = path.join(__dirname, "../", pkg.config.DATA_DIR);
-const fragmentsPath = path.join(__dirname, "../", pkg.config.FRAGMENTS_DIR);
+const rows = JSON.parse(fs.readFileSync(path.join(PATHS.data,"talks.json"), 'utf8'));
 
-const rows = JSON.parse(fs.readFileSync(path.join(dataPath,"talks.json"), 'utf8'));
+if (!fs.existsSync(PATHS.fragments)) fs.mkdirSync(PATHS.fragments, { recursive: true });
 
-
-if (!fs.existsSync(fragmentsPath)) fs.mkdirSync(fragmentsPath, { recursive: true });
-
-fs.writeFileSync(path.join(fragmentsPath, 'talks-fr.html'), buildTable(rows, 'fr'), 'utf8');
-fs.writeFileSync(path.join(fragmentsPath, 'talks-en.html'), buildTable(rows, 'en'), 'utf8');
+fs.writeFileSync(path.join(PATHS.fragments, 'talks-fr.html'), buildTable(rows, 'fr'), 'utf8');
+fs.writeFileSync(path.join(PATHS.fragments, 'talks-en.html'), buildTable(rows, 'en'), 'utf8');
 
 console.log('Talk fragments generated successfully.');

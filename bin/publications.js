@@ -1,7 +1,7 @@
-const fs = require('fs');
-const path = require('path');
-const beautify = require('js-beautify');
-const pkg = require('../package.json');
+import fs from 'fs';
+import path from 'path';
+import beautify from 'js-beautify';
+import { PATHS } from "./config.js";
 
 const langStr = {
     journal: { fr: "Revues scientifiques", en: "Peer-reviewed journals" },
@@ -86,7 +86,7 @@ function buildRow(row,lang) {
         buildHalLink(row.hal,lang),
         buildUrlLink(row.url,lang)
     ];
-    linksHtml = links ? `<div class="pub-links">${links.join("")}</div>` : null;
+    const linksHtml = links ? `<div class="pub-links">${links.join("")}</div>` : null;
 
     const abstractText = row.abstract?.[lang] || row.abstract?.en;
     let abstractHtml = null;
@@ -100,7 +100,7 @@ function buildRow(row,lang) {
             `</div>`,
             `</div>`
         ].join("\n");
-        onclickHtml = `document.getElementById('${row.id}').classList.toggle('is-expanded', this.checked)`
+        const onclickHtml = `document.getElementById('${row.id}').classList.toggle('is-expanded', this.checked)`
         checkboxHtml = `<input type="checkbox" onclick="${onclickHtml}">`;
     }   
 
@@ -149,17 +149,9 @@ function buildTable(rows,lang) {
         rowsHtml.push(...group.map(row => buildRow(row,lang)));
     }
 
-    tableHtml = `<table id="pub-table">\n${rowsHtml.join('\n')}\n</table>`
+    const tableHtml = `<table id="pub-table">\n${rowsHtml.join('\n')}\n</table>`
 
-    const banner = `<!-- 
-=============================================================================
-AUTO-GENERATED FILE
-Data: /data/publications.json
-Script: /publications.js
-=============================================================================
--->\n`;
-
-    return beautify.html(banner+tableHtml, {
+    return beautify.html(tableHtml, {
         indent_size: 4,
         wrap_line_length: 0,
         preserve_newlines: true,
@@ -168,16 +160,27 @@ Script: /publications.js
     }); 
 }
 
-
-const dataPath = path.join(__dirname, "../", pkg.config.DATA_DIR);
-const fragmentsPath = path.join(__dirname, "../", pkg.config.FRAGMENTS_DIR);
-
-const rows = JSON.parse(fs.readFileSync(path.join(dataPath,"publications.json"), 'utf8'));
+const rows = JSON.parse(
+    fs.readFileSync(path.join(PATHS.data,"publications.json"), 'utf8')
+);
 
 
-if (!fs.existsSync(fragmentsPath)) fs.mkdirSync(fragmentsPath, { recursive: true });
+if (!fs.existsSync(PATHS.fragments)) {
+    fs.mkdirSync(PATHS.fragments, { recursive: true });
+}
 
-fs.writeFileSync(path.join(fragmentsPath, 'publications-fr.html'), buildTable(rows, 'fr'), 'utf8');
-fs.writeFileSync(path.join(fragmentsPath, 'publications-en.html'), buildTable(rows, 'en'), 'utf8');
+const banner = `<!-- 
+=============================================================================
+AUTO-GENERATED FILE
+Data: /data/publications.json
+Script: /publications.js
+=============================================================================
+-->\n`;
+
+for (const lang of ["fr","en"]) {
+    const outputFile = path.join(PATHS.fragments, `publications-${lang}.html`)
+    fs.writeFileSync(outputFile, banner + buildTable(rows, lang), 'utf8');
+    console.log(`[${lang}] Wrote publications fragment to ${outputFile}`);
+} 
 
 console.log('Publication fragments generated successfully.');
