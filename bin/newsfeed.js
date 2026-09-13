@@ -46,11 +46,12 @@ function createPost(filePath) {
 }
 
 function buildPostsQueue(lang, expirationMonths, maxItems) {
+    const currentDate = new Date();
     const cutoffDate = new Date();
     cutoffDate.setMonth(cutoffDate.getMonth() - expirationMonths);
 
     const cutoffYear = cutoffDate.getFullYear();
-    let currentYear = new Date().getFullYear();
+    let currentYear = currentDate.getFullYear();
 
     const queue = [];
 
@@ -68,14 +69,16 @@ function buildPostsQueue(lang, expirationMonths, maxItems) {
             );
 
             for (const post of yearPosts) {
-                if (post.date >= cutoffDate) {
-                    if (queue.length < maxItems) {
-                        queue.push(post);
+                if (post.date <= currentDate) {
+                    if (post.date >= cutoffDate) {
+                        if (queue.length < maxItems) {
+                            queue.push(post);
+                        } else {
+                            return queue;
+                        }
                     } else {
-                        return queue;
+                        break;
                     }
-                } else {
-                    break;
                 }
             }
         }
