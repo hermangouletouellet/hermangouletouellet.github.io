@@ -7,7 +7,6 @@ on:
   push:
     branches:
       - main
-      - experimental # TEMPORARY FOR TEST
 
   workflow_dispatch:
 
