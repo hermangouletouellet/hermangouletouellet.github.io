@@ -1,0 +1,22 @@
+[
+    {
+        "semester": "A2026",
+        "courses": [
+            {"code": "MATH6033", "title": "Séminaire de lecture en mathématiques"},
+            {"code": "MATH6053", "title": "Travaux dirigés en mathématiques"}
+        ]
+    },
+    {
+        "semester": "H2026",
+        "courses": [
+            {"code": "MATH3803", "title": "Théorie des nombres"},
+            {"code": "MATH2673", "title": "Algèbre linéaire"}
+        ]
+    },
+    {
+        "semester": "A2025",
+        "courses":[
+            {"code": "MATH2413", "title": "Algèbre et relations"}
+        ]
+    }
+]

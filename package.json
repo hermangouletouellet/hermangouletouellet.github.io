@@ -6,7 +6,8 @@
         "build:publications": "node bin/publications.js",
         "build:talks": "node bin/talks.js", 
         "build:newsfeed": "node bin/newsfeed.js", 
-        "build": "npm run build:publications && npm run build:talks && npm run build:newsfeed",
+        "build:teaching": "node bin/teaching.js",
+        "build": "npm run build:publications && npm run build:talks && npm run build:newsfeed && npm run build:teaching",
         "compile": "node bin/include.js",
         "strip": "node bin/include.js --strip",
         "generate": "npm run build && npm run compile"

@@ -21,13 +21,26 @@ td {
     vertical-align: top;
 }
 
-/* shorthand for centering headers and data */
-/* FIXME soon deprecated */
-th#centered {
-    text-align: center;
+#teaching-table {
+    width: 100%;
+    table-layout: auto;
+    border-collapse: collapse;
 }
-td#centered {
-    text-align: center;
+
+#teaching-table th {
+    text-align: left;
+    padding-top: 1rem;
+    padding-bottom: 0.5rem;
+}
+
+#teaching-table td {
+    padding: 0.4rem 0;
+}
+
+#teaching-table td.semester-col {
+    width: 1%;
+    white-space: nowrap;
+    padding-right: 1.5rem;
 }
 
 /* link styles default and visited */

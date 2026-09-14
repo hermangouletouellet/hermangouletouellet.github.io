@@ -1,8 +1,8 @@
-<!doctype html>
-<html lang="fr-CA">
+<!DOCTYPE html>
+<html lang="en-CA">
     <head>
-        <meta name="description" content="Site web de Herman Goulet-Ouellet" />
-        <title> Herman Goulet-Ouellet </title>
+        <meta name="description" content="Teaching experience of Herman Goulet-Ouellet" />
+        <title> Teaching </title>
 
         <!-- fragment:head -->
         <meta charset="utf-8" />
@@ -28,74 +28,117 @@
         </script>
         <!-- /fragment:head -->
     </head>
-    
+
     <body>
         <header>
-            <!-- fragment:navbar-fr -->
+            <!-- fragment:navbar-en -->
             <div class="navbar">
-            	<a href="/">Accueil</a>
-            	<a href="/publications/">Publications</a>
-            	<a href="/exposes/">Exposés</a>
-                <a href="/enseignement/">Enseignement</a>
-                <div class="navbar-right">
-                    <a href="./" class="active">fr</a>
-                    <a href="en/">en</a>
-                </div>
+            	<a href="/en/">Home</a>
+            	<a href="/publications/en/">Publications</a>
+            	<a href="/exposes/en/">Talks</a>
+            	<a href="/enseignement/en/">Teaching</a>
+            <div class="navbar-right">
+                <a href="../">fr</a>
+                <a href="./" class="active">en</a>
+            </div>
             </div>
             <script>
-                (() => {
-                    const path = window.location.pathname.replace(/index\.html$/, '');
-                    const link = document.querySelector(`.navbar a[href="${path}"]`);
-                    if (link) link.classList.add('active');
-                })();
+            	(() => {
+            		const path = window.location.pathname.replace(/index\.html$/, '');
+            		const activeLink = document.querySelector(`.navbar a[href="${path}"]`);
+            		if (activeLink) activeLink.classList.add('active');
+            	})();
             </script>
-            <!-- /fragment:navbar-fr -->
+            <!-- /fragment:navbar-en -->
         </header>
-		<header id="top-banner">
-            <img id="portrait" src="/assets/picture.png" alt="Ma photo" style="width:180px;height:180px;">
-            <br>
-            <div id="name-banner">
-                Herman Goulet-Ouellet
+        <header id="top-banner">
+            <div id="title-banner">
+                Teaching
             </div>
-            <p>
-            <h2>
-            Professeur au département de mathématiques et de statistique de l'Université de Moncton. 
-            </h2>
         </header>
 
-		<main>
-            <h1>
-                Recherche
-            </h1>
-
-            Je m'intéresse à la dynamique symbolique, la combinatoire des mots, la théorie des automates et la théorie des semigroupes, en particulier les semigroupes profinis. Mon travail à aussi des connexions avec la théorie des groupes et la théorie ergodique. Je suis particulièrement interessé par les connexions entre ces différents sujets. Ma recherche a une forte composante expérimentale avec l'utilisation d'outils comme <a href="https://www.sagemath.org/">SageMath</a>, <a href="https://www.python.org/">Python</a> et <a href="https://www.gap-system.org/">Gap</a> pour guider ma recherche. 
-            <p> 
-
-            <h1 style="margin-top:5%;"> 
-                Nouvelles
-            </h1>
-            <!-- fragment:newsfeed-fr -->
+        <main>
+            <h1> Université de Moncton </h1>
+            <!-- fragment:teaching-en -->
             <!-- 
             =============================================================================
             AUTO-GENERATED FILE
-            Content: /content/newsfeed/
-            Script: /newsfeed.js
+            Data: /data/teaching.json
+            Script: /teaching.js
             =============================================================================
             -->
-            <table class="newsfeed-table">
-            <tr>
-                <th class="news-title">Conférence MSCS</th>
-                <td class="news-date" style="text-align: right;">13 septembre 2026</td>
-            </tr>
-            <tr>
-                <td colspan="2" class="news-body">
-                    <p>La conférence <em>Mathematics, Statistics, and Computer Science Conference 2026</em>, organisée par Science Atlantique, se tiendra L&#39;<strong>Université du Nouveau-Brunswick, campus de Saint-Jean</strong> les <strong>23 et 24 octobre 2026</strong>.</p>
-                    <p>La conférence comprend trois exposés pléniers (Danielle Cox, Thierry Duschene et Daniel Lemire), des présentations étudiantes, ainsi que les compétitions annuelles de mathématiques et de programmation (ouverts aux étudiant.e.s au 1er cycle). L&#39;inscription est ouverte jusqu&#39;au <strong>5 octobre</strong>. Pour plus d&#39;information, voir le site web de la conférence: <a href="https://event.fourwaves.com/mscs2026">https://event.fourwaves.com/mscs2026</a>.</p>
-                </td>
-            </tr>
+            <table id="teaching-table">
+                <tr>
+                    <th>Fall 2026
+                </tr>
+                <tr>
+                    <td><strong>MATH6033 ‒ Séminaire de lecture en mathématiques</strong>.</td>
+                </tr>
+                <tr>
+                    <td><strong>MATH6053 ‒ Travaux dirigés en mathématiques</strong>.</td>
+                </tr>
+                <tr>
+                    <th>Winter 2026
+                </tr>
+                <tr>
+                    <td><strong>MATH3803 ‒ Théorie des nombres</strong>.</td>
+                </tr>
+                <tr>
+                    <td><strong>MATH2673 ‒ Algèbre linéaire</strong>.</td>
+                </tr>
+                <tr>
+                    <th>Fall 2025
+                </tr>
+                <tr>
+                    <td><strong>MATH2413 ‒ Algèbre et relations</strong>.</td>
+                </tr>
             </table>
-            <!-- /fragment:newsfeed-fr -->
-		</main>
+            <!-- /fragment:teaching-en -->
+
+            <h1> Previous experience </h1>
+            <table id="teaching-table"> 
+                <tr> 
+                    <th colspan="2"> Czech Technical University </th>    
+                </tr>    
+                <tr> 
+                    <td class="semester-col">Winter 2025</td>
+                    <td> <strong>Linear algebra II</strong>, assistant. </td> 
+                </tr>
+                <tr> <td class="semester-col">Fall 2024</td>
+                    <td> <strong>Probability and mathematical statistics</strong>. </td>
+                </tr>
+                <tr> 
+                    <th colspan="2"> Université Paris Cité </th> 
+                </tr>
+                <tr> 
+                    <td class="semester-col">Fall 2023</td> 
+                    <td> <strong>Programmation orientée objet et interface graphique</strong>, assistant. </td>
+                </tr>
+                <tr> 
+                    <th colspan="2"> Université du Québec à Montréal </th> 
+                </tr>
+                <tr>
+                    <td class="semester-col"> Winter 2018 </td> 
+                    <td> <strong>Algèbre linéaire II</strong>, assistant. </td>
+                </tr>
+                <tr>
+                    <td class="semester-col"> Fall 2017 </td>
+                     <td> <strong>Théorie des équations</strong>, assistant.  </td>
+                    </tr>
+                <tr>
+                    <td class="semester-col"> Winter 2016 </td>
+                     <td> <strong>Algèbre matricielle</strong>, assistant.  </td>
+                    </tr>
+                <tr>
+                    <td class="semester-col"> Fall 2015 </td> 
+                    <td> <strong>Algèbre matricielle</strong>, assistant.  </td>
+                </tr>
+                <tr>
+                    <td class="semester-col"> Winter 2015 </td> 
+                    <td> <strong>Mathématiques algorithmiques</strong>, assistant.  </td>
+                </tr>
+            </table>
+        </main>
 	</body>
 
     <!-- fragment:footer -->
