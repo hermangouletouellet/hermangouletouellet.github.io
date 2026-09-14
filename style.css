@@ -130,7 +130,7 @@ a:hover#button {
 body {
     font-family: var(--body-font);
     opacity: 1;
-    animation: fadeIn 0.5s ease-in;    
+    animation: fadeIn 0.5s ease-in forwards;    
     font-weight: 300;
     margin: 0;
     font-size: 18px;
