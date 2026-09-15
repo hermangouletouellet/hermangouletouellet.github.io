@@ -1,119 +1,26 @@
-/* color palette */
+/* ==========================================================================
+   VARIABLES
+   ========================================================================== */
 :root {
-    --green: #26bc18;
+    /* colors */
     --darkblue: #02488c;
     --darkgray: #231f20;
     --gray: #594e4f;
-    --lightgray: #f5eff1;
+    /* fonts */
     --heading-font: 'Jost', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     --body-font: 'Roboto', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
 }
 
-table {
-    table-layout: fixed;
-    width: 100%;
-    border-spacing: 0 10px;
+/* ==========================================================================
+   GLOBAL STYLES
+   ========================================================================== */
+
+*,*::before,*::after {
+    box-sizing: border-box;
 }
 
-/* table headers */
-th {
-    font-family: var(--heading-font);
-    color: var(--darkblue);
-    text-align: left;
-    padding-top: 10px;
-    font-size: 20px;
-}
-
-/* table data */
-td {
-    vertical-align: top;
-}
-
-#teaching-table {
-    width: 100%;
-    table-layout: auto;
-    border-collapse: collapse;
-}
-
-#teaching-table th {
-    text-align: left;
-    padding-top: 1rem;
-    padding-bottom: 0.5rem;
-}
-
-#teaching-table td {
-    padding: 0.4rem 0;
-}
-
-#teaching-table td.semester-col {
-    width: 1%;
-    white-space: nowrap;
-    padding-right: 1.5rem;
-}
-
-/* link styles default and visited */
-a:link {
-    font-weight: 500;
-    color: var(--darkblue);
-}
-
-a:visited {
-    font-weight: 500;
-    color: var(--darkblue);
-}
-
-/* styling for navbar */
-.navbar {
-    position: fixed; 
-    display: block;
-    top: 0;
-    height: 40px;
-    width: 100%;
-    text-align:center;
-    border-bottom: 2px solid var(--darkblue);
-    background-color: white;
-    z-index: 1000;
-}
-
-.navbar-right {
-    float: right;
-}
-.navbar a {
-    font-family: var(--heading-font);
-    float: left;
-    font-weight: 400;
-    color: var(--gray);
-    text-align: center;
-    margin: .5em 20px;
-    text-decoration: none;
-    font-size: 16px;
-}
-.navbar a:hover {
-    color: var(--darkgray);
-}
-.navbar a.active {
-    font-weight: 500;
-    color: var(--darkblue);
-}
-
-
-/* style for buttons */
-a#button {
-    font-family: var(--heading-font);
-    font-weight: 300;
-    color: var(--darkblue);
-    text-align: center;
-    padding: 10px 10px;
-    margin:5px 5px;
-    text-decoration: none;
-    font-size: 16px;
-    border-bottom: 2px solid var(--darkblue);
-    background:white;
-}
-a:hover#button {
-    color: var(--darkgray);
-    border-bottom: 3px solid var(--darkgray);
-    font-weight: 400;
+main {
+    margin: 3% 10%;
 }
 
 @keyframes fadeIn {
@@ -126,149 +33,170 @@ a:hover#button {
     }
 }
 
-/* main style for body */
 body {
     font-family: var(--body-font);
     opacity: 1;
-    animation: fadeIn 0.5s ease-in forwards;    
+    animation: fadeIn 0.5s ease-in forwards;
     font-weight: 300;
     margin: 0;
     font-size: 18px;
     line-height: 1.5;
-    color: var(--darkgray);
+    color: black;
     background: white;
     padding-top: 40px;
 }
 
-html.hidden body {
-    opacity: 0;
-}
-
-/* headers */
-h1 {
+h1, h2, h3, th {
     font-family: var(--heading-font);
-    color: var(--darkblue);
-    font-size: 32px;
     font-weight: 400;
 }
+
+h1 {
+    padding-top: 1em;
+    color: var(--darkblue);
+    font-size: 30px;
+}
+
 h2 {
-    font-family: var(--heading-font);
     padding-top: 10px;
     font-size: 18px;
-    font-weight: 400;
+    color: var(--gray);
 }
 
-/* banner displaying current page title */
+a:link, a:visited {
+    font-weight: 500;
+    color: var(--darkblue);
+}
+
+/* ==========================================================================
+   NAVIGATION BAR
+   ========================================================================== */
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 40px;
+    width: 100%;
+    border-bottom: 2px solid var(--darkblue);
+    background-color: white;
+    z-index: 1000;
+
+    display: flex;
+    align-items: center;
+    }
+
+.navbar-right {
+    display: flex;
+    margin-left: auto;
+    align-items: center;
+}
+
+.navbar a {
+    font-family: var(--heading-font);
+    float: left;
+    font-weight: 400;
+    color: var(--gray);
+    text-align: center;
+    margin: .5em 20px;  
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.navbar a:hover {
+    color: var(--darkgray);
+}
+
+.navbar a.active {
+    font-weight: 500;
+    color: var(--darkblue);
+}
+
+/* ==========================================================================
+   BANNER & FOOTER
+   ========================================================================== */
+
 #title-banner {
     font-family: var(--heading-font);
     font-weight: 300;
     display: block;
     background-size: cover;
     color: var(--darkblue);
-    line-height:1.5em;
-    font-size:38px;
-    padding-left:10%;
-    padding-top:5%;
+    line-height: 1.5em;
+    font-size: 38px;
+    padding-left: 10%;
+    padding-top: 5%;
 }
 
-/* banner displaying name on home page */
-#name-banner {
-    font-family: var(--heading-font);
-    font-weight: 300;
-    display: block;
-    background-size: cover;
-    color: var(--darkblue);
-    line-height:1.5em;
-    font-size:38px;
-    margin-left:10%;
-    margin-top:5%;
-}
-
-/* generic margins */
-main {
-    margin:3% 10%;
-}
-
-/* style for floating picture on home page */
 img#portrait {
-    float:left;
-    margin-top:4%;
-    margin-left:2%;
-    margin-right:2%;
+    float: left;
+    margin-top: 4%;
+    margin-left: 2%;
+    margin-right: 2%;
 }
 
-/* footer style */
 footer {
     border-top: 1px solid var(--darkblue);
     font-size: 16px;
-    margin-bottom:2%;
-    margin-left:10%;
-    margin-right:10%;
-    margin-top:5%;
-}
-
-/* container for displaying address (contact info) */
-address {
-  display: block;
-  font-style: normal;
+    margin-bottom: 2%;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 5%;
 }
 
 #last-update {
-    margin-top:2%;
-    width:100%;
+    margin-top: 2%;
+    width: 100%;
     text-align: center;
-    font-size:13px;
+    font-size: 13px;
     font-weight: lighter;
 }
 
-@media screen and (max-width: 683px) {
-    #name-banner {
-        font-size: 30px;
-    }
-    #title-banner {
-        font-size: 30px;
-    }
-    img { 
-        display: none; 
-    }
-    #main-menu {
-        font-size:14px;
-        padding-left:10px;
-    }
-    .footer-wrapper {
-        display:inline;
-    }
-    .footer-column#contact {
-        width:100%;
-    }
-.navbar a {
-        font-size: 12px;
-    }
+.address-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    flex-wrap: wrap;
 }
 
+.logo-content {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+/* ==========================================================================
+   TABLES
+   ========================================================================== */
+   
+table {
+    table-layout: fixed;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th {
+    font-family: var(--heading-font);
+    color: var(--darkblue);
+    text-align: left;
+    padding: 1.5em 0em 1em 0;
+    font-size: 20px;
+}
+
+td {
+    vertical-align: top;
+    padding: 0.5em 0;
+}
+
+/* ==========================================================================
+   UI COMPONENTS
+   ========================================================================== */
 
 .pub-links {
     display: flex;
-    gap: 1em;
+    gap: 0.5em;
     align-items: center;
-    margin: 1em;
-}
-
-.pub-icon {
-    height: 100%; 
-    width: auto;
-    object-fit: contain;
-}
-
-img[alt="arXiv"],img[alt="HAL"],img[alt="DOI"],img[alt="Link"] {
-    height: 1.5em;
-    width: auto;
-}
-
-abstract {
-    padding: 1% 1% 2% 2%;
-    display: none;
-    font-style: italic;
+    margin-left: 1em;
 }
 
 .abstract-wrapper {
@@ -299,15 +227,37 @@ abstract {
     transition: padding 0.3s ease;
 }
 
-.address-content {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    flex-wrap: wrap;
-}
+/* ==========================================================================
+   RESPONSIVE DISPLAY
+   ========================================================================== */
 
-.logo-content {
-    display: flex;
-    gap: 2rem;
-    flex-wrap: wrap;
+@media screen and (max-width: 683px) {
+    #name-banner {
+        font-size: 30px;
+    }
+
+    #title-banner {
+        font-size: 30px;
+    }
+
+    img {
+        display: none;
+    }
+
+    #main-menu {
+        font-size: 14px;
+        padding-left: 10px;
+    }
+
+    .footer-wrapper {
+        display: inline;
+    }
+
+    .footer-column#contact {
+        width: 100%;
+    }
+
+    .navbar a {
+        font-size: 12px;
+    }
 }

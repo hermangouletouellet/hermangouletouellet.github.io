@@ -27,7 +27,7 @@ function buildSemester(entry,lang) {
     for (const course of entry.courses) {
         semesterHtml += 
         `<tr>
-        <td><strong>${course.code} ‒ ${course.title}</strong>.</td>
+        <td>${course.code} ‒ <em>${course.title}</em>.</td>
         </tr>`;
     }
 
@@ -37,7 +37,7 @@ function buildSemester(entry,lang) {
 function buildTable(data,lang) {
 
     const html = data.map(s=>buildSemester(s,lang)).join("\n");
-    const tableHtml = `<table id="teaching-table">\n${html}\n</table>`
+    const tableHtml = `<table>\n${html}\n</table>`
 
     return beautify.html(tableHtml, beautifyOptions); 
 }
