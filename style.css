@@ -20,7 +20,7 @@
 }
 
 main {
-    margin: 3% 10%;
+    margin: 1em 5em;
 }
 
 @keyframes fadeIn {
@@ -55,12 +55,6 @@ h1 {
     padding-top: 1em;
     color: var(--darkblue);
     font-size: 30px;
-}
-
-h2 {
-    padding-top: 10px;
-    font-size: 18px;
-    color: var(--gray);
 }
 
 a:link, a:visited {
@@ -119,20 +113,30 @@ a:link, a:visited {
 #title-banner {
     font-family: var(--heading-font);
     font-weight: 300;
-    display: block;
     background-size: cover;
     color: var(--darkblue);
-    line-height: 1.5em;
+    line-height: 1.5;
     font-size: 38px;
-    padding-left: 10%;
-    padding-top: 5%;
+    padding-top: 1em;
+}
+
+#title-banner h2 {
+    font-size: 18px;
+    color: var(--gray);
+    font-weight: 400;
+    margin: 0;
+    padding-top: 1em;
+    padding-bottom: 2em;
+    line-height: 1.4;
 }
 
 img#portrait {
     float: left;
-    margin-top: 4%;
-    margin-left: 2%;
-    margin-right: 2%;
+    max-width: 200px;
+    height: auto;
+    border-radius: 6px;
+    margin-left: -4em;
+    margin-right: 2em;
 }
 
 footer {
@@ -232,32 +236,28 @@ td {
    ========================================================================== */
 
 @media screen and (max-width: 683px) {
-    #name-banner {
-        font-size: 30px;
+
+    img#portrait {
+        float: none;
+        display: block;
+        margin: 0 auto 0 auto;
+        width: 180px;
+        height: auto;
+        object-fit: cover;
+        padding-top: 0;
     }
 
     #title-banner {
-        font-size: 30px;
+        text-align: center;
+        margin: 0em auto 0em auto;
+    }
+    
+    main {
+        margin: 10% 10%;
     }
 
-    img {
-        display: none;
+    h1,h2 {
+        overflow: hidden;
     }
 
-    #main-menu {
-        font-size: 14px;
-        padding-left: 10px;
-    }
-
-    .footer-wrapper {
-        display: inline;
-    }
-
-    .footer-column#contact {
-        width: 100%;
-    }
-
-    .navbar a {
-        font-size: 12px;
-    }
 }
