@@ -20,7 +20,7 @@
 }
 
 main {
-    margin: 1em 5em;
+    margin: 1em 10%;
 }
 
 @keyframes fadeIn {
@@ -39,11 +39,11 @@ body {
     animation: fadeIn 0.5s ease-in forwards;
     font-weight: 300;
     margin: 0;
-    font-size: 18px;
+    font-size: 1.1rem;
     line-height: 1.5;
     color: black;
     background: white;
-    padding-top: 40px;
+    padding-top: 2rem;
 }
 
 h1, h2, h3, th {
@@ -54,7 +54,7 @@ h1, h2, h3, th {
 h1 {
     padding-top: 1em;
     color: var(--darkblue);
-    font-size: 30px;
+    font-size: 2.0rem;
 }
 
 a:link, a:visited {
@@ -70,7 +70,7 @@ a:link, a:visited {
     position: fixed;
     top: 0;
     left: 0;
-    height: 40px;
+    height: 2.5rem;
     width: 100%;
     border-bottom: 2px solid var(--darkblue);
     background-color: white;
@@ -78,7 +78,7 @@ a:link, a:visited {
 
     display: flex;
     align-items: center;
-    }
+}
 
 .navbar-right {
     display: flex;
@@ -88,13 +88,12 @@ a:link, a:visited {
 
 .navbar a {
     font-family: var(--heading-font);
-    float: left;
     font-weight: 400;
     color: var(--gray);
     text-align: center;
-    margin: .5em 20px;  
+    margin: 0 1rem;  
     text-decoration: none;
-    font-size: 16px;
+    font-size: 1.0rem;
 }
 
 .navbar a:hover {
@@ -113,35 +112,34 @@ a:link, a:visited {
 #title-banner {
     font-family: var(--heading-font);
     font-weight: 300;
-    background-size: cover;
     color: var(--darkblue);
     line-height: 1.5;
-    font-size: 38px;
+    font-size: 2.5rem;
     padding-top: 1em;
+    margin: 1em 10%;
 }
 
 #title-banner h2 {
-    font-size: 18px;
+    font-size: 1.2rem;
     color: var(--gray);
     font-weight: 400;
     margin: 0;
     padding-top: 1em;
-    padding-bottom: 2em;
+    padding-bottom: 1em;
     line-height: 1.4;
 }
 
-img#portrait {
+#portrait {
     float: left;
-    max-width: 200px;
+    width: 200px;
     height: auto;
-    border-radius: 6px;
-    margin-left: -4em;
-    margin-right: 2em;
+    margin-left: 2%;
+    margin-right:2%;
 }
 
 footer {
     border-top: 1px solid var(--darkblue);
-    font-size: 16px;
+    font-size: 1.0rem;
     margin-bottom: 2%;
     margin-left: 10%;
     margin-right: 10%;
@@ -152,8 +150,8 @@ footer {
     margin-top: 2%;
     width: 100%;
     text-align: center;
-    font-size: 13px;
-    font-weight: lighter;
+    font-size: 0.9rem;
+    font-weight: 300;
 }
 
 .address-content {
@@ -183,8 +181,8 @@ th {
     font-family: var(--heading-font);
     color: var(--darkblue);
     text-align: left;
-    padding: 1.5em 0em 1em 0;
-    font-size: 20px;
+    padding: 1em 0em .5em 0;
+    font-size: 1.3rem;
 }
 
 td {
@@ -220,7 +218,7 @@ td {
     min-height: 0;
     padding: 0 2em;
     color: var(--darkgray);
-    font-size: 0.95em;
+    font-size: 0.95rem;
     line-height: 1.8;
     overflow: hidden;
     transition: padding 0.3s ease 0.3s;
@@ -237,27 +235,26 @@ td {
 
 @media screen and (max-width: 683px) {
 
-    img#portrait {
+    #portrait {
         float: none;
         display: block;
-        margin: 0 auto 0 auto;
+        margin: 2em auto 0 auto;
         width: 180px;
         height: auto;
         object-fit: cover;
         padding-top: 0;
     }
 
-    #title-banner {
-        text-align: center;
-        margin: 0em auto 0em auto;
-    }
-    
-    main {
-        margin: 10% 10%;
-    }
-
     h1,h2 {
         overflow: hidden;
+    }
+
+    #title-banner h2 {
+        padding-bottom: 0em;
+    }
+
+    #title-banner {
+        padding-top: 1em;
     }
 
 }
