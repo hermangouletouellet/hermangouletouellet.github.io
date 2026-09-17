@@ -26,20 +26,43 @@
         <header>
             <!-- fragment:navbar-en -->
             <div class="navbar">
-            	<a href="/en/">Home</a>
-            	<a href="/publications/en/">Publications</a>
-            	<a href="/exposes/en/">Talks</a>
-            	<a href="/enseignement/en/">Teaching</a>
-            <div class="navbar-right">
-                <a href="../">fr</a>
-                <a href="./" class="active">en</a>
+            	<button type="button" class="menu-toggle" aria-label="Toggle Navigation" aria-expanded="false"
+            		onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'false' ? 'true' : 'false')">
+            		<span id="mobile-page-title" class="current-page"></span>
+            		<span class="icon-toggle" aria-hidden="true">
+            			<span class="bar line-left"></span>
+            			<span class="bar line-right"></span>
+            		</span>
+            	</button>
+            
+            	<div class="navbar-links">
+            		<div class="navbar-links-inner">
+            			<a href="/en/">Home</a>
+            			<a href="/publications/en/">Publications</a>
+            			<a href="/exposes/en/">Talks</a>
+            			<a href="/enseignement/en/">Teaching</a>
+            		</div>
+            	</div>
+            
+            	<div class="navbar-right">
+            		<a href="../">fr</a>
+            		<a href="./" class="active">en</a>
+            	</div>
             </div>
-            </div>
+            
             <script>
             	(() => {
             		const path = window.location.pathname.replace(/index\.html$/, '');
-            		const activeLink = document.querySelector(`.navbar a[href="${path}"]`);
-            		if (activeLink) activeLink.classList.add('active');
+            		const activeLink = document.querySelector(`.navbar-links a[href="${path}"]`);
+            
+            		if (activeLink) {
+            			activeLink.classList.add('active');
+            
+            			const pageTitleLabel = document.getElementById('mobile-page-title');
+            			if (pageTitleLabel) {
+            				pageTitleLabel.textContent = activeLink.textContent;
+            			}
+            		}
             	})();
             </script>
             <!-- /fragment:navbar-en -->
