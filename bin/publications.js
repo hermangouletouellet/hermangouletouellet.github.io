@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import beautify from 'js-beautify';
-import { PATHS } from "./config.js";
+import { PATHS, BEAUTIFY_OPTIONS } from "./config.js";
 
 const langStr = {
     journal: { fr: "Revues scientifiques", en: "Peer-reviewed journals" },
@@ -100,8 +100,13 @@ function buildRow(row,lang) {
             `</div>`,
             `</div>`
         ].join("\n");
-        const onclickHtml = `document.getElementById('${row.id}').classList.toggle('is-expanded', this.checked)`
-        checkboxHtml = `<input type="checkbox" onclick="${onclickHtml}">`;
+        const onclickHtml = [
+            `this.setAttribute('aria-expanded', this.checked);`,
+            `const wrapper = document.getElementById('${row.id}');`,
+            `wrapper.classList.toggle('is-expanded', this.checked);`
+        ].join(" ");
+        const ariaStr = `aria-label="${langStr.abstract[lang]}" aria-expanded="false" aria-controls="${row.id}"`;
+        checkboxHtml = `<input type="checkbox" onclick="${onclickHtml}" ${ariaStr}>`;
     }   
 
     return [
@@ -151,13 +156,7 @@ function buildTable(rows,lang) {
 
     const tableHtml = `<table id="pub-table">\n${rowsHtml.join('\n')}\n</table>`
 
-    return beautify.html(tableHtml, {
-        indent_size: 4,
-        wrap_line_length: 0,
-        preserve_newlines: true,
-        extra_liners: [],
-        inline: ['a', 'span', 'em', 'strong'] 
-    }); 
+    return beautify.html(tableHtml, BEAUTIFY_OPTIONS); 
 }
 
 const rows = JSON.parse(

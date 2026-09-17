@@ -1,7 +1,15 @@
 import fs from 'fs';
 import path from 'path';
 import beautify from "js-beautify";
-import { PATHS } from "./config.js";
+import { PATHS, BEAUTIFY_OPTIONS } from "./config.js";
+
+const beautifyOptions = {
+    indent_size: 4,
+    wrap_line_length: 0,
+    preserve_newlines: true,
+    extra_liners: [],
+    inline: ['a', 'span', 'em', 'strong']
+}
 
 const typeNames = {
     "conference": { "fr": "Conférences", "en": "Conferences" },
@@ -105,7 +113,17 @@ function buildTable(rows,lang) {
 
     const tableHtml = `<table id="talk-table">\n${rowsHtml.join('\n')}\n</table>`
 
-    const banner = `<!-- 
+    return beautify.html(tableHtml, BEAUTIFY_OPTIONS); 
+}
+
+
+const rows = JSON.parse(fs.readFileSync(path.join(PATHS.data,"talks.json"), 'utf8'));
+
+if (!fs.existsSync(PATHS.fragments)) {
+    fs.mkdirSync(PATHS.fragments, { recursive: true })
+};
+
+const banner = `<!-- 
 =============================================================================
 AUTO-GENERATED FILE
 Data: /data/talks.json
@@ -113,21 +131,10 @@ Script: /talks.js
 =============================================================================
 -->\n`;
 
-    return beautify.html(banner+tableHtml, {
-        indent_size: 4,
-        wrap_line_length: 0,
-        preserve_newlines: true,
-        extra_liners: [],
-        inline: ['a', 'span', 'em', 'strong'] 
-    }); 
+for (const lang of ["fr","en"]) {
+    const outputFile = path.join(PATHS.fragments, `talks-${lang}.html`);
+    fs.writeFileSync(outputFile, banner+buildTable(rows, lang), 'utf8');
+    console.log(`[${lang}] Wrote talks fragment to ${outputFile}`);
 }
-
-
-const rows = JSON.parse(fs.readFileSync(path.join(PATHS.data,"talks.json"), 'utf8'));
-
-if (!fs.existsSync(PATHS.fragments)) fs.mkdirSync(PATHS.fragments, { recursive: true });
-
-fs.writeFileSync(path.join(PATHS.fragments, 'talks-fr.html'), buildTable(rows, 'fr'), 'utf8');
-fs.writeFileSync(path.join(PATHS.fragments, 'talks-en.html'), buildTable(rows, 'en'), 'utf8');
 
 console.log('Talk fragments generated successfully.');

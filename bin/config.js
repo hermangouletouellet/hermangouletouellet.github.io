@@ -13,3 +13,11 @@ export const PATHS = {
     assets: path.join(ROOT_DIR, 'assets/'),
     source: path.join(ROOT_DIR, 'source/'),
 };
+
+export const BEAUTIFY_OPTIONS = {
+    indent_size: 4,
+    wrap_line_length: 0,
+    preserve_newlines: true,
+    extra_liners: [],
+    inline: ['a', 'span', 'em', 'strong']
+};

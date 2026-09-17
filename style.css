@@ -9,6 +9,15 @@
     /* fonts */
     --heading-font: 'Jost', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     --body-font: 'Roboto', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+    /* font sizes */
+    --body-font-size: 1.1rem;
+    --h1-font-size: 2.0rem;
+    --navbar-font-size: 1.0rem;
+    --banner-font-size: 2.5rem;
+    --h2-font-size: 1.25rem;
+    --footer-font-size: 1.0rem;
+    --abstract-font-size: 1.0rem;
+    --th-font-size: 1.25rem;
 }
 
 /* ==========================================================================
@@ -35,11 +44,11 @@ main {
 
 body {
     font-family: var(--body-font);
+    font-size: var(--body-font-size);
     opacity: 1;
     animation: fadeIn 0.5s ease-in forwards;
     font-weight: 300;
     margin: 0;
-    font-size: 1.1rem;
     line-height: 1.5;
     color: black;
     background: white;
@@ -54,7 +63,7 @@ h1, h2, h3, th {
 h1 {
     padding-top: 1em;
     color: var(--darkblue);
-    font-size: 2.0rem;
+    font-size: var(--h1-font-size);
 }
 
 a:link, a:visited {
@@ -75,7 +84,6 @@ a:link, a:visited {
     border-bottom: 2px solid var(--darkblue);
     background-color: white;
     z-index: 1000;
-
     display: flex;
     align-items: center;
 }
@@ -88,12 +96,12 @@ a:link, a:visited {
 
 .navbar a {
     font-family: var(--heading-font);
+    font-size: var(--navbar-font-size);
     font-weight: 400;
     color: var(--gray);
     text-align: center;
     margin: 0 1rem;  
     text-decoration: none;
-    font-size: 1.0rem;
 }
 
 .navbar a:hover {
@@ -114,13 +122,13 @@ a:link, a:visited {
     font-weight: 300;
     color: var(--darkblue);
     line-height: 1.5;
-    font-size: 2.5rem;
+    font-size: var(--banner-font-size);
     padding-top: 1em;
     margin: 1em 10%;
 }
 
 #title-banner h2 {
-    font-size: 1.2rem;
+    font-size: var(--h2-font-size);
     color: var(--gray);
     font-weight: 400;
     margin: 0;
@@ -139,18 +147,15 @@ a:link, a:visited {
 
 footer {
     border-top: 1px solid var(--darkblue);
-    font-size: 1.0rem;
-    margin-bottom: 2%;
-    margin-left: 10%;
-    margin-right: 10%;
-    margin-top: 5%;
+    font-size: var(--footer-font-size);
+    margin: 1rem 10%;
 }
 
 #last-update {
     margin-top: 2%;
     width: 100%;
     text-align: center;
-    font-size: 0.9rem;
+    font-size: var(--footer-font-size);
     font-weight: 300;
 }
 
@@ -182,7 +187,7 @@ th {
     color: var(--darkblue);
     text-align: left;
     padding: 1em 0em .5em 0;
-    font-size: 1.3rem;
+    font-size: var(--th-font-size);
 }
 
 td {
@@ -218,7 +223,7 @@ td {
     min-height: 0;
     padding: 0 2em;
     color: var(--darkgray);
-    font-size: 0.95rem;
+    font-size: var(--abstract-font-size);
     line-height: 1.8;
     overflow: hidden;
     transition: padding 0.3s ease 0.3s;
@@ -230,19 +235,34 @@ td {
 }
 
 /* ==========================================================================
-   RESPONSIVE DISPLAY
+   RESPONSIVE SETTINGS
    ========================================================================== */
 
 @media screen and (max-width: 683px) {
 
+    :root {
+        --body-font-size: 1.0rem;
+        --h1-font-size: 1.5rem;
+        --navbar-font-size: 0.9rem;
+        --banner-font-size: 2.0rem;
+        --h2-font-size: 1.1rem;
+        --footer-font-size: 0.9rem;
+        --abstract-font-size: 0.9rem;
+        --th-font-size: 1.1rem;
+    }
+
     #portrait {
         float: none;
         display: block;
-        margin: 2em auto 0 auto;
-        width: 180px;
+        margin: 2rem auto -3rem auto;
+        width: 160px;
         height: auto;
         object-fit: cover;
         padding-top: 0;
+    }
+
+    main{
+        margin: 1rem 7%;
     }
 
     h1,h2 {
@@ -254,7 +274,33 @@ td {
     }
 
     #title-banner {
-        padding-top: 1em;
+        padding-top: 2em;
+        text-align: center;
+        margin: 0rem 7%;
     }
 
+    footer {
+        margin: 1rem 7%;
+    }
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+
+    body {
+        animation: none;
+    }
+
+    .abstract-wrapper {
+        transition: none;
+    }
 }
