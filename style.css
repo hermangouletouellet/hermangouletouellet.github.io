@@ -7,14 +7,14 @@
     --darkgray: #231f20;
     --gray: #594e4f;
     /* fonts */
-    --heading-font: 'Jost', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-    --body-font: 'Roboto', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+    --heading-font: 'Jost', system-ui, Helvetica, Arial, sans-serif;
+    --body-font: 'Roboto', system-ui, Helvetica, Arial, sans-serif;
     /* font sizes */
     --body-font-size: 1.1rem;
     --h1-font-size: 2.0rem;
     --navbar-font-size: 1.0rem;
     --banner-font-size: 2.5rem;
-    --h2-font-size: 1.25rem;
+    --h4-font-size: 1.25rem;
     --footer-font-size: 1.0rem;
     --abstract-font-size: 1.0rem;
     --th-font-size: 1.25rem;
@@ -29,7 +29,17 @@
 }
 
 main {
-    margin: 1em 10%;
+    display: grid;
+    grid-template-columns:
+        [gutter-left] minmax(0, 1fr) 
+        [content] minmax(0, 80ch) 
+        [gutter-right] minmax(0, 1fr);    
+    padding-inline: 2rem;
+    justify-content: center;
+}
+
+main>* {
+    grid-column: content;
 }
 
 @keyframes fadeIn {
@@ -61,7 +71,6 @@ h1, h2, h3, th {
 }
 
 h1 {
-    padding-top: 1em;
     color: var(--darkblue);
     font-size: var(--h1-font-size);
 }
@@ -121,18 +130,29 @@ a:link, a:visited {
    BANNER & FOOTER
    ========================================================================== */
 
+#top-banner {
+    display: grid;
+    grid-template-columns:
+        [gutter-left] minmax(0, 1fr) [content] minmax(0, 80ch) [gutter-right] minmax(0, 1fr);
+    padding-inline: 2rem;
+    justify-content: center;
+}
+
+#top-banner > * {
+    grid-column: content;
+}
+
 #title-banner {
     font-family: var(--heading-font);
+    font-size: var(--banner-font-size);
     font-weight: 300;
     color: var(--darkblue);
     line-height: 1.5;
-    font-size: var(--banner-font-size);
-    padding-top: 1em;
-    margin: 1em 10%;
+    padding-top: 3rem;
 }
 
-#title-banner h2 {
-    font-size: var(--h2-font-size);
+#title-banner h4 {
+    font-size: var(--h4-font-size);
     color: var(--gray);
     font-weight: 400;
     margin: 0;
@@ -142,24 +162,35 @@ a:link, a:visited {
 }
 
 #portrait {
-    float: left;
-    width: 200px;
+    width: 160px;
     height: auto;
-    margin-left: 2%;
-    margin-right:2%;
+    grid-column: gutter-left;
+    justify-self: end;
+    margin: 2rem;
 }
 
 footer {
-    border-top: 1px solid var(--darkblue);
+    display: grid;
+    grid-template-columns:
+        [gutter-left] minmax(0, 1fr) [content] minmax(0, 80ch) [gutter-right] minmax(0, 1fr);
+    padding-inline: 2rem;
+    justify-content: center;
+    margin: 1rem 0;
+}
+
+footer > * {
+    grid-column: content;
+    padding-top: 1rem;
     font-size: var(--footer-font-size);
-    margin: 1rem 10%;
+}
+
+footer h4 {
+    border-top: 2px solid var(--darkblue);
+    margin: 1rem 0;
 }
 
 #last-update {
-    margin-top: 2%;
-    width: 100%;
-    text-align: center;
-    font-size: var(--footer-font-size);
+    margin: 1rem auto 0 auto;
     font-weight: 300;
 }
 
@@ -242,7 +273,7 @@ td {
    RESPONSIVE SETTINGS
    ========================================================================== */
 
-@media screen and (max-width: 683px) {
+@media screen and (max-width: 1080px) {
 
     :root {
         --body-font-size: 1.0rem;
@@ -256,23 +287,13 @@ td {
     }
 
     #portrait {
-        float: none;
-        display: block;
-        margin: 2rem auto -3rem auto;
-        width: 160px;
-        height: auto;
-        object-fit: cover;
-        padding-top: 0;
-    }
-
-    main, footer{
-        margin: 1rem 7%;
+        grid-column: content;
+        margin: 2rem auto -4rem auto;
     }
 
     #title-banner {
         padding-top: 2em;
         text-align: center;
-        margin: 0rem 7%;
     }
 
     .menu-toggle {

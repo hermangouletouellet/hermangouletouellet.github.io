@@ -32,7 +32,7 @@ function createPost(filePath) {
     );
 
     const postHtml = 
-        `<tr>
+        `<article >
         <th class="news-title">${post.attributes.title}</th>
         <td class="news-date" style="text-align: right;">${dateStr}</td>
         </tr>
