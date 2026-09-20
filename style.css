@@ -12,12 +12,14 @@
     /* font sizes */
     --body-font-size: 1.1rem;
     --h1-font-size: 2.0rem;
+    --h2-font-size: 1.5rem;
     --navbar-font-size: 1.0rem;
-    --banner-font-size: 2.5rem;
+    --banner-font-size: 3.0rem;
     --h4-font-size: 1.25rem;
     --footer-font-size: 1.0rem;
     --abstract-font-size: 1.0rem;
     --th-font-size: 1.25rem;
+    --date-font-size: 0.95rem;
 }
 
 /* ==========================================================================
@@ -28,17 +30,17 @@
     box-sizing: border-box;
 }
 
-main {
+main, #top-banner, footer {
     display: grid;
     grid-template-columns:
-        [gutter-left] minmax(0, 1fr) 
-        [content] minmax(0, 80ch) 
-        [gutter-right] minmax(0, 1fr);    
+        [gutter-left] minmax(220px, 1fr) 
+        [content] minmax(0, 75ch) 
+        [gutter-right] minmax(0, 1fr);
     padding-inline: 2rem;
     justify-content: center;
 }
 
-main>* {
+main>*,#top-banner>*,footer>* {
     grid-column: content;
 }
 
@@ -67,17 +69,47 @@ body {
 
 h1, h2, h3, th {
     font-family: var(--heading-font);
+    color: var(--darkblue);
     font-weight: 400;
 }
 
 h1 {
-    color: var(--darkblue);
     font-size: var(--h1-font-size);
+}
+
+h2 {
+    font-size: var(--h2-font-size);
+    margin: 1rem 0;
 }
 
 a:link, a:visited {
     font-weight: 500;
     color: var(--darkblue);
+}
+
+.news-article {
+    margin-bottom: 1rem;
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: subgrid;
+    align-items: baseline
+}
+
+.news-article h2{
+    margin-bottom:0;
+}
+
+.news-article > * {
+    grid-column: content;
+}
+
+.news-date {
+    grid-column: gutter-left;
+    color: var(--gray);
+    font-size: var(--date-font-size);
+    justify-self: end;
+    text-align: right;
+    padding-right: 1rem;
 }
 
 /* ==========================================================================
@@ -95,6 +127,7 @@ a:link, a:visited {
     z-index: 1000;
     display: flex;
     align-items: center;
+    transition: border-color 0.2s ease-out;
 }
 
 .navbar-right {
@@ -131,66 +164,60 @@ a:link, a:visited {
    ========================================================================== */
 
 #top-banner {
-    display: grid;
-    grid-template-columns:
-        [gutter-left] minmax(0, 1fr) [content] minmax(0, 80ch) [gutter-right] minmax(0, 1fr);
-    padding-inline: 2rem;
-    justify-content: center;
+    align-items: center;
+    padding-top: 3rem;
+    padding-bottom: 2rem;
 }
 
 #top-banner > * {
     grid-column: content;
 }
 
-#title-banner {
+#top-banner h1 {
     font-family: var(--heading-font);
     font-size: var(--banner-font-size);
     font-weight: 300;
     color: var(--darkblue);
-    line-height: 1.5;
-    padding-top: 3rem;
+    line-height: 1;
 }
 
-#title-banner h4 {
+#top-banner:has(#portrait) h1 {
+    margin:0;
+    padding-bottom: 1rem;
+}
+
+h4 {
     font-size: var(--h4-font-size);
     color: var(--gray);
     font-weight: 400;
     margin: 0;
-    padding-top: 1em;
-    padding-bottom: 1em;
-    line-height: 1.4;
 }
 
 #portrait {
-    width: 160px;
+    width: 180px;
     height: auto;
     grid-column: gutter-left;
-    justify-self: end;
-    margin: 2rem;
+    justify-self:end;
+    margin-right: 2rem;
 }
 
 footer {
-    display: grid;
-    grid-template-columns:
-        [gutter-left] minmax(0, 1fr) [content] minmax(0, 80ch) [gutter-right] minmax(0, 1fr);
-    padding-inline: 2rem;
-    justify-content: center;
-    margin: 1rem 0;
+    margin: 3rem 0 1rem 0;
 }
 
 footer > * {
-    grid-column: content;
-    padding-top: 1rem;
     font-size: var(--footer-font-size);
 }
 
 footer h4 {
     border-top: 2px solid var(--darkblue);
-    margin: 1rem 0;
+    padding: 1rem 0;
+    font-weight: 400;
 }
 
 #last-update {
     margin: 1rem auto 0 auto;
+    font-size: var(--date-font-size);
     font-weight: 300;
 }
 
@@ -278,22 +305,50 @@ td {
     :root {
         --body-font-size: 1.0rem;
         --h1-font-size: 1.5rem;
-        --navbar-font-size: 0.9rem;
-        --banner-font-size: 2.0rem;
-        --h2-font-size: 1.1rem;
-        --footer-font-size: 0.9rem;
+        --navbar-font-size: 1.0rem;
+        --banner-font-size: 3.0rem;
+        --footer-font-size: 0.95rem;
         --abstract-font-size: 0.95rem;
         --th-font-size: 1.2rem;
+        --h2-font-size:1.2rem;
+        --h4-font-size:1.1rem;
+        --date-font-size: 0.95rem;
+    }
+
+    main,
+    #top-banner,
+    footer {
+        grid-template-columns:
+            [gutter-left] minmax(0, 1fr) [content] minmax(0, 75ch) [gutter-right] minmax(0, 1fr);
     }
 
     #portrait {
         grid-column: content;
-        margin: 2rem auto -4rem auto;
+        margin: 1rem auto 0 auto;
     }
 
-    #title-banner {
-        padding-top: 2em;
+    .news-date {
+        grid-column: content;
+        justify-self: start;
+        text-align: left;
+    }
+
+    h2.news-title{
+        margin-top: .5rem;
+    }
+
+    #top-banner h1 {
         text-align: center;
+        margin-top: 3rem;
+    }
+
+    #top-banner h4 {
+        text-align:center;
+    }
+
+    #top-banner:has(#portrait) h1 {
+        padding-top: 2rem;
+        padding-bottom: 1rem;
     }
 
     .menu-toggle {
@@ -352,14 +407,6 @@ td {
         transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    .navbar {
-        transition: border-color 0.2s ease-out;
-    }
-
-    .navbar:has(.menu-toggle[aria-expanded="true"]) {
-        border-bottom-color: transparent;
-    }
-
     .icon-toggle .line-left { transform: translateX(-5px) rotate(45deg); }
     .icon-toggle .line-right { transform: translateX(0) rotate(-45deg); }
 
@@ -372,13 +419,15 @@ td {
         pointer-events: auto;
     }
 
+    .navbar:has(.menu-toggle[aria-expanded="true"]) {
+        border-bottom-color: transparent;
+    }
+
 }
 
 @media (prefers-reduced-motion: reduce) {
 
-    *,
-    *::before,
-    *::after {
+    *,*::before,*::after {
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;

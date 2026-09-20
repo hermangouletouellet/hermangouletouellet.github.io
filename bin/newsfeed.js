@@ -26,21 +26,16 @@ function createPost(filePath) {
     const post = fm(markdown);
     post.date = new Date(post.attributes.date);
 
-    const dateStr = post.date.toLocaleDateString(
-        post.attributes.language,
-        { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' }
-    );
+    const dateStr = post.date.toISOString().split('T')[0].replace(/-/g, '/');
 
     const postHtml = 
-        `<article >
-        <th class="news-title">${post.attributes.title}</th>
-        <td class="news-date" style="text-align: right;">${dateStr}</td>
-        </tr>
-        <tr>
-        <td colspan="2" class="news-body">
+        `<article class="news-article">
+        <time class="news-date">${dateStr}</time>
+        <h2 class="news-title">${post.attributes.title}</h2>
+        <div class="news-body">
         ${marked.parse(post.body)}
-        </td>
-        </tr>`;
+        </div>
+        </article>`;
     post.html = beautify.html(postHtml,beautifySettings); 
     return post;
 }
@@ -96,8 +91,8 @@ function buildNewsfeed(lang, expirationMonths, maxItems) {
         return `<p>${emptyMsg}</p>`;
     }
 
-    const tableRows = queue.map(post => post.html).join('\n\n');
-    return `<table class="newsfeed-table">\n${tableRows}\n</table>`;
+    const newsfeed = queue.map(post => post.html).join('\n\n');
+    return newsfeed;
 }
 
 const banner = `<!-- 

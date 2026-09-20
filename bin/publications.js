@@ -102,7 +102,7 @@ function buildRow(row,lang) {
         ].join("\n");
         const onclickHtml = [
             `this.setAttribute('aria-expanded', this.checked);`,
-            `const wrapper = document.getElementById('${row.id}');`,
+            `let wrapper = document.getElementById('${row.id}');`,
             `wrapper.classList.toggle('is-expanded', this.checked);`
         ].join(" ");
         const ariaStr = `aria-label="${langStr.abstract[lang]}" aria-expanded="false" aria-controls="${row.id}"`;

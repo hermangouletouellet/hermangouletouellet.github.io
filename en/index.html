@@ -69,11 +69,9 @@
 
 		<header id="top-banner">
             <img id="portrait" src="/assets/picture.webp" alt="A picture of me" loading="eager">
-            <div id="title-banner">
-                Herman Goulet-Ouellet
-                <h4>
-                    Professor of mathematics at Moncton University.
-                </h4>
+            <div>
+                <h1> Herman Goulet-Ouellet </h1>
+                <h4> Professor of mathematics at Moncton University. </h4>
             </div>
         </header>
 
@@ -96,28 +94,22 @@
             Script: /newsfeed.js
             =============================================================================
             -->
-            <table class="newsfeed-table">
-            <tr>
-                <th class="news-title">Leiden Declaration on Artificial Intelligence and Mathematics</th>
-                <td class="news-date" style="text-align: right;">September 19, 2026</td>
-            </tr>
-            <tr>
-                <td colspan="2" class="news-body">
+            <article class="news-article">
+                <time class="news-date">2026/09/19</time>
+                <h2 class="news-title">Leiden Declaration on Artificial Intelligence and Mathematics</h2>
+                <div class="news-body">
                     <p>The <em>Leiden Declaration on Artificial Intelligence and Mathematics</em>, a statement on the use of AI in mathematics, was released recently. The document is the work of an international group of 16 researchers in mathematics and other relevant fields (computer science, history, philosophy and anthropology) and has been endorsed by the International Mathematical Union. It identifies potential threats posed by AI in mathematical research and formulates concrete recommendations for individual mathematicians, mathematical organizations, and policymakers. For more information and to read the declaration, visit <a href="https://leidendeclaration.ai/">https://leidendeclaration.ai/</a>.</p>
-                </td>
-            </tr>
+                </div>
+            </article>
             
-            <tr>
-                <th class="news-title">MSCS conference</th>
-                <td class="news-date" style="text-align: right;">September 13, 2026</td>
-                </tr>
-                <tr>
-                    <td colspan="2" class="news-body">
-                        <p>The <em>Mathematics, Statistics, and Computer Science Conference 2026</em>, organized by Science Atlantic, will take place <strong>University of New-Brunswick, Saint-John campus</strong> on <strong>October 23 and 24, 2026</strong>.</p>
-                        <p>The conference will feature three plenary speakers (Danielle Cox, Thierry Duschene et Daniel Lemire), student presentations, as well as the annual Mathematics and Programming competitions (open to undegraduate students). Registration is open until <strong>October 5</strong>. For more information, see the conference website: <a href="https://event.fourwaves.com/mscs2026">https://event.fourwaves.com/mscs2026</a>.</p>
-                    </td>
-                </tr>
-            </table>
+            <article class="news-article">
+                <time class="news-date">2026/09/13</time>
+                <h2 class="news-title">MSCS conference</h2>
+                <div class="news-body">
+                    <p>The <em>Mathematics, Statistics, and Computer Science Conference 2026</em>, organized by Science Atlantic, will take place <strong>University of New-Brunswick, Saint-John campus</strong> on <strong>October 23 and 24, 2026</strong>.</p>
+                    <p>The conference will feature three plenary speakers (Danielle Cox, Thierry Duschene et Daniel Lemire), student presentations, as well as the annual Mathematics and Programming competitions (open to undegraduate students). Registration is open until <strong>October 5</strong>. For more information, see the conference website: <a href="https://event.fourwaves.com/mscs2026">https://event.fourwaves.com/mscs2026</a>.</p>
+                </div>
+            </article>
             <!-- /fragment:newsfeed-en -->
 		</main>
 	</body>
@@ -127,30 +119,26 @@
         <div class="address-content">
             <div class="address-text">
                 <div>
-                    Département de mathématiques et de statistique,
-                    Université de Moncton,
-                    60 Notre-Dame-du-Sacré-Coeur Street,
-                    Moncton E1A 3E9,
-                    Nouveau-Brunswick,
-                    Canada
+                    Université de Moncton, département de mathématiques et de statistique.
                 </div>
                 <div>herman.goulet-ouellet@umoncton.ca</div>
             </div>
             <div class="logo-content">
-                <a href="https://www.umoncton.ca/umcm-sciences-mathstat/">
-                    <img src="/assets/logo_umoncton.svg" 
-                        alt="Logo de l'Université de Moncton" 
-                        data-alt-en="Université de Moncton logo"
-                        style="height: 4em;"
-                        loading="lazy">
-                </a>
                 <a href="https://nserc-crsng.canada.ca/fr">
                     <img src="/assets/logo_nserc.svg" 
                         alt="Logo du CRSNG"
                         data-alt-en="NSERC logo" 
-                        style="height: 4em;"
+                        style="height: 3em;"
                         loading="lazy">
                 </a>
+                <a href="https://www.umoncton.ca/umcm-sciences-mathstat/">
+                    <img src="/assets/logo_umoncton.svg" 
+                        alt="Logo de l'Université de Moncton" 
+                        data-alt-en="Université de Moncton logo"
+                        style="height: 3em;"
+                        loading="lazy">
+                </a>
+                
             </div>
         </div>
         <div id="last-update"></div>
