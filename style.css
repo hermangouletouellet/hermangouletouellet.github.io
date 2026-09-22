@@ -20,6 +20,7 @@
     --abstract-font-size: 1.0rem;
     --th-font-size: 1.25rem;
     --date-font-size: 0.95rem;
+    --numbering-font-size: 0.95rem;
 }
 
 /* ==========================================================================
@@ -87,6 +88,10 @@ a:link, a:visited {
     color: var(--darkblue);
 }
 
+/* ==========================================================================
+   NEWSFEED
+   ========================================================================== */
+
 .news-article {
     margin-bottom: 1rem;
     grid-column: 1 / -1;
@@ -110,6 +115,121 @@ a:link, a:visited {
     justify-self: end;
     text-align: right;
     padding-right: 1rem;
+}
+
+/* ==========================================================================
+   CONTENT LISTS
+   ========================================================================== */
+
+@counter-style hex255 {
+    system: numeric;
+    symbols: "0" "1" "2" "3" "4" "5" "6" "7" "8" "9" "a" "b" "c" "d" "e" "f";
+    suffix: ". ";
+    pad: 2 "0";
+}
+
+ol.content-list {
+    padding: 0;
+    margin: 0;
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: subgrid;
+}
+
+ol.content-list>li {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: subgrid;
+    align-items: baseline;
+    margin-bottom: 1.5rem;
+}
+
+ol.content-list>li>* {
+    grid-column: content;
+}
+
+ol.content-list>li::before {
+    font-size: var(--numbering-font-size);
+    color: var(--gray);
+    grid-column: gutter-left;
+    justify-self: end;
+    text-align: right;
+    padding-right: 1rem;
+    white-space: nowrap;
+}
+
+ol.pub:first-of-type { counter-reset: pub-counter; }
+ol.pub { list-style: none; }
+ol.pub>li { counter-increment: pub-counter; }
+ol.pub>li::before { content: counter(pub-counter)"."; }
+
+.pub-ui {
+    grid-column: content;
+    display: flex;
+    justify-content: space-between;
+    /* Button on left, links on right */
+    align-items: center;
+    margin-top: 0.5rem;
+}
+
+.abstract-toggle {
+    display: inline-flex;
+    align-items: center;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    color: var(--darkblue);
+    font-family: var(--heading-font);
+    font-size: var(--navbar-font-size);
+    font-weight: 500;
+}
+
+/* Base icon dimensions for the abstract toggle */
+.abstract-toggle .icon-toggle {
+    display: inline-block;
+    position: relative;
+    width: 10px;
+    height: 10px;
+    padding: 0 8px 0 10px;
+}
+
+.abstract-toggle .icon-toggle .bar {
+    position: absolute;
+    width: 8px;
+    height: 2px;
+    background-color: var(--darkblue);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Default state: down-facing chevron (matching your navbar math) */
+.abstract-toggle .line-left {
+    transform: translateX(-5px) rotate(45deg);
+}
+
+.abstract-toggle .line-right {
+    transform: translateX(0) rotate(-45deg);
+}
+
+/* Expanded state: inverted chevron */
+.abstract-toggle[aria-expanded="true"] .line-left {
+    transform: translateX(-5px) rotate(-45deg);
+}
+
+.abstract-toggle[aria-expanded="true"] .line-right {
+    transform: translateX(0) rotate(45deg);
+}
+
+/* CSS-driven expand rule using :has() to target sibling .abstract-wrapper */
+.pub-ui:has(.abstract-toggle[aria-expanded="true"])+.abstract-wrapper {
+    grid-template-rows: 1fr;
+    opacity: 1;
+    transition: grid-template-rows 0.3s ease 0s, opacity 0.4s ease 0.3s;
+}
+
+.pub-ui:has(.abstract-toggle[aria-expanded="true"])+.abstract-wrapper .abstract-inner {
+    padding: 1em 2em 2em;
+    transition: padding 0.3s ease;
 }
 
 /* ==========================================================================

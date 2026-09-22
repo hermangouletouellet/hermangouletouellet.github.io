@@ -41,7 +41,41 @@ function buildUrlLink(url,lang) {
     return `<a href="${url}" target="_blank" rel="noopener noreferrer" title="${tooltip}"> url </a>`;
 }
 
+function buildAbstractButton(entry, lang) {
+    const abstractText = entry.abstract?.[lang] || entry.abstract?.en;
+    if (!abstractText || typeof abstractText !== "string") {
+        return { buttonHtml: "", abstractHtml: "" };
+    }
+
+    const abstractId = `abstract-${entry.id}`;
+    const labelText = langStr?.abstract?.[lang] || (lang === "fr" ? "ABSTRACT" : "ABSTRACT");
+
+    // Matches your navbar inline toggle logic exactly
+    const onclickHtml = `this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'false' ? 'true' : 'false')`;
+
+    const buttonHtml = `
+        <button type="button" class="abstract-toggle" aria-expanded="false" aria-controls="${abstractId}" onclick="${onclickHtml}">
+            <span>${labelText}</span>
+            <span class="icon-toggle" aria-hidden="true">
+                <span class="bar line-left"></span>
+                <span class="bar line-right"></span>
+            </span>
+        </button>
+    `.trim();
+
+    const abstractHtml = `
+        <div id="${abstractId}" class="abstract-wrapper">
+            <div class="abstract-inner">
+                ${abstractText}
+            </div>
+        </div>
+    `.trim();
+
+    return { abstractButton: buttonHtml, abstractText: abstractHtml };
+}
+
 function buildCitation(row,lang) {
+    
     let authorStr = (row.authors.length>1) 
         ? [row.authors.slice(0,-1).join(", "),row.authors.slice(-1)[0]].join(` ${langStr.and[lang]} `)
         : row.authors[0];
@@ -73,90 +107,65 @@ function buildCitation(row,lang) {
         html += ` ${row.year}.`;
     }
 
-    return html;
+    return `<div class="pub-content">\n` + html + `\n</div>`;
 }
 
-function buildRow(row,lang) {
+function buildItem(entry,lang) {
 
-    const citationHtml = buildCitation(row,lang);
+    const citationHtml = buildCitation(entry,lang);
 
     const links = [
-        buildArxivLink(row.arxiv,lang),
-        buildDoiLink(row.doi,lang),
-        buildHalLink(row.hal,lang),
-        buildUrlLink(row.url,lang)
+        buildArxivLink(entry.arxiv,lang),
+        buildDoiLink(entry.doi,lang),
+        buildHalLink(entry.hal,lang),
+        buildUrlLink(entry.url,lang)
     ];
     const linksHtml = links ? `<div class="pub-links">${links.join("")}</div>` : null;
 
-    const abstractText = row.abstract?.[lang] || row.abstract?.en;
-    let abstractHtml = null;
-    let checkboxHtml = null;
-
-    if (abstractText && typeof abstractText === "string") {
-        abstractHtml = [
-            `<div id="${row.id}" class="abstract-wrapper">`,
-            `<div class="abstract-inner">`,
-            `${abstractText}`,
-            `</div>`,
-            `</div>`
-        ].join("\n");
-        const onclickHtml = [
-            `this.setAttribute('aria-expanded', this.checked);`,
-            `let wrapper = document.getElementById('${row.id}');`,
-            `wrapper.classList.toggle('is-expanded', this.checked);`
-        ].join(" ");
-        const ariaStr = `aria-label="${langStr.abstract[lang]}" aria-expanded="false" aria-controls="${row.id}"`;
-        checkboxHtml = `<input type="checkbox" onclick="${onclickHtml}" ${ariaStr}>`;
-    }   
+    let {abstractButton, abstractText} = buildAbstractButton(entry,lang);
 
     return [
-        `<tr>`,
-        `<td>`,
+        `<li>`,
         citationHtml,
+        `<div class="pub-ui">`,
+        abstractButton,
         linksHtml,
-        abstractHtml,
-        `</td>`,
-        `<td style="text-align:center;">`,
-        checkboxHtml,
-        `</td>`
+        `</div>`,
+        abstractText,
+        `</li>`
     ].filter(Boolean).join("\n");
 }
 
     function buildSectionHeader(type,lang) {
         return [
-            `<tr>`,
-            `<th>`,
+            `<h1>`,
             langStr[type][lang],
-            `</th>`,
-            `<th style="text-align: center; width: 8ex;">`,
-            langStr.abstract[lang],
-            `</th>`,
-            `</tr>`
+            `</h1>`
         ].join("\n");
     }
 
-function buildTable(rows,lang) {
+function buildList(items,lang) {
 
     const groups = {};
-    for (const row of rows) {
-        if (!groups[row.type]) groups[row.type] = [];
-        groups[row.type].push(row);
+    for (const item of items) {
+        if (!groups[item.type]) groups[item.type] = [];
+        groups[item.type].push(item);
     }
 
-    let rowsHtml = [];
+    let listHtml = [];
 
     for (const type in groups) {
         const group = groups[type];
         if (!group) continue;
         group.sort((a, b) => parseInt(b.year, 10) - parseInt(a.year, 10));
         
-        rowsHtml.push(buildSectionHeader(type,lang));
-        rowsHtml.push(...group.map(row => buildRow(row,lang)));
+        listHtml.push(buildSectionHeader(type,lang));
+        listHtml.push(`<ol class="content-list pub">`);
+        listHtml.push(...group.map(row => buildItem(row,lang)));
+        listHtml.push(`</ol >`);
     }
 
-    const tableHtml = `<table id="pub-table">\n${rowsHtml.join('\n')}\n</table>`
-
-    return beautify.html(tableHtml, BEAUTIFY_OPTIONS); 
+    return beautify.html(listHtml.join('\n'), BEAUTIFY_OPTIONS); 
 }
 
 const rows = JSON.parse(
@@ -178,7 +187,7 @@ Script: /publications.js
 
 for (const lang of ["fr","en"]) {
     const outputFile = path.join(PATHS.fragments, `publications-${lang}.html`)
-    fs.writeFileSync(outputFile, banner + buildTable(rows, lang), 'utf8');
+    fs.writeFileSync(outputFile, banner + buildList(rows, lang), 'utf8');
     console.log(`[${lang}] Wrote publications fragment to ${outputFile}`);
 } 
 
