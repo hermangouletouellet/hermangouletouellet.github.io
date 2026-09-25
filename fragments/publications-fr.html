@@ -14,18 +14,21 @@ Script: /publications.js
             V. Berthé, H. Goulet-Ouellet, C.-F. Nyberg Brodda, D. Perrin et K. Petersen. <em>Density of group languages in shift spaces</em>, Ergodic Theory and Dynamical Systems (2026).
         </div>
         <div class="pub-ui">
-            <button type="button" class="abstract-toggle" aria-expanded="false" aria-controls="abstract-Berthe2026" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'false' ? 'true' : 'false')">
+            <button type="button" class="toggle" aria-expanded="false" aria-controls="abstract-Berthe2026" onclick="this.ariaExpanded = this.ariaExpanded !== 'true';
+		document.getElementById(this.getAttribute('aria-controls')).classList.toggle('is-expanded', this.ariaExpanded === 'true');">
                 <span>Résumé</span>
                 <span class="icon-toggle" aria-hidden="true">
                     <span class="bar line-left"></span>
                     <span class="bar line-right"></span>
                 </span>
             </button>
-            <div class="pub-links"><a href="https://arxiv.org/abs/2403.17892" target="_blank" rel="noopener noreferrer" title="Voir sur arXiv"> arXiv </a><a href="https://doi.org/10.1017/etds.2026.10318" target="_blank" rel="noopener noreferrer" title="Lien DOI"> doi </a></div>
+            <div class="pub-links"><a href="https://doi.org/10.1017/etds.2026.10318" target="_blank" rel="noopener noreferrer" title="Lien DOI"> doi </a><a href="https://arxiv.org/abs/2403.17892" target="_blank" rel="noopener noreferrer" title="Voir sur arXiv"> arXiv </a></div>
         </div>
-        <div id="abstract-Berthe2026" class="abstract-wrapper">
+        <div id="abstract-Berthe2026" class="toggle-target">
             <div class="abstract-inner">
-                The density of a rational language can be understood as the frequency of some pattern in the shift space, for example, a pattern like "words with an even number of a given letter". We study the density of group languages, that is, rational languages recognized by morphisms onto finite groups, inside shift spaces. We show that the density with respect to any given ergodic measure on a shift space exists for every group language, because it can be computed by using any ergodic lift of the given measure to a skew product between the shift space and the recognizing group. We then further study densities in shifts of finite type (with a suitable notion of irreducibility) and then in minimal shifts. In the latter case, we obtain a closed formula for the density under the condition that the aforementioned skew product has minimal closed invariant subsets that are ergodic under the product of the original measure and the uniform probability measure on the group. The formula is derived in part from a characterization of minimal closed invariant subsets for skew products between shifts and finite groups relying on notions of cocycles and coboundaries. In the case where the whole skew product is ergodic under the product measure, then the density is just the cardinality of the subset of the group that defines the language divided by the cardinality of the group. Moreover, we provide sufficient conditions for the skew product to have minimal closed invariant subsets that are ergodic under the product measure. Finally, we investigate the link between minimal closed invariant subsets, return words, and bifix codes.
+                <div class="abstract-text">
+                    The density of a rational language can be understood as the frequency of some pattern in the shift space, for example, a pattern like "words with an even number of a given letter". We study the density of group languages, that is, rational languages recognized by morphisms onto finite groups, inside shift spaces. We show that the density with respect to any given ergodic measure on a shift space exists for every group language, because it can be computed by using any ergodic lift of the given measure to a skew product between the shift space and the recognizing group. We then further study densities in shifts of finite type (with a suitable notion of irreducibility) and then in minimal shifts. In the latter case, we obtain a closed formula for the density under the condition that the aforementioned skew product has minimal closed invariant subsets that are ergodic under the product of the original measure and the uniform probability measure on the group. The formula is derived in part from a characterization of minimal closed invariant subsets for skew products between shifts and finite groups relying on notions of cocycles and coboundaries. In the case where the whole skew product is ergodic under the product measure, then the density is just the cardinality of the subset of the group that defines the language divided by the cardinality of the group. Moreover, we provide sufficient conditions for the skew product to have minimal closed invariant subsets that are ergodic under the product measure. Finally, we investigate the link between minimal closed invariant subsets, return words, and bifix codes.
+                </div>
             </div>
         </div>
     </li>
@@ -34,18 +37,21 @@ Script: /publications.js
             J. Almeida, A. Costa et H. Goulet-Ouellet. <em>Open multiplication in relatively free profinite semigroupoids</em>, Semigroup Forum (2026).
         </div>
         <div class="pub-ui">
-            <button type="button" class="abstract-toggle" aria-expanded="false" aria-controls="abstract-Almeida2026" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'false' ? 'true' : 'false')">
+            <button type="button" class="toggle" aria-expanded="false" aria-controls="abstract-Almeida2026" onclick="this.ariaExpanded = this.ariaExpanded !== 'true';
+		document.getElementById(this.getAttribute('aria-controls')).classList.toggle('is-expanded', this.ariaExpanded === 'true');">
                 <span>Résumé</span>
                 <span class="icon-toggle" aria-hidden="true">
                     <span class="bar line-left"></span>
                     <span class="bar line-right"></span>
                 </span>
             </button>
-            <div class="pub-links"><a href="https://arxiv.org/abs/2507.08580" target="_blank" rel="noopener noreferrer" title="Voir sur arXiv"> arXiv </a><a href="https://doi.org/10.1007/s00233-026-10663-1" target="_blank" rel="noopener noreferrer" title="Lien DOI"> doi </a></div>
+            <div class="pub-links"><a href="https://doi.org/10.1007/s00233-026-10663-1" target="_blank" rel="noopener noreferrer" title="Lien DOI"> doi </a><a href="https://arxiv.org/abs/2507.08580" target="_blank" rel="noopener noreferrer" title="Voir sur arXiv"> arXiv </a></div>
         </div>
-        <div id="abstract-Almeida2026" class="abstract-wrapper">
+        <div id="abstract-Almeida2026" class="toggle-target">
             <div class="abstract-inner">
-                The purpose of this paper is to extend some useful results, such as the multiplication being open, previously known for suitable finitely generated relatively free profinite semigroups, to relatively free profinite semigroupoids over finite-vertex graphs. This extension is used to give a profinite characterization of recurrent words over infinite alphabets and to establish new results about stabilizers in relatively free profinite semigroups and semigroupoids.
+                <div class="abstract-text">
+                    The purpose of this paper is to extend some useful results, such as the multiplication being open, previously known for suitable finitely generated relatively free profinite semigroups, to relatively free profinite semigroupoids over finite-vertex graphs. This extension is used to give a profinite characterization of recurrent words over infinite alphabets and to establish new results about stabilizers in relatively free profinite semigroups and semigroupoids.
+                </div>
             </div>
         </div>
     </li>
@@ -54,18 +60,21 @@ Script: /publications.js
             F. Gheeraert, H. Goulet-Ouellet, J. Leroy et P. Stas. <em>Stability properties for subgroups generated by return words</em>, European Journal of Combinatorics, <strong>130</strong> (2025), art. 104224.
         </div>
         <div class="pub-ui">
-            <button type="button" class="abstract-toggle" aria-expanded="false" aria-controls="abstract-Gheeraert2025a" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'false' ? 'true' : 'false')">
+            <button type="button" class="toggle" aria-expanded="false" aria-controls="abstract-Gheeraert2025a" onclick="this.ariaExpanded = this.ariaExpanded !== 'true';
+		document.getElementById(this.getAttribute('aria-controls')).classList.toggle('is-expanded', this.ariaExpanded === 'true');">
                 <span>Résumé</span>
                 <span class="icon-toggle" aria-hidden="true">
                     <span class="bar line-left"></span>
                     <span class="bar line-right"></span>
                 </span>
             </button>
-            <div class="pub-links"><a href="https://arxiv.org/abs/2410.12534" target="_blank" rel="noopener noreferrer" title="Voir sur arXiv"> arXiv </a><a href="https://doi.org/10.1016/j.ejc.2025.104224" target="_blank" rel="noopener noreferrer" title="Lien DOI"> doi </a></div>
+            <div class="pub-links"><a href="https://doi.org/10.1016/j.ejc.2025.104224" target="_blank" rel="noopener noreferrer" title="Lien DOI"> doi </a><a href="https://arxiv.org/abs/2410.12534" target="_blank" rel="noopener noreferrer" title="Voir sur arXiv"> arXiv </a></div>
         </div>
-        <div id="abstract-Gheeraert2025a" class="abstract-wrapper">
+        <div id="abstract-Gheeraert2025a" class="toggle-target">
             <div class="abstract-inner">
-                Return words are a classical tool for studying shift spaces with low factor complexity. In recent years, their projection inside groups have attracted some attention, for instance in the context of dendric shift spaces, of generation of pseudorandom numbers (through the welldoc property), and of profinite invariants of shift spaces. Aiming at unifying disparate works, we introduce a notion of stability for subgroups generated by return words. Within this framework, we revisit several existing results and generalize some of them. We also study general aspects of stability, such as decidability or closure under certain operations.
+                <div class="abstract-text">
+                    Return words are a classical tool for studying shift spaces with low factor complexity. In recent years, their projection inside groups have attracted some attention, for instance in the context of dendric shift spaces, of generation of pseudorandom numbers (through the welldoc property), and of profinite invariants of shift spaces. Aiming at unifying disparate works, we introduce a notion of stability for subgroups generated by return words. Within this framework, we revisit several existing results and generalize some of them. We also study general aspects of stability, such as decidability or closure under certain operations.
+                </div>
             </div>
         </div>
     </li>
@@ -74,18 +83,21 @@ Script: /publications.js
             F. Gheeraert, H. Goulet-Ouellet, J. Leroy et P. Stas. <em>Algebraic characterization of dendricity</em>, Electronic Journal of Combinatorics, <strong>32</strong> (2025), no. 1, art. P1.51.
         </div>
         <div class="pub-ui">
-            <button type="button" class="abstract-toggle" aria-expanded="false" aria-controls="abstract-Gheeraert2025" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'false' ? 'true' : 'false')">
+            <button type="button" class="toggle" aria-expanded="false" aria-controls="abstract-Gheeraert2025" onclick="this.ariaExpanded = this.ariaExpanded !== 'true';
+		document.getElementById(this.getAttribute('aria-controls')).classList.toggle('is-expanded', this.ariaExpanded === 'true');">
                 <span>Résumé</span>
                 <span class="icon-toggle" aria-hidden="true">
                     <span class="bar line-left"></span>
                     <span class="bar line-right"></span>
                 </span>
             </button>
-            <div class="pub-links"><a href="https://arxiv.org/abs/2406.15075" target="_blank" rel="noopener noreferrer" title="Voir sur arXiv"> arXiv </a><a href="https://doi.org/10.37236/13326" target="_blank" rel="noopener noreferrer" title="Lien DOI"> doi </a></div>
+            <div class="pub-links"><a href="https://doi.org/10.37236/13326" target="_blank" rel="noopener noreferrer" title="Lien DOI"> doi </a><a href="https://arxiv.org/abs/2406.15075" target="_blank" rel="noopener noreferrer" title="Voir sur arXiv"> arXiv </a></div>
         </div>
-        <div id="abstract-Gheeraert2025" class="abstract-wrapper">
+        <div id="abstract-Gheeraert2025" class="toggle-target">
             <div class="abstract-inner">
-                Dendric shift spaces simultaneously generalize codings of regular interval exchanges and episturmian shift spaces, themselves both generalizations of Sturmian words. One of the key properties enforced by dendricity is the Return Theorem. In this paper, we prove its converse, providing the following natural algebraic perspective on dendricity: A minimal shift space is dendric if and only if every set of return words is a basis of the free group over the alphabet.
+                <div class="abstract-text">
+                    Dendric shift spaces simultaneously generalize codings of regular interval exchanges and episturmian shift spaces, themselves both generalizations of Sturmian words. One of the key properties enforced by dendricity is the Return Theorem. In this paper, we prove its converse, providing the following natural algebraic perspective on dendricity: A minimal shift space is dendric if and only if every set of return words is a basis of the free group over the alphabet.
+                </div>
             </div>
         </div>
     </li>
@@ -94,18 +106,21 @@ Script: /publications.js
             V. Berthé et H. Goulet-Ouellet. <em>Obstructions to return preservation for episturmian morphisms</em>, Theory of Computing Systems, <strong>68</strong> (2024), pp. 1512–1536.
         </div>
         <div class="pub-ui">
-            <button type="button" class="abstract-toggle" aria-expanded="false" aria-controls="abstract-Berthe2024" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'false' ? 'true' : 'false')">
+            <button type="button" class="toggle" aria-expanded="false" aria-controls="abstract-Berthe2024" onclick="this.ariaExpanded = this.ariaExpanded !== 'true';
+		document.getElementById(this.getAttribute('aria-controls')).classList.toggle('is-expanded', this.ariaExpanded === 'true');">
                 <span>Résumé</span>
                 <span class="icon-toggle" aria-hidden="true">
                     <span class="bar line-left"></span>
                     <span class="bar line-right"></span>
                 </span>
             </button>
-            <div class="pub-links"><a href="https://arxiv.org/abs/2404.08072" target="_blank" rel="noopener noreferrer" title="Voir sur arXiv"> arXiv </a><a href="https://doi.org/10.1007/s00224-024-10190-y" target="_blank" rel="noopener noreferrer" title="Lien DOI"> doi </a></div>
+            <div class="pub-links"><a href="https://doi.org/10.1007/s00224-024-10190-y" target="_blank" rel="noopener noreferrer" title="Lien DOI"> doi </a><a href="https://arxiv.org/abs/2404.08072" target="_blank" rel="noopener noreferrer" title="Voir sur arXiv"> arXiv </a></div>
         </div>
-        <div id="abstract-Berthe2024" class="abstract-wrapper">
+        <div id="abstract-Berthe2024" class="toggle-target">
             <div class="abstract-inner">
-                This paper studies obstructions to preservation of return sets by episturmian morphisms. We show, by way of an explicit construction, that infinitely many obstructions exist. This generalizes and improves an earlier result about Sturmian morphisms.
+                <div class="abstract-text">
+                    This paper studies obstructions to preservation of return sets by episturmian morphisms. We show, by way of an explicit construction, that infinitely many obstructions exist. This generalizes and improves an earlier result about Sturmian morphisms.
+                </div>
             </div>
         </div>
     </li>
@@ -114,18 +129,21 @@ Script: /publications.js
             J. Almeida, H. Goulet-Ouellet et O. Klíma. <em>What makes a Stone topological algebra profinite</em>, Algebra Universalis, <strong>84</strong> (2023), no. 1, art. 6.
         </div>
         <div class="pub-ui">
-            <button type="button" class="abstract-toggle" aria-expanded="false" aria-controls="abstract-Almeida2023" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'false' ? 'true' : 'false')">
+            <button type="button" class="toggle" aria-expanded="false" aria-controls="abstract-Almeida2023" onclick="this.ariaExpanded = this.ariaExpanded !== 'true';
+		document.getElementById(this.getAttribute('aria-controls')).classList.toggle('is-expanded', this.ariaExpanded === 'true');">
                 <span>Résumé</span>
                 <span class="icon-toggle" aria-hidden="true">
                     <span class="bar line-left"></span>
                     <span class="bar line-right"></span>
                 </span>
             </button>
-            <div class="pub-links"><a href="https://arxiv.org/abs/2109.07286" target="_blank" rel="noopener noreferrer" title="Voir sur arXiv"> arXiv </a><a href="https://doi.org/10.1007/s00012-023-00804-w" target="_blank" rel="noopener noreferrer" title="Lien DOI"> doi </a></div>
+            <div class="pub-links"><a href="https://doi.org/10.1007/s00012-023-00804-w" target="_blank" rel="noopener noreferrer" title="Lien DOI"> doi </a><a href="https://arxiv.org/abs/2109.07286" target="_blank" rel="noopener noreferrer" title="Voir sur arXiv"> arXiv </a></div>
         </div>
-        <div id="abstract-Almeida2023" class="abstract-wrapper">
+        <div id="abstract-Almeida2023" class="toggle-target">
             <div class="abstract-inner">
-                This paper is a contribution to understanding what properties should a topological algebra on a Stone space satisfy to be profinite. We reformulate and simplify proofs for some known properties using syntactic congruences. We also clarify the role of various alternative ways of describing syntactic congruences, namely by finite sets of terms and by compact sets of continuous self mappings of the algebra.
+                <div class="abstract-text">
+                    This paper is a contribution to understanding what properties should a topological algebra on a Stone space satisfy to be profinite. We reformulate and simplify proofs for some known properties using syntactic congruences. We also clarify the role of various alternative ways of describing syntactic congruences, namely by finite sets of terms and by compact sets of continuous self mappings of the algebra.
+                </div>
             </div>
         </div>
     </li>
@@ -134,18 +152,21 @@ Script: /publications.js
             H. Goulet-Ouellet. <em>Suffix-connected languages</em>, Theoretical Computer Science, <strong>923</strong> (2022), pp. 126-143.
         </div>
         <div class="pub-ui">
-            <button type="button" class="abstract-toggle" aria-expanded="false" aria-controls="abstract-GouletOuellet2022" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'false' ? 'true' : 'false')">
+            <button type="button" class="toggle" aria-expanded="false" aria-controls="abstract-GouletOuellet2022" onclick="this.ariaExpanded = this.ariaExpanded !== 'true';
+		document.getElementById(this.getAttribute('aria-controls')).classList.toggle('is-expanded', this.ariaExpanded === 'true');">
                 <span>Résumé</span>
                 <span class="icon-toggle" aria-hidden="true">
                     <span class="bar line-left"></span>
                     <span class="bar line-right"></span>
                 </span>
             </button>
-            <div class="pub-links"><a href="https://arxiv.org/abs/2106.00452" target="_blank" rel="noopener noreferrer" title="Voir sur arXiv"> arXiv </a><a href="https://doi.org/10.1016/j.tcs.2022.05.001" target="_blank" rel="noopener noreferrer" title="Lien DOI"> doi </a></div>
+            <div class="pub-links"><a href="https://doi.org/10.1016/j.tcs.2022.05.001" target="_blank" rel="noopener noreferrer" title="Lien DOI"> doi </a><a href="https://arxiv.org/abs/2106.00452" target="_blank" rel="noopener noreferrer" title="Voir sur arXiv"> arXiv </a></div>
         </div>
-        <div id="abstract-GouletOuellet2022" class="abstract-wrapper">
+        <div id="abstract-GouletOuellet2022" class="toggle-target">
             <div class="abstract-inner">
-                Inspired by a series of papers initiated in 2015 by Berthé et al., we introduce a new condition called suffix-connectedness. We show that the groups generated by the return sets of a uniformly recurrent suffix-connected language lie in a single conjugacy class of subgroups of the free group. Moreover, the rank of the subgroups in this conjugacy class only depends on the number of connected components in the extension graph of the empty word. We also show how to explicitly compute a representative of this conjugacy class using the first order Rauzy graph. Finally, we provide an example of suffix-connected, uniformly recurrent language that contains infinitely many disconnected words.
+                <div class="abstract-text">
+                    Inspired by a series of papers initiated in 2015 by Berthé et al., we introduce a new condition called suffix-connectedness. We show that the groups generated by the return sets of a uniformly recurrent suffix-connected language lie in a single conjugacy class of subgroups of the free group. Moreover, the rank of the subgroups in this conjugacy class only depends on the number of connected components in the extension graph of the empty word. We also show how to explicitly compute a representative of this conjugacy class using the first order Rauzy graph. Finally, we provide an example of suffix-connected, uniformly recurrent language that contains infinitely many disconnected words.
+                </div>
             </div>
         </div>
     </li>
@@ -154,18 +175,21 @@ Script: /publications.js
             H. Goulet-Ouellet. <em>Pronilpotent quotients associated with primitive substitutions</em>, Journal of Algebra, <strong>606</strong> (2022), pp. 1101-1123.
         </div>
         <div class="pub-ui">
-            <button type="button" class="abstract-toggle" aria-expanded="false" aria-controls="abstract-GouletOuellet2022b" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'false' ? 'true' : 'false')">
+            <button type="button" class="toggle" aria-expanded="false" aria-controls="abstract-GouletOuellet2022b" onclick="this.ariaExpanded = this.ariaExpanded !== 'true';
+		document.getElementById(this.getAttribute('aria-controls')).classList.toggle('is-expanded', this.ariaExpanded === 'true');">
                 <span>Résumé</span>
                 <span class="icon-toggle" aria-hidden="true">
                     <span class="bar line-left"></span>
                     <span class="bar line-right"></span>
                 </span>
             </button>
-            <div class="pub-links"><a href="https://arxiv.org/abs/2204.05706" target="_blank" rel="noopener noreferrer" title="Voir sur arXiv"> arXiv </a><a href="https://doi.org/10.1016/j.jalgebra.2022.05.021" target="_blank" rel="noopener noreferrer" title="Lien DOI"> doi </a></div>
+            <div class="pub-links"><a href="https://doi.org/10.1016/j.jalgebra.2022.05.021" target="_blank" rel="noopener noreferrer" title="Lien DOI"> doi </a><a href="https://arxiv.org/abs/2204.05706" target="_blank" rel="noopener noreferrer" title="Voir sur arXiv"> arXiv </a></div>
         </div>
-        <div id="abstract-GouletOuellet2022b" class="abstract-wrapper">
+        <div id="abstract-GouletOuellet2022b" class="toggle-target">
             <div class="abstract-inner">
-                We describe the pronilpotent quotients of a class of projective profinite groups, that we call ω-presented groups, defined using a special type of presentations. The pronilpotent quotients of an ω-presented group are completely determined by a single polynomial, closely related with the characteristic polynomial of a matrix. We deduce that ω-presented groups are either perfect or admit the p-adic integers as quotients for cofinitely many primes. We also find necessary conditions for absolute and relative freeness of ω-presented groups. Our main motivation comes from semigroup theory: the maximal subgroups of free profinite monoids corresponding to primitive substitutions are ω-presented (a theorem due to Almeida and Costa). We are able to show that the composition matrix of a primitive substitution carries partial information on the pronilpotent quotients of the corresponding maximal subgroup. We apply this to deduce that the maximal subgroups corresponding to primitive aperiodic substitutions of constant length are not absolutely free.
+                <div class="abstract-text">
+                    We describe the pronilpotent quotients of a class of projective profinite groups, that we call ω-presented groups, defined using a special type of presentations. The pronilpotent quotients of an ω-presented group are completely determined by a single polynomial, closely related with the characteristic polynomial of a matrix. We deduce that ω-presented groups are either perfect or admit the p-adic integers as quotients for cofinitely many primes. We also find necessary conditions for absolute and relative freeness of ω-presented groups. Our main motivation comes from semigroup theory: the maximal subgroups of free profinite monoids corresponding to primitive substitutions are ω-presented (a theorem due to Almeida and Costa). We are able to show that the composition matrix of a primitive substitution carries partial information on the pronilpotent quotients of the corresponding maximal subgroup. We apply this to deduce that the maximal subgroups corresponding to primitive aperiodic substitutions of constant length are not absolutely free.
+                </div>
             </div>
         </div>
     </li>
@@ -174,18 +198,21 @@ Script: /publications.js
             H. Goulet-Ouellet. <em>Freeness of Schützenberger groups of primitive substitutions</em>, International Journal of Algebra and Computation, <strong>32</strong> (2022), no. 6, pp. 1101–1123.
         </div>
         <div class="pub-ui">
-            <button type="button" class="abstract-toggle" aria-expanded="false" aria-controls="abstract-GouletOuellet2022c" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'false' ? 'true' : 'false')">
+            <button type="button" class="toggle" aria-expanded="false" aria-controls="abstract-GouletOuellet2022c" onclick="this.ariaExpanded = this.ariaExpanded !== 'true';
+		document.getElementById(this.getAttribute('aria-controls')).classList.toggle('is-expanded', this.ariaExpanded === 'true');">
                 <span>Résumé</span>
                 <span class="icon-toggle" aria-hidden="true">
                     <span class="bar line-left"></span>
                     <span class="bar line-right"></span>
                 </span>
             </button>
-            <div class="pub-links"><a href="https://arxiv.org/abs/2109.11957" target="_blank" rel="noopener noreferrer" title="Voir sur arXiv"> arXiv </a><a href="https://doi.org/10.1142/S0218196722500473" target="_blank" rel="noopener noreferrer" title="Lien DOI"> doi </a></div>
+            <div class="pub-links"><a href="https://doi.org/10.1142/S0218196722500473" target="_blank" rel="noopener noreferrer" title="Lien DOI"> doi </a><a href="https://arxiv.org/abs/2109.11957" target="_blank" rel="noopener noreferrer" title="Voir sur arXiv"> arXiv </a></div>
         </div>
-        <div id="abstract-GouletOuellet2022c" class="abstract-wrapper">
+        <div id="abstract-GouletOuellet2022c" class="toggle-target">
             <div class="abstract-inner">
-                Our main goal is to study the freeness of Schützenberger groups defined by primitive substitutions. Our findings include a simple freeness test for these groups, which is applied to exhibit a primitive invertible substitution with corresponding non-free Schützenberger group. This constitutes a counterexample to a result of Almeida dating back to 2005. We also give some early results concerning relative freeness of Schützenberger groups, a question which remains largely unexplored.
+                <div class="abstract-text">
+                    Our main goal is to study the freeness of Schützenberger groups defined by primitive substitutions. Our findings include a simple freeness test for these groups, which is applied to exhibit a primitive invertible substitution with corresponding non-free Schützenberger group. This constitutes a counterexample to a result of Almeida dating back to 2005. We also give some early results concerning relative freeness of Schützenberger groups, a question which remains largely unexplored.
+                </div>
             </div>
         </div>
     </li>
@@ -199,7 +226,8 @@ Script: /publications.js
             V. Berthé, H. Goulet-Ouellet et D. Perrin. <em>Density of rational languages under shift invariant measures</em>, dans: <em>52nd International Colloquium on Automata, Languages, and Programming (ICALP 2025)</em>, éd. par: K. Censor-Hillel, F. Grandoni, J. Ouaknine and G. Puppis (2025), art. 143.
         </div>
         <div class="pub-ui">
-            <button type="button" class="abstract-toggle" aria-expanded="false" aria-controls="abstract-Berthe2025" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'false' ? 'true' : 'false')">
+            <button type="button" class="toggle" aria-expanded="false" aria-controls="abstract-Berthe2025" onclick="this.ariaExpanded = this.ariaExpanded !== 'true';
+		document.getElementById(this.getAttribute('aria-controls')).classList.toggle('is-expanded', this.ariaExpanded === 'true');">
                 <span>Résumé</span>
                 <span class="icon-toggle" aria-hidden="true">
                     <span class="bar line-left"></span>
@@ -208,9 +236,11 @@ Script: /publications.js
             </button>
             <div class="pub-links"><a href="https://doi.org/10.4230/LIPIcs.ICALP.2025.143" target="_blank" rel="noopener noreferrer" title="Lien DOI"> doi </a></div>
         </div>
-        <div id="abstract-Berthe2025" class="abstract-wrapper">
+        <div id="abstract-Berthe2025" class="toggle-target">
             <div class="abstract-inner">
-                We study density of rational languages under shift invariant probability measures on spaces of two-sided infinite words, which generalizes the classical notion of density studied in formal languages and automata theory. The density for a language is defined as the limit in average (if it exists) of the probability that a word of a given length belongs to the language. We establish the existence of densities for all rational languages under all shift invariant measures. We also give explicit formulas under certain conditions, in particular when the language is aperiodic. Our approach combines tools and ideas from semigroup theory and ergodic theory.
+                <div class="abstract-text">
+                    We study density of rational languages under shift invariant probability measures on spaces of two-sided infinite words, which generalizes the classical notion of density studied in formal languages and automata theory. The density for a language is defined as the limit in average (if it exists) of the probability that a word of a given length belongs to the language. We establish the existence of densities for all rational languages under all shift invariant measures. We also give explicit formulas under certain conditions, in particular when the language is aperiodic. Our approach combines tools and ideas from semigroup theory and ergodic theory.
+                </div>
             </div>
         </div>
     </li>
@@ -219,18 +249,21 @@ Script: /publications.js
             H. Goulet-Ouellet, K. Klouda et Š. Starosta. <em>Circularity and repetitiveness in non-injective DF0L systems</em>, dans: <em>Combinatorics on Words</em> (2025), pp. 153–165.
         </div>
         <div class="pub-ui">
-            <button type="button" class="abstract-toggle" aria-expanded="false" aria-controls="abstract-GouletOuellet2025" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'false' ? 'true' : 'false')">
+            <button type="button" class="toggle" aria-expanded="false" aria-controls="abstract-GouletOuellet2025" onclick="this.ariaExpanded = this.ariaExpanded !== 'true';
+		document.getElementById(this.getAttribute('aria-controls')).classList.toggle('is-expanded', this.ariaExpanded === 'true');">
                 <span>Résumé</span>
                 <span class="icon-toggle" aria-hidden="true">
                     <span class="bar line-left"></span>
                     <span class="bar line-right"></span>
                 </span>
             </button>
-            <div class="pub-links"><a href="https://arxiv.org/abs/2504.15828" target="_blank" rel="noopener noreferrer" title="Voir sur arXiv"> arXiv </a><a href="https://doi.org/10.1007/978-3-031-97548-6_14" target="_blank" rel="noopener noreferrer" title="Lien DOI"> doi </a></div>
+            <div class="pub-links"><a href="https://doi.org/10.1007/978-3-031-97548-6_14" target="_blank" rel="noopener noreferrer" title="Lien DOI"> doi </a><a href="https://arxiv.org/abs/2504.15828" target="_blank" rel="noopener noreferrer" title="Voir sur arXiv"> arXiv </a></div>
         </div>
-        <div id="abstract-GouletOuellet2025" class="abstract-wrapper">
+        <div id="abstract-GouletOuellet2025" class="toggle-target">
             <div class="abstract-inner">
-                We study circularity in DF0L systems, a generalization of D0L systems. We focus on two different types of circularity, called weak and strong circularity. When the morphism is injective on the language of the system, the two notions are equivalent, but they may differ otherwise. Our main result shows that failure of weak circularity implies unbounded repetitiveness, and that unbounded repetitiveness implies failure of strong circularity. This extends previous work by the second and third authors for injective systems. To help motivate this work, we also give examples of non-injective but strongly circular systems.
+                <div class="abstract-text">
+                    We study circularity in DF0L systems, a generalization of D0L systems. We focus on two different types of circularity, called weak and strong circularity. When the morphism is injective on the language of the system, the two notions are equivalent, but they may differ otherwise. Our main result shows that failure of weak circularity implies unbounded repetitiveness, and that unbounded repetitiveness implies failure of strong circularity. This extends previous work by the second and third authors for injective systems. To help motivate this work, we also give examples of non-injective but strongly circular systems.
+                </div>
             </div>
         </div>
     </li>
@@ -239,7 +272,8 @@ Script: /publications.js
             V. Berthé et H. Goulet-Ouellet. <em>On substitutions preserving their return sets</em>, dans: <em>Combinatorics on Words</em>, éd. par: A. Frid and R. Mercas (2023), Lecture Notes in Computer Science, vol. 13899.
         </div>
         <div class="pub-ui">
-            <button type="button" class="abstract-toggle" aria-expanded="false" aria-controls="abstract-Berthe2023" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'false' ? 'true' : 'false')">
+            <button type="button" class="toggle" aria-expanded="false" aria-controls="abstract-Berthe2023" onclick="this.ariaExpanded = this.ariaExpanded !== 'true';
+		document.getElementById(this.getAttribute('aria-controls')).classList.toggle('is-expanded', this.ariaExpanded === 'true');">
                 <span>Résumé</span>
                 <span class="icon-toggle" aria-hidden="true">
                     <span class="bar line-left"></span>
@@ -248,9 +282,11 @@ Script: /publications.js
             </button>
             <div class="pub-links"><a href="https://doi.org/10.1007/978-3-031-33180-0_6" target="_blank" rel="noopener noreferrer" title="Lien DOI"> doi </a><a href="https://hal.science/hal-04311379" target="_blank" rel="noopener noreferrer" title="Voir sur HAL"> hal </a></div>
         </div>
-        <div id="abstract-Berthe2023" class="abstract-wrapper">
+        <div id="abstract-Berthe2023" class="toggle-target">
             <div class="abstract-inner">
-                We consider the question of whether or not a given primitive substitution preserves its sets of return words—or return sets for short. More precisely, we study the property asking that the image of the return set to a word equals the return set to the image of that word. We show that, for bifix encodings (where images of letters form a bifix code), this property holds for all but finitely many words. On the other hand, we also show that every conjugacy class of Sturmian substitutions contains a member for which the property fails infinitely often. Various applications and examples of these results are presented, including a description of the subgroups generated by the return sets in the shift of the Thue–Morse substitution. Up to conjugacy, these subgroups can be sorted into strictly decreasing chains of isomorphic subgroups weaving together a simple pattern. This is in stark contrast with the Sturmian case, and more generally with the dendric case (including in particular the Arnoux–Rauzy case), where it is known that all return sets generate the free group over the underlying alphabet.
+                <div class="abstract-text">
+                    We consider the question of whether or not a given primitive substitution preserves its sets of return words—or return sets for short. More precisely, we study the property asking that the image of the return set to a word equals the return set to the image of that word. We show that, for bifix encodings (where images of letters form a bifix code), this property holds for all but finitely many words. On the other hand, we also show that every conjugacy class of Sturmian substitutions contains a member for which the property fails infinitely often. Various applications and examples of these results are presented, including a description of the subgroups generated by the return sets in the shift of the Thue–Morse substitution. Up to conjugacy, these subgroups can be sorted into strictly decreasing chains of isomorphic subgroups weaving together a simple pattern. This is in stark contrast with the Sturmian case, and more generally with the dendric case (including in particular the Arnoux–Rauzy case), where it is known that all return sets generate the free group over the underlying alphabet.
+                </div>
             </div>
         </div>
     </li>
@@ -264,18 +300,21 @@ Script: /publications.js
             V. Berthé, H. Goulet-Ouellet, T. Karimov, D. Perrin et M. Vahanwala. <em>Preservation Theorems for Transducer Outputs</em>, 2026.
         </div>
         <div class="pub-ui">
-            <button type="button" class="abstract-toggle" aria-expanded="false" aria-controls="abstract-pre-Berthe2026" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'false' ? 'true' : 'false')">
+            <button type="button" class="toggle" aria-expanded="false" aria-controls="abstract-pre-Berthe2026" onclick="this.ariaExpanded = this.ariaExpanded !== 'true';
+		document.getElementById(this.getAttribute('aria-controls')).classList.toggle('is-expanded', this.ariaExpanded === 'true');">
                 <span>Résumé</span>
                 <span class="icon-toggle" aria-hidden="true">
                     <span class="bar line-left"></span>
                     <span class="bar line-right"></span>
                 </span>
             </button>
-            <div class="pub-links"><a href="https://arxiv.org/abs/2606.30013" target="_blank" rel="noopener noreferrer" title="Voir sur arXiv"> arXiv </a><a href="https://doi.org/10.48550/arXiv.2606.30013" target="_blank" rel="noopener noreferrer" title="Lien DOI"> doi </a></div>
+            <div class="pub-links"><a href="https://doi.org/10.48550/arXiv.2606.30013" target="_blank" rel="noopener noreferrer" title="Lien DOI"> doi </a><a href="https://arxiv.org/abs/2606.30013" target="_blank" rel="noopener noreferrer" title="Voir sur arXiv"> arXiv </a></div>
         </div>
-        <div id="abstract-pre-Berthe2026" class="abstract-wrapper">
+        <div id="abstract-pre-Berthe2026" class="toggle-target">
             <div class="abstract-inner">
-                Suppose we have a deterministic finite-state transducer $A$ and an infinite word $x$, and run $A$ on $x$ to obtain an infinite word $A(x)$. Which properties of $x$ are guaranteed to also hold for $A(x)$? In this paper, we study this preservation question for various well-known combinatorial properties, e.g., recurrence, being morphic, and having factor frequencies. The celebrated Krohn-Rhodes theorem provides the framework for proving our preservation results, and our techniques are based on the ergodic theory of symbolic dynamical systems, i.e., shift spaces.
+                <div class="abstract-text">
+                    Suppose we have a deterministic finite-state transducer $A$ and an infinite word $x$, and run $A$ on $x$ to obtain an infinite word $A(x)$. Which properties of $x$ are guaranteed to also hold for $A(x)$? In this paper, we study this preservation question for various well-known combinatorial properties, e.g., recurrence, being morphic, and having factor frequencies. The celebrated Krohn-Rhodes theorem provides the framework for proving our preservation results, and our techniques are based on the ergodic theory of symbolic dynamical systems, i.e., shift spaces.
+                </div>
             </div>
         </div>
     </li>
@@ -284,18 +323,21 @@ Script: /publications.js
             J. Almeida, A. Costa et H. Goulet-Ouellet. <em>Profinite approach to S-adic shift spaces I: Saturating directive sequences</em>, 2025.
         </div>
         <div class="pub-ui">
-            <button type="button" class="abstract-toggle" aria-expanded="false" aria-controls="abstract-pre-Almeida2025a" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'false' ? 'true' : 'false')">
+            <button type="button" class="toggle" aria-expanded="false" aria-controls="abstract-pre-Almeida2025a" onclick="this.ariaExpanded = this.ariaExpanded !== 'true';
+		document.getElementById(this.getAttribute('aria-controls')).classList.toggle('is-expanded', this.ariaExpanded === 'true');">
                 <span>Résumé</span>
                 <span class="icon-toggle" aria-hidden="true">
                     <span class="bar line-left"></span>
                     <span class="bar line-right"></span>
                 </span>
             </button>
-            <div class="pub-links"><a href="https://arxiv.org/abs/2509.00991" target="_blank" rel="noopener noreferrer" title="Voir sur arXiv"> arXiv </a><a href="https://doi.org/10.48550/arXiv.2509.00991" target="_blank" rel="noopener noreferrer" title="Lien DOI"> doi </a></div>
+            <div class="pub-links"><a href="https://doi.org/10.48550/arXiv.2509.00991" target="_blank" rel="noopener noreferrer" title="Lien DOI"> doi </a><a href="https://arxiv.org/abs/2509.00991" target="_blank" rel="noopener noreferrer" title="Voir sur arXiv"> arXiv </a></div>
         </div>
-        <div id="abstract-pre-Almeida2025a" class="abstract-wrapper">
+        <div id="abstract-pre-Almeida2025a" class="toggle-target">
             <div class="abstract-inner">
-                This paper is the first in a series of three, about (relatively) free profinite semigroups and S-adic representations of minimal shift spaces. We associate to each primitive S-adic directive sequence $\boldsymbol{\sigma}$ a <em>profinite image</em> in the free profinite semigroup over the alphabet of the induced minimal shift space. When this profinite image contains a $\mathcal{J}$-maximal maximal subgroup of the free profinite semigroup (which, up to isomorphism, is called the <em>Schützenberger group</em> of the shift space), we say that $\boldsymbol{\sigma}$ is <em>saturating</em>. We show that if $\boldsymbol{\sigma}$ is recognizable, then it is saturating. Conversely, we use the notion of saturating sequence to obtain several sufficient conditions for $\boldsymbol{\sigma}$ to be recognizable: $\boldsymbol{\sigma}$ consists of pure encodings; or $\boldsymbol{\sigma}$ is eventually recognizable, saturating and consists of encodings; or $\boldsymbol{\sigma}$ is eventually recognizable, recurrent, bounded and consists of encodings. For the most part, we do not assume that $\boldsymbol{\sigma}$ has finite alphabet rank although we establish that this combinatorial property has important algebraic consequences, namely that the rank of the Schützenberger group is also finite, whose maximum possible value we also determine. We also show that for every minimal shift space of finite topological rank, the rank of its Schützenberger group is a lower bound of the topological rank.
+                <div class="abstract-text">
+                    This paper is the first in a series of three, about (relatively) free profinite semigroups and S-adic representations of minimal shift spaces. We associate to each primitive S-adic directive sequence $\boldsymbol{\sigma}$ a <em>profinite image</em> in the free profinite semigroup over the alphabet of the induced minimal shift space. When this profinite image contains a $\mathcal{J}$-maximal maximal subgroup of the free profinite semigroup (which, up to isomorphism, is called the <em>Schützenberger group</em> of the shift space), we say that $\boldsymbol{\sigma}$ is <em>saturating</em>. We show that if $\boldsymbol{\sigma}$ is recognizable, then it is saturating. Conversely, we use the notion of saturating sequence to obtain several sufficient conditions for $\boldsymbol{\sigma}$ to be recognizable: $\boldsymbol{\sigma}$ consists of pure encodings; or $\boldsymbol{\sigma}$ is eventually recognizable, saturating and consists of encodings; or $\boldsymbol{\sigma}$ is eventually recognizable, recurrent, bounded and consists of encodings. For the most part, we do not assume that $\boldsymbol{\sigma}$ has finite alphabet rank although we establish that this combinatorial property has important algebraic consequences, namely that the rank of the Schützenberger group is also finite, whose maximum possible value we also determine. We also show that for every minimal shift space of finite topological rank, the rank of its Schützenberger group is a lower bound of the topological rank.
+                </div>
             </div>
         </div>
     </li>
@@ -309,7 +351,8 @@ Script: /publications.js
             H. Goulet-Ouellet. <em>Schützenberger groups of minimal shift spaces</em>, <em>University of Coimbra</em>, 2022.
         </div>
         <div class="pub-ui">
-            <button type="button" class="abstract-toggle" aria-expanded="false" aria-controls="abstract-thesis" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'false' ? 'true' : 'false')">
+            <button type="button" class="toggle" aria-expanded="false" aria-controls="abstract-thesis" onclick="this.ariaExpanded = this.ariaExpanded !== 'true';
+		document.getElementById(this.getAttribute('aria-controls')).classList.toggle('is-expanded', this.ariaExpanded === 'true');">
                 <span>Résumé</span>
                 <span class="icon-toggle" aria-hidden="true">
                     <span class="bar line-left"></span>
@@ -318,14 +361,16 @@ Script: /publications.js
             </button>
             <div class="pub-links"><a href="https://hdl.handle.net/10316/114196" target="_blank" rel="noopener noreferrer" title="URL de la citation"> url </a></div>
         </div>
-        <div id="abstract-thesis" class="abstract-wrapper">
+        <div id="abstract-thesis" class="toggle-target">
             <div class="abstract-inner">
-                Cette thèse vise à faire la lumière sur la structure des sous-groupes maximaux des monoïdes profinis libres qui correspondent aux systèmes dynamiques symboliques minimaux. Ces groupes, maintenant appelés <i>groupes de Schützenberger</i> dans la littérature, furent d'abord étudiés par Almeida au début des années 2000. Ils révèlent une fructueuse connection entre la théorie des semi-groupes et la dynamique symbolique. Mais malgré plusieurs progrès importants au cours des deux dernières décennies, notre compréhension de ces groupes demeure incomplète. Cette thèse propose une série de contributions sur différents aspects du sujet, organisées en trois parties. <p>
-                    La première partie porte sur la question de la liberté: sous quelles conditions ces groupes sont-ils libres, soit dans la catégorie des groupes profinis, ou relativement à une certaine pseudo-variété de groupes finis? On s'y concentre en particulier sur les sous-groupes maximaux correspondant aux substitutions primitives. L'un des principaux résultats est un critère pour la liberté absolue utilisant un type de présentations profinies introduit par Almeida et Costa, que l'on appelle <i>ω-présentations</i>. Ce critère permet de mettre en évidence un exemple de substitution primitive inversible dont le groupe de Schützenberger est non-libre, réfutant un résultat proposé par Almeida. Quelques résultats préliminaires sur la liberté relative sont aussi présentés.
-                <p>
-                    La deuxième partie de la thèse examine les quotients pronilpotents des groupes de Schützenberger des substitutions primitives. Le résultat principal est une description des quotients pronilpotents maximaux des groupes ω-présentés, dont les groupes de Schützenberger des substitutions primitives font partie. On y démontre que toute l'information sur les quotients pronilpotents d'un groupe ω-présenté peut être prélevée à même le polynôme caractéristique d'une certaine matrice. On peut utiliser ceci pour démontrer, par exemple, que les groupes ω-présentés ne sont jamais pro-p (ce qui répond en partie à une question de Zalesskii), et qu'ils sont parfaits seulement sous des conditions strictes qui excluent les groupes de Schützenberger des substitutions primitives. Ces résultats mènent aussi à un certain nombre de conditions nécessaires à la liberté, absolue et relative, des groupes ω-présentés. On en déduit que les groupes de Schützenberger des substitutions primitives apériodiques de longueur uniforme ne sont jamais absolument libres.
-                <p>
-                    La dernière partie de la thèse est dédiée à l'étude des sous-groupes engendrés par les mots de retour dans les systèmes dynamiques symboliques minimaux. En 2016, Almeida et Costa démontrent que le comportement collectif de ces sous-groupes permet de mieux comprendre le groupe de Schützenberger. Leurs résultats sont motivés en partie par une série d'articles publiés à partir de 2015 par Berthé et al., développant des idées centrées autour de la notion de <i>graphes d'extensions</i>. Sous certaines conditions, les résultats de Berthé et al.~permettent d'obtenir une connaissance complète des sous-groupes engendrés par les mots de retour. Notre principale contribution sur ce sujet est une nouvelle condition, la <i>connectivité par suffixes</i>, permettant de généraliser certains de ces résultats. Plusieurs applications de la connectivité par suffixes pour l'étude des groupes de Schützenberger sont aussi soulignées.
+                <div class="abstract-text">
+                    Cette thèse vise à faire la lumière sur la structure des sous-groupes maximaux des monoïdes profinis libres qui correspondent aux systèmes dynamiques symboliques minimaux. Ces groupes, maintenant appelés <i>groupes de Schützenberger</i> dans la littérature, furent d'abord étudiés par Almeida au début des années 2000. Ils révèlent une fructueuse connection entre la théorie des semi-groupes et la dynamique symbolique. Mais malgré plusieurs progrès importants au cours des deux dernières décennies, notre compréhension de ces groupes demeure incomplète. Cette thèse propose une série de contributions sur différents aspects du sujet, organisées en trois parties. <p>
+                        La première partie porte sur la question de la liberté: sous quelles conditions ces groupes sont-ils libres, soit dans la catégorie des groupes profinis, ou relativement à une certaine pseudo-variété de groupes finis? On s'y concentre en particulier sur les sous-groupes maximaux correspondant aux substitutions primitives. L'un des principaux résultats est un critère pour la liberté absolue utilisant un type de présentations profinies introduit par Almeida et Costa, que l'on appelle <i>ω-présentations</i>. Ce critère permet de mettre en évidence un exemple de substitution primitive inversible dont le groupe de Schützenberger est non-libre, réfutant un résultat proposé par Almeida. Quelques résultats préliminaires sur la liberté relative sont aussi présentés.
+                    <p>
+                        La deuxième partie de la thèse examine les quotients pronilpotents des groupes de Schützenberger des substitutions primitives. Le résultat principal est une description des quotients pronilpotents maximaux des groupes ω-présentés, dont les groupes de Schützenberger des substitutions primitives font partie. On y démontre que toute l'information sur les quotients pronilpotents d'un groupe ω-présenté peut être prélevée à même le polynôme caractéristique d'une certaine matrice. On peut utiliser ceci pour démontrer, par exemple, que les groupes ω-présentés ne sont jamais pro-p (ce qui répond en partie à une question de Zalesskii), et qu'ils sont parfaits seulement sous des conditions strictes qui excluent les groupes de Schützenberger des substitutions primitives. Ces résultats mènent aussi à un certain nombre de conditions nécessaires à la liberté, absolue et relative, des groupes ω-présentés. On en déduit que les groupes de Schützenberger des substitutions primitives apériodiques de longueur uniforme ne sont jamais absolument libres.
+                    <p>
+                        La dernière partie de la thèse est dédiée à l'étude des sous-groupes engendrés par les mots de retour dans les systèmes dynamiques symboliques minimaux. En 2016, Almeida et Costa démontrent que le comportement collectif de ces sous-groupes permet de mieux comprendre le groupe de Schützenberger. Leurs résultats sont motivés en partie par une série d'articles publiés à partir de 2015 par Berthé et al., développant des idées centrées autour de la notion de <i>graphes d'extensions</i>. Sous certaines conditions, les résultats de Berthé et al.~permettent d'obtenir une connaissance complète des sous-groupes engendrés par les mots de retour. Notre principale contribution sur ce sujet est une nouvelle condition, la <i>connectivité par suffixes</i>, permettant de généraliser certains de ces résultats. Plusieurs applications de la connectivité par suffixes pour l'étude des groupes de Schützenberger sont aussi soulignées.
+                </div>
             </div>
         </div>
     </li>

@@ -13,7 +13,7 @@
     --body-font-size: 1.1rem;
     --h1-font-size: 2.0rem;
     --h2-font-size: 1.5rem;
-    --navbar-font-size: 1.0rem;
+    --ui-font-size: 1.0rem;
     --banner-font-size: 3.0rem;
     --h4-font-size: 1.25rem;
     --footer-font-size: 1.0rem;
@@ -21,6 +21,7 @@
     --th-font-size: 1.25rem;
     --date-font-size: 0.95rem;
     --numbering-font-size: 0.95rem;
+    --links-font-size: 0.9rem
 }
 
 /* ==========================================================================
@@ -37,7 +38,7 @@ main, #top-banner, footer {
         [gutter-left] minmax(220px, 1fr) 
         [content] minmax(0, 75ch) 
         [gutter-right] minmax(0, 1fr);
-    padding-inline: 2rem;
+    padding-inline: 3rem;
     justify-content: center;
 }
 
@@ -83,7 +84,7 @@ h2 {
     margin: 1rem 0;
 }
 
-a:link, a:visited {
+a:link, a:visited, a.active {
     font-weight: 500;
     color: var(--darkblue);
 }
@@ -140,7 +141,6 @@ ol.content-list>li {
     grid-column: 1 / -1;
     display: grid;
     grid-template-columns: subgrid;
-    align-items: baseline;
     margin-bottom: 1.5rem;
 }
 
@@ -167,69 +167,23 @@ ol.pub>li::before { content: counter(pub-counter)"."; }
     grid-column: content;
     display: flex;
     justify-content: space-between;
-    /* Button on left, links on right */
     align-items: center;
     margin-top: 0.5rem;
 }
 
-.abstract-toggle {
-    display: inline-flex;
+.pub-links {
+    display: flex;
+    gap: 0.5em;
     align-items: center;
-    background: none;
-    border: none;
-    padding: 0;
-    cursor: pointer;
-    color: var(--darkblue);
-    font-family: var(--heading-font);
-    font-size: var(--navbar-font-size);
-    font-weight: 500;
+    margin-left: 1em;
 }
 
-/* Base icon dimensions for the abstract toggle */
-.abstract-toggle .icon-toggle {
-    display: inline-block;
-    position: relative;
-    width: 10px;
-    height: 10px;
-    padding: 0 8px 0 10px;
-}
-
-.abstract-toggle .icon-toggle .bar {
-    position: absolute;
-    width: 8px;
-    height: 2px;
-    background-color: var(--darkblue);
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* Default state: down-facing chevron (matching your navbar math) */
-.abstract-toggle .line-left {
-    transform: translateX(-5px) rotate(45deg);
-}
-
-.abstract-toggle .line-right {
-    transform: translateX(0) rotate(-45deg);
-}
-
-/* Expanded state: inverted chevron */
-.abstract-toggle[aria-expanded="true"] .line-left {
-    transform: translateX(-5px) rotate(-45deg);
-}
-
-.abstract-toggle[aria-expanded="true"] .line-right {
-    transform: translateX(0) rotate(45deg);
-}
-
-/* CSS-driven expand rule using :has() to target sibling .abstract-wrapper */
-.pub-ui:has(.abstract-toggle[aria-expanded="true"])+.abstract-wrapper {
-    grid-template-rows: 1fr;
-    opacity: 1;
-    transition: grid-template-rows 0.3s ease 0s, opacity 0.4s ease 0.3s;
-}
-
-.pub-ui:has(.abstract-toggle[aria-expanded="true"])+.abstract-wrapper .abstract-inner {
-    padding: 1em 2em 2em;
-    transition: padding 0.3s ease;
+.pub-links a{
+    font-size: var(--links-font-size);
+    border: 1px solid var(--darkblue);
+    padding: 0 5px;
+    text-decoration: none;
+    border-radius: 3px;
 }
 
 /* ==========================================================================
@@ -238,6 +192,7 @@ ol.pub>li::before { content: counter(pub-counter)"."; }
 
 .navbar {
     position: fixed;
+    display: flex;
     top: 0;
     left: 0;
     height: 2.5rem;
@@ -245,9 +200,15 @@ ol.pub>li::before { content: counter(pub-counter)"."; }
     border-bottom: 2px solid var(--darkblue);
     background-color: white;
     z-index: 1000;
-    display: flex;
     align-items: center;
-    transition: border-color 0.2s ease-out;
+}
+
+#navbar-links {
+    display: flex;
+    grid-template-rows: unset;
+    opacity: 1;
+    pointer-events: auto;
+    align-items: center;
 }
 
 .navbar-right {
@@ -258,7 +219,7 @@ ol.pub>li::before { content: counter(pub-counter)"."; }
 
 .navbar a {
     font-family: var(--heading-font);
-    font-size: var(--navbar-font-size);
+    font-size: var(--ui-font-size);
     font-weight: 400;
     color: var(--gray);
     text-align: center;
@@ -273,10 +234,6 @@ ol.pub>li::before { content: counter(pub-counter)"."; }
 .navbar a.active {
     font-weight: 500;
     color: var(--darkblue);
-}
-
-.menu-toggle {
-    display: none;
 }
 
 /* ==========================================================================
@@ -381,39 +338,69 @@ td {
    UI COMPONENTS
    ========================================================================== */
 
-.pub-links {
-    display: flex;
-    gap: 0.5em;
+.toggle {
+    display: inline-flex;
     align-items: center;
-    margin-left: 1em;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--darkblue);
+    font-family: var(--heading-font);
+    font-size: var(--body-font);
+    font-weight: 500;
 }
 
-.abstract-wrapper {
+.navbar>.toggle {
+    display: none;
+    padding: 0 1rem;
+}
+
+.icon-toggle {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    width: 15px;
+    padding-left: 10px;
+}
+
+.icon-toggle .bar {
+    position: absolute;
+    width: 8px;
+    height: 2px;
+    background-color: var(--darkblue);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.icon-toggle .line-left { transform: translateX(-5px) rotate(45deg); }
+.icon-toggle .line-right { transform: translateX(0) rotate(-45deg); }
+
+.toggle[aria-expanded="true"] .line-left { transform: translateX(-2.5px) rotate(45deg) scaleX(1.5); }
+.toggle[aria-expanded="true"] .line-right { transform: translateX(-2.5px) rotate(-45deg) scaleX(1.5); }
+
+.toggle-target {
     display: grid;
     grid-template-rows: 0fr;
     opacity: 0;
-    transition: opacity 0.3s ease 0s, grid-template-rows 0.4s ease 0.3s;
+    pointer-events: none;
+    transition: grid-template-rows 0.3s ease, opacity 0.4s ease;
 }
 
-.abstract-wrapper.is-expanded {
+.toggle-target.is-expanded {
     grid-template-rows: 1fr;
     opacity: 1;
-    transition: grid-template-rows 0.3s ease 0s, opacity 0.4s ease 0.3s;
+    pointer-events: auto;
 }
 
 .abstract-inner {
     min-height: 0;
-    padding: 0 2em;
+    overflow: hidden;
     color: var(--darkgray);
     font-size: var(--abstract-font-size);
     line-height: 1.8;
-    overflow: hidden;
-    transition: padding 0.3s ease 0.3s;
 }
 
-.abstract-wrapper.is-expanded .abstract-inner {
-    padding: 1em 2em 2em;
-    transition: padding 0.3s ease;
+.abstract-text {
+    padding: 1rem 2rem;
 }
 
 /* ==========================================================================
@@ -425,7 +412,7 @@ td {
     :root {
         --body-font-size: 1.0rem;
         --h1-font-size: 1.5rem;
-        --navbar-font-size: 1.0rem;
+        --ui-font-size: 1.0rem;
         --banner-font-size: 3.0rem;
         --footer-font-size: 0.95rem;
         --abstract-font-size: 0.95rem;
@@ -457,6 +444,11 @@ td {
         margin-top: .5rem;
     }
 
+    ol.content-list>li::before {
+        display: inline;
+        padding-right: 0.5rem;
+    }
+
     #top-banner h1 {
         text-align: center;
         margin-top: 3rem;
@@ -471,32 +463,26 @@ td {
         padding-bottom: 1rem;
     }
 
-    .menu-toggle {
-        display: inline-flex;
-        align-items: center;
-        margin: 0 1rem;
-        background: none;
-        border: none;
-        cursor: pointer;
-        color: var(--darkblue);
-        font-family: var(--heading-font);
-        font-size: var(--body-font);
-        font-weight: 500;
-        z-index: 1001;
-    }
-
-    .navbar-links {
+    #navbar-links {
         display: grid;
         grid-template-rows: 0fr;
+        align-items: stretch;
         position: absolute;
+        min-height: 0;
         top: 2.5rem;
         width: 100%;
-        flex-direction: column;
         background-color: white;
         border-bottom: 2px solid var(--darkblue);
-        transition: grid-template-rows 0.3s ease-in-out, opacity 0.2s ease-in-out;
-        opacity: 0;
-        pointer-events: none;
+        pointer-events: auto;
+        transition: grid-template-rows 0.3s ease-in-out;
+    }
+
+    .navbar {
+        border-bottom: none;
+    }
+
+    .navbar > .toggle {
+        display: inline-flex;
     }
 
     .navbar-links-inner {
@@ -504,43 +490,20 @@ td {
         display: flex;
         flex-direction: column;
         padding-left: 1rem;
-        transition: padding 0.3s ease;
     }
 
-    .navbar-links a {
+
+    #navbar-links a {
         margin: 0.5rem 1rem;
         width: 100%;
         text-align: left;
         font-size: 1.0rem;
     }
 
-    .icon-toggle {
-        width: 10px;
-        padding: 0 8px 0 10px;
-    }
-
-    .icon-toggle .bar {
-        position: absolute;
-        width: 8px;
-        height: 2px;
-        background-color: var(--darkblue);
-        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .icon-toggle .line-left { transform: translateX(-5px) rotate(45deg); }
-    .icon-toggle .line-right { transform: translateX(0) rotate(-45deg); }
-
-    .menu-toggle[aria-expanded="true"] .line-left { transform: translateX(-2.5px) rotate(45deg) scaleX(1.5); }
-    .menu-toggle[aria-expanded="true"] .line-right { transform: translateX(-2.5px) rotate(-45deg) scaleX(1.5); }
-
-    .menu-toggle[aria-expanded="true"]+.navbar-links {
+    .navbar>.toggle[aria-expanded="true"]+#navbar-links {
         grid-template-rows: 1fr;
         opacity: 1;
         pointer-events: auto;
-    }
-
-    .navbar:has(.menu-toggle[aria-expanded="true"]) {
-        border-bottom-color: transparent;
     }
 
 }

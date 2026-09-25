@@ -1,6 +1,9 @@
 <div class="navbar">
-	<button type="button" class="menu-toggle" aria-label="Toggle Navigation" aria-expanded="false"
-		onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'false' ? 'true' : 'false')">
+	<button type="button" class="toggle" aria-label="Toggle Navigation" aria-expanded="false" aria-controls="navbar-links"
+		onclick="
+		this.ariaExpanded = this.ariaExpanded !== 'true';
+		document.getElementById(this.getAttribute('aria-controls')).classList.toggle('is-expanded', this.ariaExpanded === 'true');
+		">
 		<span id="mobile-page-title" class="current-page"></span>
 		<span class="icon-toggle" aria-hidden="true">
 			<span class="bar line-left"></span>
@@ -8,7 +11,7 @@
 		</span>
 	</button>
 
-	<div class="navbar-links">
+	<div id="navbar-links" class="toggle-target">
 		<div class="navbar-links-inner">
 			<a href="/en/">Home</a>
 			<a href="/publications/en/">Publications</a>
@@ -26,7 +29,7 @@
 <script>
 	(() => {
 		const path = window.location.pathname.replace(/index\.html$/, '');
-		const activeLink = document.querySelector(`.navbar-links a[href="${path}"]`);
+		const activeLink = document.querySelector(`.navbar-links-inner a[href="${path}"]`);
 
 		if (activeLink) {
 			activeLink.classList.add('active');

@@ -48,14 +48,16 @@ function buildAbstractButton(entry, lang) {
     }
 
     const abstractId = `abstract-${entry.id}`;
-    const labelText = langStr?.abstract?.[lang] || (lang === "fr" ? "ABSTRACT" : "ABSTRACT");
 
     // Matches your navbar inline toggle logic exactly
-    const onclickHtml = `this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'false' ? 'true' : 'false')`;
+    const onclickHtml = `
+        this.ariaExpanded = this.ariaExpanded !== 'true';
+		document.getElementById(this.getAttribute('aria-controls')).classList.toggle('is-expanded', this.ariaExpanded === 'true');
+        `.trim();
 
     const buttonHtml = `
-        <button type="button" class="abstract-toggle" aria-expanded="false" aria-controls="${abstractId}" onclick="${onclickHtml}">
-            <span>${labelText}</span>
+        <button type="button" class="toggle" aria-expanded="false" aria-controls="${abstractId}" onclick="${onclickHtml}">
+            <span>${langStr.abstract[lang]}</span>
             <span class="icon-toggle" aria-hidden="true">
                 <span class="bar line-left"></span>
                 <span class="bar line-right"></span>
@@ -64,9 +66,11 @@ function buildAbstractButton(entry, lang) {
     `.trim();
 
     const abstractHtml = `
-        <div id="${abstractId}" class="abstract-wrapper">
+        <div id="${abstractId}" class="toggle-target">
             <div class="abstract-inner">
+                <div class="abstract-text">
                 ${abstractText}
+                </div>
             </div>
         </div>
     `.trim();
@@ -115,8 +119,8 @@ function buildItem(entry,lang) {
     const citationHtml = buildCitation(entry,lang);
 
     const links = [
+        buildDoiLink(entry.doi, lang),
         buildArxivLink(entry.arxiv,lang),
-        buildDoiLink(entry.doi,lang),
         buildHalLink(entry.hal,lang),
         buildUrlLink(entry.url,lang)
     ];
