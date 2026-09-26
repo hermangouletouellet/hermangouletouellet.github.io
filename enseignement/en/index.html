@@ -19,59 +19,56 @@
         <link rel="dns-prefetch" href="https://fonts.gstatic.com">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,300..600;1,300..600&family=Roboto:ital,wght@0,300..500;1,300..500&display=swap">
         <link rel="stylesheet" href="/style.css" />
+        <script src="/bin/toggle.js" defer></script>
         <!-- /fragment:head -->
+        <link rel="stylesheet" href="/teaching.css" />
     </head>
 
     <body>
-        <header>
-            <!-- fragment:navbar-en -->
-            <div class="navbar">
-            	<button type="button" class="toggle" aria-label="Toggle Navigation" aria-expanded="false" aria-controls="navbar-links"
-            		onclick="
-            		this.ariaExpanded = this.ariaExpanded !== 'true';
-            		document.getElementById(this.getAttribute('aria-controls')).classList.toggle('is-expanded', this.ariaExpanded === 'true');
-            		">
-            		<span id="mobile-page-title" class="current-page"></span>
-            		<span class="icon-toggle" aria-hidden="true">
-            			<span class="bar line-left"></span>
-            			<span class="bar line-right"></span>
-            		</span>
-            	</button>
-            
-            	<div id="navbar-links" class="toggle-target">
-            		<div class="navbar-links-inner">
-            			<a href="/en/">Home</a>
-            			<a href="/publications/en/">Publications</a>
-            			<a href="/exposes/en/">Talks</a>
-            			<a href="/enseignement/en/">Teaching</a>
-            		</div>
-            	</div>
-            
-            	<div class="navbar-right">
-            		<a href="../">fr</a>
-            		<a href="./" class="active">en</a>
-            	</div>
-            </div>
-            
-            <script>
-            	(() => {
-            		const path = window.location.pathname.replace(/index\.html$/, '');
-            		const activeLink = document.querySelector(`.navbar-links-inner a[href="${path}"]`);
-            
-            		if (activeLink) {
-            			activeLink.classList.add('active');
-            
-            			const pageTitleLabel = document.getElementById('mobile-page-title');
-            			if (pageTitleLabel) {
-            				pageTitleLabel.textContent = activeLink.textContent;
-            			}
-            		}
-            	})();
-            </script>
-            <!-- /fragment:navbar-en -->
-        </header>
+        <!-- fragment:navbar-en -->
+        <nav class="navbar">
+        	<button type="button" class="toggle" aria-label="Toggle Navigation" aria-expanded="false" aria-controls="navbar-links"
+        		onclick="toggle(this)">
+        		<span id="mobile-page-title" class="current-page"></span>
+        		<span class="icon-toggle" aria-hidden="true">
+        			<span class="bar line-left"></span>
+        			<span class="bar line-right"></span>
+        		</span>
+        	</button>
+        
+        	<div id="navbar-links" class="toggle-target">
+        		<div class="navbar-links-inner">
+        			<a href="/en/">Home</a>
+        			<a href="/publications/en/">Publications</a>
+        			<a href="/exposes/en/">Talks</a>
+        			<a href="/enseignement/en/">Teaching</a>
+        		</div>
+        	</div>
+        
+        	<div class="navbar-lang">
+        		<a href="../">fr</a>
+        		<a href="./" class="active">en</a>
+        	</div>
+        </nav>
+        
+        <script>
+        	(() => {
+        		const path = window.location.pathname.replace(/index\.html$/, '');
+        		const activeLink = document.querySelector(`.navbar-links-inner a[href="${path}"]`);
+        
+        		if (activeLink) {
+        			activeLink.classList.add('active');
+        
+        			const pageTitleLabel = document.getElementById('mobile-page-title');
+        			if (pageTitleLabel) {
+        				pageTitleLabel.textContent = activeLink.textContent;
+        			}
+        		}
+        	})();
+        </script>
+        <!-- /fragment:navbar-en -->
 
-        <header id="top-banner">
+        <header>
             <h1>
                 Teaching
             </h1>
@@ -88,81 +85,67 @@
             Script: /teaching.js
             =============================================================================
             -->
-            <table>
-                <tr>
-                    <th>Fall 2026
-                </tr>
-                <tr>
-                    <td>MATH6033 ‒ <em>Séminaire de lecture en mathématiques</em>.</td>
-                </tr>
-                <tr>
-                    <td>MATH6053 ‒ <em>Travaux dirigés en mathématiques</em>.</td>
-                </tr>
-                <tr>
-                    <th>Winter 2026
-                </tr>
-                <tr>
-                    <td>MATH3803 ‒ <em>Théorie des nombres</em>.</td>
-                </tr>
-                <tr>
-                    <td>MATH2673 ‒ <em>Algèbre linéaire</em>.</td>
-                </tr>
-                <tr>
-                    <th>Fall 2025
-                </tr>
-                <tr>
-                    <td>MATH2413 ‒ <em>Algèbre et relations</em>.</td>
-                </tr>
-            </table>
+            <time class = "gutter-date">F-2026</time>
+            <div class="course-list">
+                <div class="course">MATH6033 ‒ <em>Séminaire de lecture en mathématiques</em>.</div>
+                <div class="course">MATH6053 ‒ <em>Travaux dirigés en mathématiques</em>.</div>
+            </div>
+            <time class = "gutter-date">W-2026</time>
+            <div class="course-list">
+                <div class="course">MATH3803 ‒ <em>Théorie des nombres</em>.</div>
+                <div class="course">MATH2673 ‒ <em>Algèbre linéaire</em>.</div>
+            </div>
+            <time class = "gutter-date">F-2025</time>
+            <div class="course-list">
+                <div class="course">MATH2413 ‒ <em>Algèbre et relations</em>.</div>
+            </div>
             <!-- /fragment:teaching-en -->
 
-            <h1> Previous experience </h1>
-            <table> 
-                <colgroup>
-                    <col style="width: 130px;">
-                    <col style="width: auto;">
-                </colgroup>
-                <tr> 
-                    <th colspan="2"> Czech Technical University </th>    
-                </tr>    
-                <tr> 
-                    <td>Winter 2025</td>
-                    <td> <em>Linear algebra II</em>, assistant. </td> 
-                </tr>
-                <tr> <td>Fall 2024</td>
-                    <td> <em>Probability and mathematical statistics</em>. </td>
-                </tr>
-                <tr> 
-                    <th colspan="2"> Université Paris Cité </th> 
-                </tr>
-                <tr> 
-                    <td>Fall 2023</td> 
-                    <td> <em>Programmation orientée objet et interface graphique</em>, assistant. </td>
-                </tr>
-                <tr> 
-                    <th colspan="2"> Université du Québec à Montréal </th> 
-                </tr>
-                <tr>
-                    <td> Winter 2018 </td> 
-                    <td> <em>Algèbre linéaire II</em>, assistant. </td>
-                </tr>
-                <tr>
-                    <td> Fall 2017 </td>
-                     <td> <em>Théorie des équations</em>, assistant.  </td>
-                    </tr>
-                <tr>
-                    <td> Winter 2016 </td>
-                     <td> <em>Algèbre matricielle</em>, assistant.  </td>
-                    </tr>
-                <tr>
-                    <td> Fall 2015 </td> 
-                    <td> <em>Algèbre matricielle</em>, assistant.  </td>
-                </tr>
-                <tr>
-                    <td> Winter 2015 </td> 
-                    <td> <em>Mathématiques algorithmiques</em>, assistant.  </td>
-                </tr>
-            </table>
+            <h2> Czech Technical University </h2>   
+
+            <time class="gutter-date">W-2025</time>
+            <div class="course-list">
+                <div> <em>Linear algebra II</em>, teaching assistant. </div>
+            </div>
+
+            <time class="gutter-date">F-2024</time>
+            <div class="course-list">
+                <div> <em>Probability and mathematical statistics</em>. </div>
+            </div>
+
+            <h2> Université Paris Cité </h2>
+
+            <time class="gutter-date">F-2023</time>
+            <div class="course-list">
+                <div> <em>Programmation orientée objet et interface graphique</em>, teaching assistant. </div>
+            </div>
+
+            <h2> Université du Québec à Montréal </h2>
+
+            <time class="gutter-date"> W-2018 </time>
+            <div class="course-list">
+                <div> <em>Algèbre linéaire II</em>, teaching assistant. </div>
+            </div>
+
+            <time class="gutter-date"> F-2017 </time>
+            <div class="course-list">
+                    <div> <em>Théorie des équations</em>, teaching assistant.  </div>
+            </div>
+
+            <time class="gutter-date"> W-2016 </time>
+            <div class="course-list">
+                    <div> <em>Algèbre matricielle</em>, teaching assistant.  </div>
+            </div>
+
+            <time class="gutter-date"> F-2015 </time> 
+            <div class="course-list">
+                <div> <em>Algèbre matricielle</em>, teaching assistant.  </div>
+            </div>
+
+            <time class="gutter-date"> W-2015 </time> 
+            <div class="course-list">
+                <div> <em>Mathématiques algorithmiques</em>, teaching assistant.  </div>
+            </div>
         </main>
 	</body>
 
@@ -170,12 +153,12 @@
     <footer>
         <h4>Contact</h4>
         <div class="address-content">
-            <div class="address-text">
+            <address class="address-text">
                 <div>
                     Université de Moncton, département de mathématiques et de statistique.
                 </div>
                 <div>herman.goulet-ouellet@umoncton.ca</div>
-            </div>
+            </address>
             <div class="logo-content">
                 <a href="https://nserc-crsng.canada.ca/fr">
                     <img src="/assets/logo_nserc.svg" 

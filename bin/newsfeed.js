@@ -30,7 +30,7 @@ function createPost(filePath) {
 
     const postHtml = 
         `<article class="news-article">
-        <time class="news-date">${dateStr}</time>
+        <time class="gutter-date">${dateStr}</time>
         <h2 class="news-title">${post.attributes.title}</h2>
         <div class="news-body">
         ${marked.parse(post.body)}

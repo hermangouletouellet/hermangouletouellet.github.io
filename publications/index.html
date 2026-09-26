@@ -19,6 +19,7 @@
         <link rel="dns-prefetch" href="https://fonts.gstatic.com">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,300..600;1,300..600&family=Roboto:ital,wght@0,300..500;1,300..500&display=swap">
         <link rel="stylesheet" href="/style.css" />
+        <script src="/bin/toggle.js" defer></script>
         <!-- /fragment:head -->
 
         <!-- fragment:mathjax -->
@@ -33,53 +34,48 @@
     </head>
 
     <body>
-        <header>
-            <!-- fragment:navbar-fr -->
-            <div class="navbar">
-                <button type="button" class="toggle" aria-label="Toggle Navigation" aria-expanded="false" aria-controls="navbar-links"
-                    onclick="
-            		this.ariaExpanded = this.ariaExpanded !== 'true';
-            		document.getElementById(this.getAttribute('aria-controls')).classList.toggle('is-expanded', this.ariaExpanded === 'true');
-            		">
-                    <span id="mobile-page-title" class="current-page"></span>
-                    <span class="icon-toggle" aria-hidden="true">
-                        <span class="bar line-left"></span>
-                        <span class="bar line-right"></span>
-                    </span>
-                </button>
-            
-                <div id="navbar-links" class="toggle-target">
-                    <div class="navbar-links-inner">
-                        <a href="/">Accueil</a>
-                        <a href="/publications/">Publications</a>
-                        <a href="/exposes/">Exposés</a>
-                        <a href="/enseignement/">Enseignement</a>
-                    </div>
-                </div>
-            
-                <div class="navbar-right">
-                    <a href="./" class="active">fr</a>
-                    <a href="en/">en</a>
+        <!-- fragment:navbar-fr -->
+        <nav class="navbar">
+            <button type="button" class="toggle" aria-label="Toggle Navigation" aria-expanded="false" aria-controls="navbar-links"
+                onclick="toggle(this)">
+                <span id="mobile-page-title" class="current-page"></span>
+                <span class="icon-toggle" aria-hidden="true">
+                    <span class="bar line-left"></span>
+                    <span class="bar line-right"></span>
+                </span>
+            </button>
+        
+            <div id="navbar-links" class="toggle-target">
+                <div class="navbar-links-inner">
+                    <a href="/">Accueil</a>
+                    <a href="/publications/">Publications</a>
+                    <a href="/exposes/">Exposés</a>
+                    <a href="/enseignement/">Enseignement</a>
                 </div>
             </div>
-            
-            <script>
-                (() => {
-                    const path = window.location.pathname.replace(/index\.html$/, '');
-                    const activeLink = document.querySelector(`.navbar-links-inner a[href="${path}"]`);
-                    if (activeLink) {
-                        activeLink.classList.add('active');
-                        const pageTitleLabel = document.getElementById('mobile-page-title');
-                        if (pageTitleLabel) {
-                            pageTitleLabel.textContent = activeLink.textContent;
-                        }
-                    }
-                })();
-            </script>
-            <!-- /fragment:navbar-fr -->
-        </header>
         
-        <header id="top-banner">
+            <div class="navbar-lang">
+                <a href="./" class="active">fr</a>
+                <a href="en/">en</a>
+            </div>
+        </nav>
+        
+        <script>
+            (() => {
+                const path = window.location.pathname.replace(/index\.html$/, '');
+                const activeLink = document.querySelector(`.navbar-links-inner a[href="${path}"]`);
+                if (activeLink) {
+                    activeLink.classList.add('active');
+                    const pageTitleLabel = document.getElementById('mobile-page-title');
+                    if (pageTitleLabel) {
+                        pageTitleLabel.textContent = activeLink.textContent;
+                    }
+                }
+            })();
+        </script>
+        <!-- /fragment:navbar-fr -->
+        
+        <header>
             <h1>
                 Publications
             </h1>
@@ -94,17 +90,16 @@
             Script: /publications.js
             =============================================================================
             -->
-            <h1>
+            <h2>
                 Revues scientifiques
-            </h1>
+            </h2>
             <ol class="content-list pub">
                 <li>
-                    <div class="pub-content">
+                    <div class="content-inner">
                         V. Berthé, H. Goulet-Ouellet, C.-F. Nyberg Brodda, D. Perrin et K. Petersen. <em>Density of group languages in shift spaces</em>, Ergodic Theory and Dynamical Systems (2026).
                     </div>
-                    <div class="pub-ui">
-                        <button type="button" class="toggle" aria-expanded="false" aria-controls="abstract-Berthe2026" onclick="this.ariaExpanded = this.ariaExpanded !== 'true';
-            		document.getElementById(this.getAttribute('aria-controls')).classList.toggle('is-expanded', this.ariaExpanded === 'true');">
+                    <div class="content-ui">
+                        <button type="button" class="toggle" aria-expanded="false" aria-controls="abstract-Berthe2026" onclick="toggle(this)">
                             <span>Résumé</span>
                             <span class="icon-toggle" aria-hidden="true">
                                 <span class="bar line-left"></span>
@@ -122,12 +117,11 @@
                     </div>
                 </li>
                 <li>
-                    <div class="pub-content">
+                    <div class="content-inner">
                         J. Almeida, A. Costa et H. Goulet-Ouellet. <em>Open multiplication in relatively free profinite semigroupoids</em>, Semigroup Forum (2026).
                     </div>
-                    <div class="pub-ui">
-                        <button type="button" class="toggle" aria-expanded="false" aria-controls="abstract-Almeida2026" onclick="this.ariaExpanded = this.ariaExpanded !== 'true';
-            		document.getElementById(this.getAttribute('aria-controls')).classList.toggle('is-expanded', this.ariaExpanded === 'true');">
+                    <div class="content-ui">
+                        <button type="button" class="toggle" aria-expanded="false" aria-controls="abstract-Almeida2026" onclick="toggle(this)">
                             <span>Résumé</span>
                             <span class="icon-toggle" aria-hidden="true">
                                 <span class="bar line-left"></span>
@@ -145,12 +139,11 @@
                     </div>
                 </li>
                 <li>
-                    <div class="pub-content">
+                    <div class="content-inner">
                         F. Gheeraert, H. Goulet-Ouellet, J. Leroy et P. Stas. <em>Stability properties for subgroups generated by return words</em>, European Journal of Combinatorics, <strong>130</strong> (2025), art. 104224.
                     </div>
-                    <div class="pub-ui">
-                        <button type="button" class="toggle" aria-expanded="false" aria-controls="abstract-Gheeraert2025a" onclick="this.ariaExpanded = this.ariaExpanded !== 'true';
-            		document.getElementById(this.getAttribute('aria-controls')).classList.toggle('is-expanded', this.ariaExpanded === 'true');">
+                    <div class="content-ui">
+                        <button type="button" class="toggle" aria-expanded="false" aria-controls="abstract-Gheeraert2025a" onclick="toggle(this)">
                             <span>Résumé</span>
                             <span class="icon-toggle" aria-hidden="true">
                                 <span class="bar line-left"></span>
@@ -168,12 +161,11 @@
                     </div>
                 </li>
                 <li>
-                    <div class="pub-content">
+                    <div class="content-inner">
                         F. Gheeraert, H. Goulet-Ouellet, J. Leroy et P. Stas. <em>Algebraic characterization of dendricity</em>, Electronic Journal of Combinatorics, <strong>32</strong> (2025), no. 1, art. P1.51.
                     </div>
-                    <div class="pub-ui">
-                        <button type="button" class="toggle" aria-expanded="false" aria-controls="abstract-Gheeraert2025" onclick="this.ariaExpanded = this.ariaExpanded !== 'true';
-            		document.getElementById(this.getAttribute('aria-controls')).classList.toggle('is-expanded', this.ariaExpanded === 'true');">
+                    <div class="content-ui">
+                        <button type="button" class="toggle" aria-expanded="false" aria-controls="abstract-Gheeraert2025" onclick="toggle(this)">
                             <span>Résumé</span>
                             <span class="icon-toggle" aria-hidden="true">
                                 <span class="bar line-left"></span>
@@ -191,12 +183,11 @@
                     </div>
                 </li>
                 <li>
-                    <div class="pub-content">
+                    <div class="content-inner">
                         V. Berthé et H. Goulet-Ouellet. <em>Obstructions to return preservation for episturmian morphisms</em>, Theory of Computing Systems, <strong>68</strong> (2024), pp. 1512–1536.
                     </div>
-                    <div class="pub-ui">
-                        <button type="button" class="toggle" aria-expanded="false" aria-controls="abstract-Berthe2024" onclick="this.ariaExpanded = this.ariaExpanded !== 'true';
-            		document.getElementById(this.getAttribute('aria-controls')).classList.toggle('is-expanded', this.ariaExpanded === 'true');">
+                    <div class="content-ui">
+                        <button type="button" class="toggle" aria-expanded="false" aria-controls="abstract-Berthe2024" onclick="toggle(this)">
                             <span>Résumé</span>
                             <span class="icon-toggle" aria-hidden="true">
                                 <span class="bar line-left"></span>
@@ -214,12 +205,11 @@
                     </div>
                 </li>
                 <li>
-                    <div class="pub-content">
+                    <div class="content-inner">
                         J. Almeida, H. Goulet-Ouellet et O. Klíma. <em>What makes a Stone topological algebra profinite</em>, Algebra Universalis, <strong>84</strong> (2023), no. 1, art. 6.
                     </div>
-                    <div class="pub-ui">
-                        <button type="button" class="toggle" aria-expanded="false" aria-controls="abstract-Almeida2023" onclick="this.ariaExpanded = this.ariaExpanded !== 'true';
-            		document.getElementById(this.getAttribute('aria-controls')).classList.toggle('is-expanded', this.ariaExpanded === 'true');">
+                    <div class="content-ui">
+                        <button type="button" class="toggle" aria-expanded="false" aria-controls="abstract-Almeida2023" onclick="toggle(this)">
                             <span>Résumé</span>
                             <span class="icon-toggle" aria-hidden="true">
                                 <span class="bar line-left"></span>
@@ -237,12 +227,11 @@
                     </div>
                 </li>
                 <li>
-                    <div class="pub-content">
+                    <div class="content-inner">
                         H. Goulet-Ouellet. <em>Suffix-connected languages</em>, Theoretical Computer Science, <strong>923</strong> (2022), pp. 126-143.
                     </div>
-                    <div class="pub-ui">
-                        <button type="button" class="toggle" aria-expanded="false" aria-controls="abstract-GouletOuellet2022" onclick="this.ariaExpanded = this.ariaExpanded !== 'true';
-            		document.getElementById(this.getAttribute('aria-controls')).classList.toggle('is-expanded', this.ariaExpanded === 'true');">
+                    <div class="content-ui">
+                        <button type="button" class="toggle" aria-expanded="false" aria-controls="abstract-GouletOuellet2022" onclick="toggle(this)">
                             <span>Résumé</span>
                             <span class="icon-toggle" aria-hidden="true">
                                 <span class="bar line-left"></span>
@@ -260,12 +249,11 @@
                     </div>
                 </li>
                 <li>
-                    <div class="pub-content">
+                    <div class="content-inner">
                         H. Goulet-Ouellet. <em>Pronilpotent quotients associated with primitive substitutions</em>, Journal of Algebra, <strong>606</strong> (2022), pp. 1101-1123.
                     </div>
-                    <div class="pub-ui">
-                        <button type="button" class="toggle" aria-expanded="false" aria-controls="abstract-GouletOuellet2022b" onclick="this.ariaExpanded = this.ariaExpanded !== 'true';
-            		document.getElementById(this.getAttribute('aria-controls')).classList.toggle('is-expanded', this.ariaExpanded === 'true');">
+                    <div class="content-ui">
+                        <button type="button" class="toggle" aria-expanded="false" aria-controls="abstract-GouletOuellet2022b" onclick="toggle(this)">
                             <span>Résumé</span>
                             <span class="icon-toggle" aria-hidden="true">
                                 <span class="bar line-left"></span>
@@ -283,12 +271,11 @@
                     </div>
                 </li>
                 <li>
-                    <div class="pub-content">
+                    <div class="content-inner">
                         H. Goulet-Ouellet. <em>Freeness of Schützenberger groups of primitive substitutions</em>, International Journal of Algebra and Computation, <strong>32</strong> (2022), no. 6, pp. 1101–1123.
                     </div>
-                    <div class="pub-ui">
-                        <button type="button" class="toggle" aria-expanded="false" aria-controls="abstract-GouletOuellet2022c" onclick="this.ariaExpanded = this.ariaExpanded !== 'true';
-            		document.getElementById(this.getAttribute('aria-controls')).classList.toggle('is-expanded', this.ariaExpanded === 'true');">
+                    <div class="content-ui">
+                        <button type="button" class="toggle" aria-expanded="false" aria-controls="abstract-GouletOuellet2022c" onclick="toggle(this)">
                             <span>Résumé</span>
                             <span class="icon-toggle" aria-hidden="true">
                                 <span class="bar line-left"></span>
@@ -306,17 +293,16 @@
                     </div>
                 </li>
             </ol>
-            <h1>
+            <h2>
                 Actes de conférences
-            </h1>
+            </h2>
             <ol class="content-list pub">
                 <li>
-                    <div class="pub-content">
+                    <div class="content-inner">
                         V. Berthé, H. Goulet-Ouellet et D. Perrin. <em>Density of rational languages under shift invariant measures</em>, dans: <em>52nd International Colloquium on Automata, Languages, and Programming (ICALP 2025)</em>, éd. par: K. Censor-Hillel, F. Grandoni, J. Ouaknine and G. Puppis (2025), art. 143.
                     </div>
-                    <div class="pub-ui">
-                        <button type="button" class="toggle" aria-expanded="false" aria-controls="abstract-Berthe2025" onclick="this.ariaExpanded = this.ariaExpanded !== 'true';
-            		document.getElementById(this.getAttribute('aria-controls')).classList.toggle('is-expanded', this.ariaExpanded === 'true');">
+                    <div class="content-ui">
+                        <button type="button" class="toggle" aria-expanded="false" aria-controls="abstract-Berthe2025" onclick="toggle(this)">
                             <span>Résumé</span>
                             <span class="icon-toggle" aria-hidden="true">
                                 <span class="bar line-left"></span>
@@ -334,12 +320,11 @@
                     </div>
                 </li>
                 <li>
-                    <div class="pub-content">
+                    <div class="content-inner">
                         H. Goulet-Ouellet, K. Klouda et Š. Starosta. <em>Circularity and repetitiveness in non-injective DF0L systems</em>, dans: <em>Combinatorics on Words</em> (2025), pp. 153–165.
                     </div>
-                    <div class="pub-ui">
-                        <button type="button" class="toggle" aria-expanded="false" aria-controls="abstract-GouletOuellet2025" onclick="this.ariaExpanded = this.ariaExpanded !== 'true';
-            		document.getElementById(this.getAttribute('aria-controls')).classList.toggle('is-expanded', this.ariaExpanded === 'true');">
+                    <div class="content-ui">
+                        <button type="button" class="toggle" aria-expanded="false" aria-controls="abstract-GouletOuellet2025" onclick="toggle(this)">
                             <span>Résumé</span>
                             <span class="icon-toggle" aria-hidden="true">
                                 <span class="bar line-left"></span>
@@ -357,12 +342,11 @@
                     </div>
                 </li>
                 <li>
-                    <div class="pub-content">
+                    <div class="content-inner">
                         V. Berthé et H. Goulet-Ouellet. <em>On substitutions preserving their return sets</em>, dans: <em>Combinatorics on Words</em>, éd. par: A. Frid and R. Mercas (2023), Lecture Notes in Computer Science, vol. 13899.
                     </div>
-                    <div class="pub-ui">
-                        <button type="button" class="toggle" aria-expanded="false" aria-controls="abstract-Berthe2023" onclick="this.ariaExpanded = this.ariaExpanded !== 'true';
-            		document.getElementById(this.getAttribute('aria-controls')).classList.toggle('is-expanded', this.ariaExpanded === 'true');">
+                    <div class="content-ui">
+                        <button type="button" class="toggle" aria-expanded="false" aria-controls="abstract-Berthe2023" onclick="toggle(this)">
                             <span>Résumé</span>
                             <span class="icon-toggle" aria-hidden="true">
                                 <span class="bar line-left"></span>
@@ -380,17 +364,16 @@
                     </div>
                 </li>
             </ol>
-            <h1>
+            <h2>
                 Prépublications
-            </h1>
+            </h2>
             <ol class="content-list pub">
                 <li>
-                    <div class="pub-content">
+                    <div class="content-inner">
                         V. Berthé, H. Goulet-Ouellet, T. Karimov, D. Perrin et M. Vahanwala. <em>Preservation Theorems for Transducer Outputs</em>, 2026.
                     </div>
-                    <div class="pub-ui">
-                        <button type="button" class="toggle" aria-expanded="false" aria-controls="abstract-pre-Berthe2026" onclick="this.ariaExpanded = this.ariaExpanded !== 'true';
-            		document.getElementById(this.getAttribute('aria-controls')).classList.toggle('is-expanded', this.ariaExpanded === 'true');">
+                    <div class="content-ui">
+                        <button type="button" class="toggle" aria-expanded="false" aria-controls="abstract-pre-Berthe2026" onclick="toggle(this)">
                             <span>Résumé</span>
                             <span class="icon-toggle" aria-hidden="true">
                                 <span class="bar line-left"></span>
@@ -408,12 +391,11 @@
                     </div>
                 </li>
                 <li>
-                    <div class="pub-content">
+                    <div class="content-inner">
                         J. Almeida, A. Costa et H. Goulet-Ouellet. <em>Profinite approach to S-adic shift spaces I: Saturating directive sequences</em>, 2025.
                     </div>
-                    <div class="pub-ui">
-                        <button type="button" class="toggle" aria-expanded="false" aria-controls="abstract-pre-Almeida2025a" onclick="this.ariaExpanded = this.ariaExpanded !== 'true';
-            		document.getElementById(this.getAttribute('aria-controls')).classList.toggle('is-expanded', this.ariaExpanded === 'true');">
+                    <div class="content-ui">
+                        <button type="button" class="toggle" aria-expanded="false" aria-controls="abstract-pre-Almeida2025a" onclick="toggle(this)">
                             <span>Résumé</span>
                             <span class="icon-toggle" aria-hidden="true">
                                 <span class="bar line-left"></span>
@@ -431,17 +413,16 @@
                     </div>
                 </li>
             </ol>
-            <h1>
+            <h2>
                 Thèse
-            </h1>
+            </h2>
             <ol class="content-list pub">
                 <li>
-                    <div class="pub-content">
+                    <div class="content-inner">
                         H. Goulet-Ouellet. <em>Schützenberger groups of minimal shift spaces</em>, <em>University of Coimbra</em>, 2022.
                     </div>
-                    <div class="pub-ui">
-                        <button type="button" class="toggle" aria-expanded="false" aria-controls="abstract-thesis" onclick="this.ariaExpanded = this.ariaExpanded !== 'true';
-            		document.getElementById(this.getAttribute('aria-controls')).classList.toggle('is-expanded', this.ariaExpanded === 'true');">
+                    <div class="content-ui">
+                        <button type="button" class="toggle" aria-expanded="false" aria-controls="abstract-thesis" onclick="toggle(this)">
                             <span>Résumé</span>
                             <span class="icon-toggle" aria-hidden="true">
                                 <span class="bar line-left"></span>
@@ -472,12 +453,12 @@
     <footer>
         <h4>Contact</h4>
         <div class="address-content">
-            <div class="address-text">
+            <address class="address-text">
                 <div>
                     Université de Moncton, département de mathématiques et de statistique.
                 </div>
                 <div>herman.goulet-ouellet@umoncton.ca</div>
-            </div>
+            </address>
             <div class="logo-content">
                 <a href="https://nserc-crsng.canada.ca/fr">
                     <img src="/assets/logo_nserc.svg" 

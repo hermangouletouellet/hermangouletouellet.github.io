@@ -12,34 +12,32 @@ const beautifyOptions = {
 }
 
 const semesterStr = {
-    "A": { "fr": "Automne", "en": "Fall" },
-    "H": { "fr": "Hiver", "en": "Winter" },
-    "E": { "fr": "Été", "en": "Summer" },
+    "A": { "fr": "A", "en": "F" },
+    "H": { "fr": "H", "en": "W" },
+    "E": { "fr": "É", "en": "S" },
 }
 
 function buildSemester(entry,lang) {
 
-    const semesterName = `${semesterStr[entry.semester[0]][lang]}`; 
-    let semesterHtml = 
-    `<tr>
-    <th>${semesterName} ${entry.semester.slice(1)}
-    </tr>`
-    for (const course of entry.courses) {
-        semesterHtml += 
-        `<tr>
-        <td>${course.code} ‒ <em>${course.title}</em>.</td>
-        </tr>`;
-    }
+    const semesterName = semesterStr[entry.semester[0]][lang];
+    const semesterYear = entry.semester.slice(1); 
+    const semesterCourses=entry.courses.map( 
+        (c) => `<div class="course">${c.code} ‒ <em>${c.title}</em>.</div>`
+    ).join("\n");
 
-    return semesterHtml;
+    return [
+        `<time class = "gutter-date">${semesterName}-${semesterYear}</time>`,
+        `<div class = "course-list">`,
+        semesterCourses,
+        `</div>`
+    ].join("\n")
+
 }
 
-function buildTable(data,lang) {
+function buildContent(data,lang) {
 
     const html = data.map(s=>buildSemester(s,lang)).join("\n");
-    const tableHtml = `<table>\n${html}\n</table>`
-
-    return beautify.html(tableHtml, beautifyOptions); 
+    return beautify.html(html, beautifyOptions); 
 }
 
 const banner = `<!-- 
@@ -54,7 +52,7 @@ const data = JSON.parse(fs.readFileSync(path.join(PATHS.data,"teaching.json"), '
 
 for (const lang of ["fr","en"]) {
     const outputFile = path.join(PATHS.fragments, `teaching-${lang}.html`)
-    fs.writeFileSync(outputFile, banner + buildTable(data,lang), 'utf8');
+    fs.writeFileSync(outputFile, banner + buildContent(data,lang), 'utf8');
     console.log(`[${lang}] Wrote teaching fragment to ${outputFile}`);
 } 
 

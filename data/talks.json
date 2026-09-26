@@ -150,7 +150,7 @@
 {
     "id": "umoncton2026",
     "type": "seminar",
-    "title" : " Les mots dendriques ",
+    "title" : " Les mots dendriques",
     "venue" : "Séminaires du département de mathématiques et de statistique",
     "location" : "Université de Moncton",
     "country" : "CA",
@@ -160,7 +160,7 @@
 {
     "id": "cmup2025",
     "type": "seminar",
-    "title" : " Density of rational languages under invariant probability measures ",
+    "title" : " Density of rational languages under invariant probability measures",
     "venue" : "Semigroups, automata and languages",
     "location" : "Université de Porto",
     "country" : "PT",
@@ -171,12 +171,12 @@
 {
     "id": "ggoat2025",
     "type": "seminar",
-    "title" : " Density of group languages under ergodic probability measures ",
+    "title" : " Density of group languages under ergodic probability measures",
     "venue" : "G²OAT",
     "location" : "Czech technical university",
     "country" : "PT",
     "date" : "2025-03-17",
-    "abstract" : "I will present recent work about densities of group languages under ergodic probability measures. Group languages are the rational languages recognized by morphisms onto finite groups, or equivalently recognized by automata where letters act as permutations of the states. We consider the density of such languages under probability measures defined on spaces of infinite words. In this setting, the density quantifies how frequently words from the language are found in infinite words sampled at random using the measure. I will explain how we can prove that group languages have well-defined densities with respect to any ergodic probability measure, and how the proof of this fact leads to equidistribution results in some important cases. "
+    "abstract" : "I will present recent work about densities of group languages under ergodic probability measures. Group languages are the rational languages recognized by morphisms onto finite groups, or equivalently recognized by automata where letters act as permutations of the states. We consider the density of such languages under probability measures defined on spaces of infinite words. In this setting, the density quantifies how frequently words from the language are found in infinite words sampled at random using the measure. I will explain how we can prove that group languages have well-defined densities with respect to any ergodic probability measure, and how the proof of this fact leads to equidistribution results in some important cases."
 },
 {
     "id": "ernest2025",
@@ -256,7 +256,7 @@
     "location" : "Université de Liège",
     "country" : "BE",
     "date" :  "2023-09-29",
-    "abstract" : "I will present ongoing work on the \"return preservation property\" which asks for a morphism to preserve its own return sets. After recalling motivation for studying this property and some general results, I will discuss the episturmian case. The main result in that direction is that primitive episturmian morphisms have infinitely many obstructions to return preservation. The technique for building these obstructions involves an analysis of episturmian conjugacy classes and how they act on Rauzy graphs. This is joint work with Valérie Berthé. "
+    "abstract" : "I will present ongoing work on the \"return preservation property\" which asks for a morphism to preserve its own return sets. After recalling motivation for studying this property and some general results, I will discuss the episturmian case. The main result in that direction is that primitive episturmian morphisms have infinitely many obstructions to return preservation. The technique for building these obstructions involves an analysis of episturmian conjugacy classes and how they act on Rauzy graphs. This is joint work with Valérie Berthé."
 },
 {
     "type": "seminar",

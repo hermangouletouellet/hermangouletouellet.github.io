@@ -3,26 +3,15 @@ import path from 'path';
 import beautify from "js-beautify";
 import { PATHS, BEAUTIFY_OPTIONS } from "./config.js";
 
-const beautifyOptions = {
-    indent_size: 4,
-    wrap_line_length: 0,
-    preserve_newlines: true,
-    extra_liners: [],
-    inline: ['a', 'span', 'em', 'strong']
-}
-
-const typeNames = {
-    "conference": { "fr": "Conférences", "en": "Conferences" },
-    "seminar": { "fr": "Séminaires", "en": "Seminars" },
-    "poster": { "fr": "Affiches", "en": "Posters" },
-}
-
 const langStr = {
-    "online" : {"fr": "En ligne", "en": "Online"},
-    "abstract" : {"fr": "Résumé", "en": "Abstract"}
+    conference: { fr: "Conférences", en: "Conferences" },
+    seminar: { fr: "Séminaires", en: "Seminars" },
+    poster: { fr: "Affiches", en: "Posters" },
+    online : {fr: "En ligne", en: "Online"},
+    abstract : {fr: "Résumé", en: "Abstract"}
 }
 
-function buildTalk(row,lang) {
+function buildTalk(entry,lang) {
 
     const formatter = new Intl.DateTimeFormat(lang, {
         year: 'numeric',
@@ -33,73 +22,92 @@ function buildTalk(row,lang) {
     const langNames = new Intl.DisplayNames([lang], { type: 'region' });
 
 
-    let html = `<em>${row.title}</em>. `;
-    let countryStr = row.country ? langNames.of(row.country) : null;
-    let dates = row.date.split("/");
+    let html = `<em>${entry.title}</em>. `;
+    let countryStr = entry.country ? langNames.of(entry.country) : null;
+    let dates = entry.date.split("/");
     let dateStr = dates[1]
         ? formatter.formatRange(new Date(dates[0]), new Date(dates[1]))
         : formatter.format(new Date(dates[0]));
 
-    let locationInfo = [row.venue, row.location, countryStr, dateStr];
+    let locationInfo = [entry.venue, entry.location, countryStr, dateStr];
     html += locationInfo.filter(Boolean).join(", ") + ".";
-    if (row.online) html += `${langStr.online[lang]}.`
+    if (entry.online) html += ` ${langStr.online[lang]}.`
 
-    return html;
+    return `<div class="content-inner">\n` + html + `\n</div>`;
 }
 
-function buildRow(row,lang) {
+function buildAbstractButton(entry, lang) {
+    const abstractText = entry.abstract;
+    if (!abstractText || typeof abstractText !== "string") {
+        return { buttonHtml: "", abstractHtml: "" };
+    }
 
-    const talkHtml = buildTalk(row,lang);
+    const abstractId = `abstract-${entry.id}`;
 
-    let abstractHtml = null;
-    let checkboxHtml = null;
+    const buttonHtml = `
+        <button type="button" class="toggle" aria-expanded="false" aria-controls="${abstractId}" onclick="toggle(this)">
+            <span>${langStr.abstract[lang]}</span>
+            <span class="icon-toggle" aria-hidden="true">
+                <span class="bar line-left"></span>
+                <span class="bar line-right"></span>
+            </span>
+        </button>
+    `.trim();
 
-    if (row.abstract) {
+    const abstractHtml = `
+        <div id="${abstractId}" class="toggle-target">
+            <div class="abstract-inner">
+                <div class="abstract-text">
+                    ${abstractText}
+                </div>
+            </div>
+        </div>
+    `.trim();
+
+    return { abstractButton: buttonHtml, abstractText: abstractHtml };
+}
+
+function buildItem(entry,lang) {
+
+    const talkHtml = buildTalk(entry,lang);
+
+    const { abstractButton, abstractText } = buildAbstractButton(entry, lang);
+
+    let abstractHtml = "";
+    if (abstractButton) {
         abstractHtml = [
-            `<div id="${row.id}" class="abstract-wrapper">`,
-            `<div class="abstract-inner">`,
-            `${row.abstract}`,
+            `<div class="content-ui">`,
+            abstractButton,
             `</div>`,
-            `</div>`
-        ].join("\n");
-        const onclickHtml = `document.getElementById('${row.id}').classList.toggle('is-expanded', this.checked)`
-        checkboxHtml = `<input type="checkbox" onclick="${onclickHtml}">`;
-    }   
+            abstractText
+        ].join("\n")
+    }
 
     return [
-        `<tr>`,
-        `<td>`,
+        `<li>`,
         talkHtml,
         abstractHtml,
-        `</td>`,
-        `<td style="text-align:center;">`,
-        checkboxHtml,
-        `</td>`
+        `</li>`
     ].filter(Boolean).join("\n");
 }
 
 function buildSectionHeader(type,lang) {
     return [
-        `<tr>`,
-        `<th>`,
-        typeNames[type][lang],
-        `</th>`,
-        `<th style="text-align: center; width: 8ex;">`,
-        langStr.abstract[lang],
-        `</th>`,
-        `</tr>`
+        `<h2>`,
+        langStr[type][lang],
+        `</h2>`,
     ].join("\n");
 }
 
-function buildTable(rows,lang) {
+function buildList(items,lang) {
 
     const groups = {};
-    for (const row of rows) {
-        if (!groups[row.type]) groups[row.type] = [];
-        groups[row.type].push(row);
+    for (const item of items) {
+        if (!groups[item.type]) groups[item.type] = [];
+        groups[item.type].push(item);
     }
 
-    let rowsHtml = [];
+    let listHtml = [];
 
     for (const type in groups) {
         const group = groups[type];
@@ -107,17 +115,17 @@ function buildTable(rows,lang) {
         group.sort((a, b) => {
             return new Date(b.date.split('/')[0]) - new Date(a.date.split('/')[0]);
         });
-        rowsHtml.push(buildSectionHeader(type,lang));
-        rowsHtml.push(...group.map(row => buildRow(row,lang)));
+        listHtml.push(buildSectionHeader(type,lang));
+        listHtml.push(`<ol class="content-list talk">`);
+        listHtml.push(...group.map(data => buildItem(data,lang)));
+        listHtml.push(`</ol>`)
     }
 
-    const tableHtml = `<table id="talk-table">\n${rowsHtml.join('\n')}\n</table>`
-
-    return beautify.html(tableHtml, BEAUTIFY_OPTIONS); 
+    return beautify.html(listHtml.join('\n'), BEAUTIFY_OPTIONS); 
 }
 
 
-const rows = JSON.parse(fs.readFileSync(path.join(PATHS.data,"talks.json"), 'utf8'));
+const items = JSON.parse(fs.readFileSync(path.join(PATHS.data,"talks.json"), 'utf8'));
 
 if (!fs.existsSync(PATHS.fragments)) {
     fs.mkdirSync(PATHS.fragments, { recursive: true })
@@ -133,7 +141,7 @@ Script: /talks.js
 
 for (const lang of ["fr","en"]) {
     const outputFile = path.join(PATHS.fragments, `talks-${lang}.html`);
-    fs.writeFileSync(outputFile, banner+buildTable(rows, lang), 'utf8');
+    fs.writeFileSync(outputFile, banner+buildList(items, lang), 'utf8');
     console.log(`[${lang}] Wrote talks fragment to ${outputFile}`);
 }
 

@@ -1,0 +1,13 @@
+time.semester {
+    grid-column: gutter-left;
+    justify-self: end;
+    text-align: right;
+    padding-right: 1rem;
+}
+
+.course-list {
+    padding-bottom: 1rem ;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}

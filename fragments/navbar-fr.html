@@ -1,9 +1,6 @@
-<div class="navbar">
+<nav class="navbar">
     <button type="button" class="toggle" aria-label="Toggle Navigation" aria-expanded="false" aria-controls="navbar-links"
-        onclick="
-		this.ariaExpanded = this.ariaExpanded !== 'true';
-		document.getElementById(this.getAttribute('aria-controls')).classList.toggle('is-expanded', this.ariaExpanded === 'true');
-		">
+        onclick="toggle(this)">
         <span id="mobile-page-title" class="current-page"></span>
         <span class="icon-toggle" aria-hidden="true">
             <span class="bar line-left"></span>
@@ -20,11 +17,11 @@
         </div>
     </div>
 
-    <div class="navbar-right">
+    <div class="navbar-lang">
         <a href="./" class="active">fr</a>
         <a href="en/">en</a>
     </div>
-</div>
+</nav>
 
 <script>
     (() => {

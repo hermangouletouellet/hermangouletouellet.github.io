@@ -32,7 +32,7 @@
     box-sizing: border-box;
 }
 
-main, #top-banner, footer {
+main, header, footer {
     display: grid;
     grid-template-columns:
         [gutter-left] minmax(220px, 1fr) 
@@ -40,20 +40,16 @@ main, #top-banner, footer {
         [gutter-right] minmax(0, 1fr);
     padding-inline: 3rem;
     justify-content: center;
+    align-items: baseline
 }
 
-main>*,#top-banner>*,footer>* {
+main>*,header>*,footer>* {
     grid-column: content;
 }
 
 @keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-    }
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
 body {
@@ -84,7 +80,7 @@ h2 {
     margin: 1rem 0;
 }
 
-a:link, a:visited, a.active {
+a:link, a:visited {
     font-weight: 500;
     color: var(--darkblue);
 }
@@ -102,14 +98,14 @@ a:link, a:visited, a.active {
 }
 
 .news-article h2{
-    margin-bottom:0;
+    margin-bottom: 0;
 }
 
 .news-article > * {
     grid-column: content;
 }
 
-.news-date {
+.gutter-date {
     grid-column: gutter-left;
     color: var(--gray);
     font-size: var(--date-font-size);
@@ -142,6 +138,7 @@ ol.content-list>li {
     display: grid;
     grid-template-columns: subgrid;
     margin-bottom: 1.5rem;
+    align-items: baseline;
 }
 
 ol.content-list>li>* {
@@ -163,7 +160,12 @@ ol.pub { list-style: none; }
 ol.pub>li { counter-increment: pub-counter; }
 ol.pub>li::before { content: counter(pub-counter)"."; }
 
-.pub-ui {
+ol.talk:first-of-type {counter-reset: talk-counter;}
+ol.talk { list-style: none; }
+ol.talk>li { counter-increment: talk-counter; }
+ol.talk>li::before { content: counter(talk-counter)"."; }
+
+.content-ui {
     grid-column: content;
     display: flex;
     justify-content: space-between;
@@ -190,7 +192,7 @@ ol.pub>li::before { content: counter(pub-counter)"."; }
    NAVIGATION BAR
    ========================================================================== */
 
-.navbar {
+nav {
     position: fixed;
     display: flex;
     top: 0;
@@ -205,52 +207,37 @@ ol.pub>li::before { content: counter(pub-counter)"."; }
 
 #navbar-links {
     display: flex;
-    grid-template-rows: unset;
     opacity: 1;
     pointer-events: auto;
-    align-items: center;
 }
 
-.navbar-right {
-    display: flex;
-    margin-left: auto;
-    align-items: center;
-}
+.navbar-lang { margin-left: auto; }
 
 .navbar a {
     font-family: var(--heading-font);
     font-size: var(--ui-font-size);
     font-weight: 400;
     color: var(--gray);
-    text-align: center;
     margin: 0 1rem;  
     text-decoration: none;
 }
 
-.navbar a:hover {
-    color: var(--darkgray);
-}
-
-.navbar a.active {
-    font-weight: 500;
-    color: var(--darkblue);
-}
+.navbar a:hover { color: var(--darkgray); }
+.navbar a.active { font-weight: 500; color: var(--darkblue); }
 
 /* ==========================================================================
    BANNER & FOOTER
    ========================================================================== */
 
-#top-banner {
+header {
     align-items: center;
     padding-top: 3rem;
     padding-bottom: 2rem;
 }
 
-#top-banner > * {
-    grid-column: content;
-}
+header > * { grid-column: content; }
 
-#top-banner h1 {
+header h1 {
     font-family: var(--heading-font);
     font-size: var(--banner-font-size);
     font-weight: 300;
@@ -258,7 +245,7 @@ ol.pub>li::before { content: counter(pub-counter)"."; }
     line-height: 1;
 }
 
-#top-banner:has(#portrait) h1 {
+header:has(#portrait) h1 {
     margin:0;
     padding-bottom: 1rem;
 }
@@ -312,29 +299,6 @@ footer h4 {
 }
 
 /* ==========================================================================
-   TABLES
-   ========================================================================== */
-   
-table {
-    table-layout: fixed;
-    width: 100%;
-    border-collapse: collapse;
-}
-
-th {
-    font-family: var(--heading-font);
-    color: var(--darkblue);
-    text-align: left;
-    padding: 1em 0em .5em 0;
-    font-size: var(--th-font-size);
-}
-
-td {
-    vertical-align: top;
-    padding: 0.5em 0;
-}
-
-/* ==========================================================================
    UI COMPONENTS
    ========================================================================== */
 
@@ -350,7 +314,7 @@ td {
     font-weight: 500;
 }
 
-.navbar>.toggle {
+nav>.toggle {
     display: none;
     padding: 0 1rem;
 }
@@ -423,7 +387,7 @@ td {
     }
 
     main,
-    #top-banner,
+    header,
     footer {
         grid-template-columns:
             [gutter-left] minmax(0, 1fr) [content] minmax(0, 75ch) [gutter-right] minmax(0, 1fr);
@@ -434,7 +398,7 @@ td {
         margin: 1rem auto 0 auto;
     }
 
-    .news-date {
+    .gutter-date {
         grid-column: content;
         justify-self: start;
         text-align: left;
@@ -449,16 +413,16 @@ td {
         padding-right: 0.5rem;
     }
 
-    #top-banner h1 {
+    header h1 {
         text-align: center;
         margin-top: 3rem;
     }
 
-    #top-banner h4 {
+    header h4 {
         text-align:center;
     }
 
-    #top-banner:has(#portrait) h1 {
+    header:has(#portrait) h1 {
         padding-top: 2rem;
         padding-bottom: 1rem;
     }
@@ -477,11 +441,11 @@ td {
         transition: grid-template-rows 0.3s ease-in-out;
     }
 
-    .navbar {
+    nav {
         border-bottom: none;
     }
 
-    .navbar > .toggle {
+    nav > .toggle {
         display: inline-flex;
     }
 
@@ -500,7 +464,7 @@ td {
         font-size: 1.0rem;
     }
 
-    .navbar>.toggle[aria-expanded="true"]+#navbar-links {
+    nav>.toggle[aria-expanded="true"]+#navbar-links {
         grid-template-rows: 1fr;
         opacity: 1;
         pointer-events: auto;

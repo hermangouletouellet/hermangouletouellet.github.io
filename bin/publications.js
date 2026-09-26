@@ -49,14 +49,8 @@ function buildAbstractButton(entry, lang) {
 
     const abstractId = `abstract-${entry.id}`;
 
-    // Matches your navbar inline toggle logic exactly
-    const onclickHtml = `
-        this.ariaExpanded = this.ariaExpanded !== 'true';
-		document.getElementById(this.getAttribute('aria-controls')).classList.toggle('is-expanded', this.ariaExpanded === 'true');
-        `.trim();
-
     const buttonHtml = `
-        <button type="button" class="toggle" aria-expanded="false" aria-controls="${abstractId}" onclick="${onclickHtml}">
+        <button type="button" class="toggle" aria-expanded="false" aria-controls="${abstractId}" onclick="toggle(this)">
             <span>${langStr.abstract[lang]}</span>
             <span class="icon-toggle" aria-hidden="true">
                 <span class="bar line-left"></span>
@@ -69,7 +63,7 @@ function buildAbstractButton(entry, lang) {
         <div id="${abstractId}" class="toggle-target">
             <div class="abstract-inner">
                 <div class="abstract-text">
-                ${abstractText}
+                    ${abstractText}
                 </div>
             </div>
         </div>
@@ -111,7 +105,7 @@ function buildCitation(row,lang) {
         html += ` ${row.year}.`;
     }
 
-    return `<div class="pub-content">\n` + html + `\n</div>`;
+    return `<div class="content-inner">\n` + html + `\n</div>`;
 }
 
 function buildItem(entry,lang) {
@@ -126,12 +120,12 @@ function buildItem(entry,lang) {
     ];
     const linksHtml = links ? `<div class="pub-links">${links.join("")}</div>` : null;
 
-    let {abstractButton, abstractText} = buildAbstractButton(entry,lang);
+    const {abstractButton, abstractText} = buildAbstractButton(entry,lang);
 
     return [
         `<li>`,
         citationHtml,
-        `<div class="pub-ui">`,
+        `<div class="content-ui">`,
         abstractButton,
         linksHtml,
         `</div>`,
@@ -142,9 +136,9 @@ function buildItem(entry,lang) {
 
     function buildSectionHeader(type,lang) {
         return [
-            `<h1>`,
+            `<h2>`,
             langStr[type][lang],
-            `</h1>`
+            `</h2>`
         ].join("\n");
     }
 
@@ -165,7 +159,7 @@ function buildList(items,lang) {
         
         listHtml.push(buildSectionHeader(type,lang));
         listHtml.push(`<ol class="content-list pub">`);
-        listHtml.push(...group.map(row => buildItem(row,lang)));
+        listHtml.push(...group.map(data => buildItem(data,lang)));
         listHtml.push(`</ol >`);
     }
 
