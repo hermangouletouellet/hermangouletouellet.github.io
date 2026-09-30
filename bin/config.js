@@ -12,6 +12,7 @@ export const PATHS = {
     fragments: path.join(ROOT_DIR, 'fragments'),
     assets: path.join(ROOT_DIR, 'assets/'),
     source: path.join(ROOT_DIR, 'source/'),
+    blog: path.join(ROOT_DIR,"content/", "blog/")
 };
 
 export const BEAUTIFY_OPTIONS = {

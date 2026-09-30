@@ -1,0 +1,19 @@
+/* ==========================================================================
+   BLOG
+   ========================================================================== */
+
+.blog-summary {
+    margin-bottom: 1rem;
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: subgrid;
+    align-items: baseline
+}
+
+h2.blog-title {
+    margin-bottom: 0;
+}
+
+.blog-summary>* {
+    grid-column: content;
+}

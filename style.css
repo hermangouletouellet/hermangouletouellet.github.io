@@ -86,7 +86,7 @@ a:link, a:visited {
 }
 
 /* ==========================================================================
-   NEWSFEED
+   NEWSFEED & BLOG
    ========================================================================== */
 
 .news-article {
@@ -97,12 +97,8 @@ a:link, a:visited {
     align-items: baseline
 }
 
-.news-article h2{
+h2.news-article {
     margin-bottom: 0;
-}
-
-.news-article > * {
-    grid-column: content;
 }
 
 .gutter-date {
@@ -112,6 +108,22 @@ a:link, a:visited {
     justify-self: end;
     text-align: right;
     padding-right: 1rem;
+}
+
+.blog-summary {
+    margin-bottom: 1rem;
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: subgrid;
+    align-items: baseline
+}
+
+h2.blog-title {
+    margin-bottom: 0;
+}
+
+:where(.news-article, .blog-summary)>* {
+    grid-column: content;
 }
 
 /* ==========================================================================

@@ -1,7 +1,10 @@
 ---
-title: Leiden declaration on artificial intelligence and mathematics
+title: "Leiden declaration on artificial intelligence and mathematics"
 date: 2026-09-19
 language: en
+published: false
+description: "This is a short post on the Leiden declaration on artificial intelligence and maths."
+slug: "leiden-2026"
 ---
 
 Recently, an interesting statement on the use of AI in mathematics was recently released, called the [https://leidendeclaration.ai/](Leiden declaration on artificial intelligence and mathematics). The document is the work of an international group of 16 researchers in mathematics and other relevant fields (computer science, history and philosophy) and has been endorsed by the International Mathematical Union. The document identifies potential threats posed by AI in mathematical research, and formulates concrete recommendations for individual mathematicians, mathematical organizations, and policymakers. Recommendations for individual mathematicians are:
