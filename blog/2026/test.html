@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="fr-CA">
+<head>
+    <meta name="description" content="Un blog doit avoir une description." />
+    <title> Une entrée pour test </title>
+    <link rel="canonical" href="https:/hermangouletouellet.github.io/blog/2026/test.html" />
+    <link rel="alternate" hreflang="fr" href="https:/hermangouletouellet.github.io/blog/2026/test.html" />
+    <!-- fragment:head -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="icon" href="/assets/favicon.ico" sizes="any">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,300..600;1,300..600&family=Roboto:ital,wght@0,300..500;1,300..500&display=swap">
+    <link rel="stylesheet" href="/style.css" />
+    <script src="/bin/toggle.js" defer></script>
+    <!-- /fragment:head -->
+    <!-- fragment:mathjax -->
+    <script>
+        window.MathJax = {
+            tex: { inlineMath: { '[+]': [['$', '$']] } },
+            output: { font: 'mathjax-pagella' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" defer></script>
+    <!-- /fragment:mathjax -->
+</head>
+<body>
+    <!-- fragment:navbar-fr -->
+    <nav class="navbar">
+        <button type="button" class="toggle" aria-label="Toggle Navigation" aria-expanded="false" aria-controls="navbar-links"
+            onclick="toggle(this)">
+            <span id="mobile-page-title" class="current-page"></span>
+            <span class="icon-toggle" aria-hidden="true">
+                <span class="bar line-left"></span>
+                <span class="bar line-right"></span>
+            </span>
+        </button>
+    
+        <div id="navbar-links" class="toggle-target">
+            <div class="navbar-links-inner">
+                <a href="/">Accueil</a>
+                <a href="/publications/">Publications</a>
+                <a href="/exposes/">Exposés</a>
+                <a href="/enseignement/">Enseignement</a>
+                <a href="/blog/">Blog</a>
+            </div>
+        </div>
+    
+        <div class="navbar-lang">
+            <a href="" class="lang-fr active">fr</a>
+            <a href="en/" class="lang-en">en</a>
+        </div>
+    </nav>
+    
+    <script>
+        (() => {
+            const path = window.location.pathname.replace(/index\.html$/, '');
+            const activeLink = document.querySelector(`.navbar-links-inner a[href="${path}"]`);
+            if (activeLink) {
+                activeLink.classList.add('active');
+                const pageTitleLabel = document.getElementById('mobile-page-title');
+                if (pageTitleLabel) {
+                    pageTitleLabel.textContent = activeLink.textContent;
+                }
+            }
+        })();
+    </script>
+    <!-- /fragment:navbar-fr -->
+    <main>
+        <hgroup>
+            <h1>Une entrée pour test</h1>
+            <h4>Un blog doit avoir une description.</h4>
+        </hgroup>
+        <time>2026/09/29</time>
+        <p>C&#39;est un test.</p>
+        <blockquote>
+            <p>Voici un block quote</p>
+        </blockquote>
+        <p>J&#39;essaie aussi une formule de math simple: $x^2 = x+1$. </p>
+        <p>Je peux aussi mettre des formules sur une ligne:
+            $$
+            \int_0^1 e^{-i\pi/2x} dx.
+            $$
+            La formule s&#39;intègre dans le texte.</p>
+
+    </main>
+</body>
+<!-- fragment:footer -->
+<footer>
+    <h4>Contact</h4>
+    <div class="address-content">
+        <address class="address-text">
+            <div>
+                Université de Moncton, département de mathématiques et de statistique.
+            </div>
+            <div>herman.goulet-ouellet@umoncton.ca</div>
+        </address>
+        <div class="logo-content">
+            <a href="https://nserc-crsng.canada.ca/fr">
+                <img src="/assets/logo_nserc.svg" 
+                    alt="Logo du CRSNG"
+                    data-alt-en="NSERC logo" 
+                    style="height: 3em;"
+                    loading="lazy">
+            </a>
+            <a href="https://www.umoncton.ca/umcm-sciences-mathstat/">
+                <img src="/assets/logo_umoncton.svg" 
+                    alt="Logo de l'Université de Moncton" 
+                    data-alt-en="Université de Moncton logo"
+                    style="height: 3em;"
+                    loading="lazy">
+            </a>
+            
+        </div>
+    </div>
+    <div id="last-update"></div>
+
+    <script>
+        (() => {
+            const lang = document.documentElement.lang || navigator.language || 'fr-CA';
+
+            document.querySelectorAll('[data-alt-en]').forEach(img => {
+                img.alt = lang.slice(0, 2) === "en" ? img.dataset.altEn : img.alt;
+            });
+
+            const updateDiv = document.getElementById("last-update");
+            if (!updateDiv) return;
+
+            const date = new Date(document.lastModified);
+            const options = { year: "numeric", month: "long", day: "numeric" };
+            const dateStr = date.toLocaleDateString(lang, options);
+
+            updateDiv.textContent = (lang.slice(0, 2) === "en" ? "Last updated: " : "Dernière mise à jour : ") + dateStr;
+        })();
+    </script>
+</footer>
+<!-- /fragment:footer -->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const enBtn = document.querySelector('.navbar-lang a[href="en/"]');
+        if (enBtn) {
+            enBtn.removeAttribute('href'); // Removes link functionality & keyboard tab stop
+            enBtn.setAttribute('aria-disabled', 'true');
+            enBtn.setAttribute('title', 'Ce billet est disponible en français seulement');
+            enBtn.classList.add('is-disabled');
+        }
+    });
+</script>
+</html>

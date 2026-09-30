@@ -34,12 +34,15 @@ function createPost(filePath) {
     const post = fm(markdown);
 
     const dateStr = post.attributes.date.toISOString().split('T')[0].replace(/-/g, '/');
-
+    post.path = path.join("/blog/", String(post.attributes.date.getFullYear()), post.attributes.slug+".html");
+    post.date = dateStr;
 
     const postSummary = [
         `<article class="blog-summary">`,
-        `<time class="gutter-date">${dateStr}</time>`,
-        `<h2 class="blog-title">${post.attributes.title}</h2>`,
+        `<time class="gutter-date">${post.date}</time>`,
+        `<h2 class="blog-title">`,
+        `<a href="${post.path}">${post.attributes.title}</a>`,
+        `</h2>`,
         `<div class="blog-description">`,
         `${marked.parse(post.attributes.description)}`,
         `</div>`,
@@ -52,12 +55,60 @@ function createPost(filePath) {
     return post;
 }
 
+
+function createPage(post) {
+    const postUrl = path.join("https://hermangouletouellet.github.io/",post.path);
+    let html = [
+        `<!doctype html>`,
+        `<html lang="fr-CA">`,
+        `<head>`,
+            `<meta name="description" content="${post.attributes.description}" />`,
+            `<title> ${post.attributes.title} </title>`,
+            `<link rel="canonical" href="${postUrl}" />`,
+            `<link rel="alternate" hreflang="fr" href="${postUrl}" />`,
+            `<!-- fragment:head -->`,
+            `<!-- /fragment:head -->`,
+            `<!-- fragment:mathjax -->`,
+            `<!-- /fragment:mathjax -->`,
+        `</head>`,
+        `<body>`,
+            `<!-- fragment:navbar-fr -->`,
+            `<!-- /fragment:navbar-fr -->`,
+            `<main>`,
+                `<hgroup>`,
+                `<h1>${post.attributes.title}</h1>`,
+                `<h4>${post.attributes.description}</h4>`,
+                `</hgroup>`,
+                `<time>${post.date}</time>`,
+                `${marked.parse(post.body)}`,
+            `</main>`,
+        `</body>`,
+        `<!-- fragment:footer -->`,
+        `<!-- /fragment:footer -->`,
+        `<script>`,
+        `document.addEventListener('DOMContentLoaded', () => {`,
+        `const enBtn = document.querySelector('.navbar-lang a[href="en/"]');`,
+        `if (enBtn) {`,
+        `enBtn.removeAttribute('href'); // Removes link functionality & keyboard tab stop`,
+        `enBtn.setAttribute('aria-disabled', 'true');`,
+        `enBtn.setAttribute('title', 'Ce billet est disponible en français seulement');`,
+        `enBtn.classList.add('is-disabled');`,
+        `}`,
+        `});`,
+        `</script >`,
+        `</html>`,
+        ].join("\n");
+
+    return beautify.html(html,BEAUTIFY_OPTIONS);
+
+}
+
 function buildPostsList() {
-    let posts = findMdFiles(PATHS.blog).map(f => createPost(f));
+    let blog = findMdFiles(PATHS.blog).map(f => createPost(f));
 
-    posts = posts.sort((a, b) => b.attributes.date - a.attributes.date);
+    blog = blog.sort((a, b) => b.attributes.date - a.attributes.date);
 
-    return posts;
+    return blog;
 }
 
 function buildSummary(blog){
@@ -65,6 +116,15 @@ function buildSummary(blog){
 }
 
 const blog = buildPostsList();
+
+
+for (const post of blog) {
+    const outputFile = path.join(PATHS.root,post.path);
+    if (!fs.existsSync(path.dirname(outputFile))) {
+        fs.mkdirSync(path.dirname(outputFile));
+    }
+    fs.writeFileSync(outputFile, createPage(post));
+}
 
 const banner = [
     `<!--`,

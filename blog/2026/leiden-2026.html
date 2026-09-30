@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="fr-CA">
+<head>
+    <meta name="description" content="This is a short post on the Leiden declaration on artificial intelligence and maths." />
+    <title> Leiden declaration on artificial intelligence and mathematics </title>
+    <link rel="canonical" href="https:/hermangouletouellet.github.io/blog/2026/leiden-2026.html" />
+    <link rel="alternate" hreflang="fr" href="https:/hermangouletouellet.github.io/blog/2026/leiden-2026.html" />
+    <!-- fragment:head -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="icon" href="/assets/favicon.ico" sizes="any">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,300..600;1,300..600&family=Roboto:ital,wght@0,300..500;1,300..500&display=swap">
+    <link rel="stylesheet" href="/style.css" />
+    <script src="/bin/toggle.js" defer></script>
+    <!-- /fragment:head -->
+    <!-- fragment:mathjax -->
+    <script>
+        window.MathJax = {
+            tex: { inlineMath: { '[+]': [['$', '$']] } },
+            output: { font: 'mathjax-pagella' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" defer></script>
+    <!-- /fragment:mathjax -->
+</head>
+<body>
+    <!-- fragment:navbar-fr -->
+    <nav class="navbar">
+        <button type="button" class="toggle" aria-label="Toggle Navigation" aria-expanded="false" aria-controls="navbar-links"
+            onclick="toggle(this)">
+            <span id="mobile-page-title" class="current-page"></span>
+            <span class="icon-toggle" aria-hidden="true">
+                <span class="bar line-left"></span>
+                <span class="bar line-right"></span>
+            </span>
+        </button>
+    
+        <div id="navbar-links" class="toggle-target">
+            <div class="navbar-links-inner">
+                <a href="/">Accueil</a>
+                <a href="/publications/">Publications</a>
+                <a href="/exposes/">Exposés</a>
+                <a href="/enseignement/">Enseignement</a>
+                <a href="/blog/">Blog</a>
+            </div>
+        </div>
+    
+        <div class="navbar-lang">
+            <a href="" class="lang-fr active">fr</a>
+            <a href="en/" class="lang-en">en</a>
+        </div>
+    </nav>
+    
+    <script>
+        (() => {
+            const path = window.location.pathname.replace(/index\.html$/, '');
+            const activeLink = document.querySelector(`.navbar-links-inner a[href="${path}"]`);
+            if (activeLink) {
+                activeLink.classList.add('active');
+                const pageTitleLabel = document.getElementById('mobile-page-title');
+                if (pageTitleLabel) {
+                    pageTitleLabel.textContent = activeLink.textContent;
+                }
+            }
+        })();
+    </script>
+    <!-- /fragment:navbar-fr -->
+    <main>
+        <hgroup>
+            <h1>Leiden declaration on artificial intelligence and mathematics</h1>
+            <h4>This is a short post on the Leiden declaration on artificial intelligence and maths.</h4>
+        </hgroup>
+        <time>2026/09/19</time>
+        <p>Recently, an interesting statement on the use of AI in mathematics was recently released, called the <a href="https://leidendeclaration.ai/">Leiden declaration on artificial intelligence and mathematics</a>. The document is the work of an international group of 16 researchers in mathematics and other relevant fields (computer science, history and philosophy) and has been endorsed by the International Mathematical Union. The document identifies potential threats posed by AI in mathematical research, and formulates concrete recommendations for individual mathematicians, mathematical organizations, and policymakers. Recommendations for individual mathematicians are:</p>
+        <ol>
+            <li>Disclose tool use</li>
+            <li>Support the needs of reviewing</li>
+            <li>Adhere to principles of open science</li>
+            <li>Retain the responsibility for correctness</li>
+            <li>Affirm the humanity of authorship</li>
+            <li>Put effort into proper attribution</li>
+            <li>Participate in public discourse</li>
+            <li>Stay informed about the emerging technologies</li>
+            <li>Welcome new contributors</li>
+            <li>Consider carefully which tools to use</li>
+            <li>Evaluate the ethical consequences of your work, and take action accordingly</li>
+        </ol>
+        <p>Many of these recommendations were already relevant before the current explosion of commercial large language models, but are particularly salient in the current context.
+            The following excerpt from the declaration seems particularly relevant in light of recent events:</p>
+        <blockquote>
+            <p>Proper evaluation is endangered if results are communicated through informal channels such as press releases or blog posts, often without any research paper or other disclosure of information necessary for scientific evaluation. This practice seeks publicity for new results on market timelines before the accepted processes of community evaluation in mathematics can take place.</p>
+        </blockquote>
+
+    </main>
+</body>
+<!-- fragment:footer -->
+<footer>
+    <h4>Contact</h4>
+    <div class="address-content">
+        <address class="address-text">
+            <div>
+                Université de Moncton, département de mathématiques et de statistique.
+            </div>
+            <div>herman.goulet-ouellet@umoncton.ca</div>
+        </address>
+        <div class="logo-content">
+            <a href="https://nserc-crsng.canada.ca/fr">
+                <img src="/assets/logo_nserc.svg" 
+                    alt="Logo du CRSNG"
+                    data-alt-en="NSERC logo" 
+                    style="height: 3em;"
+                    loading="lazy">
+            </a>
+            <a href="https://www.umoncton.ca/umcm-sciences-mathstat/">
+                <img src="/assets/logo_umoncton.svg" 
+                    alt="Logo de l'Université de Moncton" 
+                    data-alt-en="Université de Moncton logo"
+                    style="height: 3em;"
+                    loading="lazy">
+            </a>
+            
+        </div>
+    </div>
+    <div id="last-update"></div>
+
+    <script>
+        (() => {
+            const lang = document.documentElement.lang || navigator.language || 'fr-CA';
+
+            document.querySelectorAll('[data-alt-en]').forEach(img => {
+                img.alt = lang.slice(0, 2) === "en" ? img.dataset.altEn : img.alt;
+            });
+
+            const updateDiv = document.getElementById("last-update");
+            if (!updateDiv) return;
+
+            const date = new Date(document.lastModified);
+            const options = { year: "numeric", month: "long", day: "numeric" };
+            const dateStr = date.toLocaleDateString(lang, options);
+
+            updateDiv.textContent = (lang.slice(0, 2) === "en" ? "Last updated: " : "Dernière mise à jour : ") + dateStr;
+        })();
+    </script>
+</footer>
+<!-- /fragment:footer -->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const enBtn = document.querySelector('.navbar-lang a[href="en/"]');
+        if (enBtn) {
+            enBtn.removeAttribute('href'); // Removes link functionality & keyboard tab stop
+            enBtn.setAttribute('aria-disabled', 'true');
+            enBtn.setAttribute('title', 'Ce billet est disponible en français seulement');
+            enBtn.classList.add('is-disabled');
+        }
+    });
+</script>
+</html>

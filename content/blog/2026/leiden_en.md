@@ -7,7 +7,7 @@ description: "This is a short post on the Leiden declaration on artificial intel
 slug: "leiden-2026"
 ---
 
-Recently, an interesting statement on the use of AI in mathematics was recently released, called the [https://leidendeclaration.ai/](Leiden declaration on artificial intelligence and mathematics). The document is the work of an international group of 16 researchers in mathematics and other relevant fields (computer science, history and philosophy) and has been endorsed by the International Mathematical Union. The document identifies potential threats posed by AI in mathematical research, and formulates concrete recommendations for individual mathematicians, mathematical organizations, and policymakers. Recommendations for individual mathematicians are:
+Recently, an interesting statement on the use of AI in mathematics was recently released, called the [Leiden declaration on artificial intelligence and mathematics](https://leidendeclaration.ai/). The document is the work of an international group of 16 researchers in mathematics and other relevant fields (computer science, history and philosophy) and has been endorsed by the International Mathematical Union. The document identifies potential threats posed by AI in mathematical research, and formulates concrete recommendations for individual mathematicians, mathematical organizations, and policymakers. Recommendations for individual mathematicians are:
 1. Disclose tool use
 2. Support the needs of reviewing
 3. Adhere to principles of open science
