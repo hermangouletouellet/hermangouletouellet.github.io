@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="fr-CA">
 <head>
-    <meta name="description" content="Où je parle des générateurs aléatoires, du théorème de Marsaglia, de RANDU et d'un article de Steele et Vigna." />
+    <meta name="description" content="Un billet sur les générateurs pseudo-aléatoires et le théorème de Marsaglia." />
     <title> Les générateurs congruentiels </title>
     <link rel="canonical" href="https:/hermangouletouellet.github.io/blog/2026/lcg.html" />
     <link rel="alternate" hreflang="fr" href="https:/hermangouletouellet.github.io/blog/2026/lcg.html" />
@@ -14,14 +14,14 @@
     <link rel="dns-prefetch" href="https://fonts.googleapis.com">
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,300..600;1,300..600&family=Roboto:ital,wght@0,300..500;1,300..500&display=swap">
+    <link rel="preload" href="/assets/fonts/IBM Plex Mono Var-Roman.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="/style.css" />
     <script src="/bin/toggle.js" defer></script>
     <!-- /fragment:head -->
     <!-- fragment:mathjax -->
     <script>
         window.MathJax = {
-            tex: { inlineMath: { '[+]': [['$', '$']] } },
-            output: { font: 'mathjax-pagella' }
+            tex: { inlineMath: { '[+]': [['$', '$']] }, tags: 'ams' },
         };
     </script>
     <script src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" defer></script>
@@ -69,73 +69,72 @@
         })();
     </script>
     <!-- /fragment:navbar-fr -->
-    <main>
+    <main class="blog-post">
         <hgroup>
             <h1>Les générateurs congruentiels</h1>
-            <h4>Où je parle des générateurs aléatoires, du théorème de Marsaglia, de RANDU et d'un article de Steele et Vigna.</h4>
+            <h4>Un billet sur les générateurs pseudo-aléatoires et le théorème de Marsaglia.</h4>
         </hgroup>
-        <time>2026/10/04</time>
-        <p>Les générateurs pseudo-aléatoires (<em>pseudorandom number generators</em> en anglais) sont des algorithmes qui génèrent de manière déterministe des suites de nombres qui imitent des suites aléatoires.
-            La conception d&#39;un bon générateur est un exercice délicat qui exige un équilibre entre la performance (temps et espace) et la qualité statistique.
-            La qualité statistique d&#39;un générateur peut être mesuré par différents tests - on en retrouve plusieurs, par exemple, dans <em>The Art of Computer Programming</em> de Knuth, excellente référence sur le sujet.
-            L&#39;un de ces tests, le <em>test spectral</em>, sera abordé plus loin.</p>
-        <h2>Générateurs congruentiels linéaires</h2>
-        <p>Je me concentrerai plus particulièrement ici sur les générateurs congruentiels linéaires (<em>linear congruential generators</em> en anglais).
-            Les LCG sont définis par la formule récursive
-            $$
-            x_{n+1} = (ax_n+c) \bmod m,
-            $$
-            où $a$ (le <em>multiplicateur</em>), $c$ (l&#39;<em>incrément</em>) et $m$ (le <em>module</em>) sont des constantes.
-            Le choix de ces constantes (les informaticiens utilisent souvent le terme <em>chiffres magiques</em>) détermine à la fois la performance et la qualité du générateur.</p>
-        <p>Les générateurs congruentiels linéaires ont une complexité spatiale et temporelle O(1), mais en pratique la performance temporelle varie significativement avec le choix des chiffres magiques. La performance spatiale n&#39;est jamais un enjeu pour les générateurs congruentiels.
-            La meilleure performance temporelle est obtenue en choisissant $c=0$ et $m = 2^k$, typiquement $k = 32$, $64$ ou $128$. </p>
-        <p>Les congruentiels linéaires, comme tout générateur dont les valeurs ne dépendent que d&#39;un nombre borné de valeurs précédentes, sont toujours ultimement périodiques: il existe $i\geq 0,p&gt;0$ tels que $x_{n} = x_{n+p}$ pour tous $n\geq i$.
-            (Ce phénomène de périodicité est lié aux faits que tout élément d&#39;un semigroupe fini admet nécessairement puissance idempotente; on peut voir le générateur comme la transformation $n\mapsto (am+c)\bmod m$ de l&#39;ensemble ${0,\dots,m-1}$.)</p>
-        <p>Une période trop courte révèle rapidement la nature déterministe du générateur, et donc une mauvaise performance pour plusieurs tests statistiques.
-            Une longue période est nécessaire, mais non garante de qualité, comme en témoignent les chiffres magiques $a=c=1$.
-            Pour les générateurs congruentiels d&#39;incrément $c\neq 0$, le théorème de Hull-Dobell identifie exactement les conditions qui garantissent une période maximale (de longueur $m$ dans ce cas). </p>
-        <blockquote>
+        <p>
+            <time class="pub-date">PUBLIÉ: 2026/10/04</time>
+        </p>
+        <article class="blog-body">
+            <p>Les générateurs pseudo-aléatoires (<em>pseudorandom number generators</em> en anglais) sont des algorithmes qui génèrent de manière déterministe des suites de nombres qui imitent des suites aléatoires.
+                Un bon générateur exige un équilibre entre la performance (temps et espace) et la qualité statistique, mesurée par différents tests (on en retrouve plusieurs, par exemple, dans <em>The Art of Computer Programming</em> de Knuth, excellente référence sur le sujet).</p>
+            <h2>La théorie des générateurs congruentiels linéaires</h2>
+            <p>Concentrons-nous sur les générateurs congruentiels linéaires (<em>linear congruential generators</em> en anglais).
+                Ces générateurs sont définis par la formule récursive
+                $$
+                x_{n+1} = (ax_n+c) \bmod m,
+                $$
+                où $a$ (le <em>multiplicateur</em>), $c$ (l'<em>incrément</em>) et $m$ (le <em>module</em>) sont des constantes.
+                Le choix de ces constantes, que les informaticiens (et maintenant moi) appellent <em>chiffres magiques</em>, détermine à la fois la performance et la qualité du générateur.</p>
+            <p>Les générateurs congruentiels linéaires ont une complexité spatiale et temporelle O(1), mais en pratique la performance temporelle varie significativement avec le choix des chiffres magiques (la performance spatiale n'est jamais un enjeu pour les générateurs congruentiels).
+                La meilleure performance temporelle est obtenue en choisissant $c=0$ et $m = 2^k$, typiquement $k = 32$, $64$ ou $128$, mais le gain d'efficacité est au prix de la qualité statistique.</p>
+            <p>Les générateurs congruentiels linéaires, comme tout générateur dont les valeurs ne dépendent que d'un nombre borné de valeurs précédentes, sont toujours ultimement périodiques: il existe $i\geq 0,p&gt;0$ tels que $x_{n} = x_{n+p}$ pour tous $n\geq i$.
+                (Ce phénomène de périodicité est lié au fait que tout élément d'un semigroupe fini admet nécessairement puissance idempotente; on peut voir le générateur comme la transformation $n\mapsto (am+c)\bmod m$ de l'ensemble $\lbrace 0,\dots,m-1\rbrace$.)</p>
+            <p>Une période trop courte dévoile rapidement la nature déterministe du générateur, ce qui a pour corollaire une mauvaise performance dans plusieurs tests statistiques.
+                Une longue période est donc préférable; cela n'est pas cependant pas suffisant pour garantir la qualité du générateur, comme en témoignent les chiffres magiques $a=1, c=0$, produisant une période maximal avec une qualité statistique minimale.
+                Pour les générateurs congruentiels d'incrément $c\neq 0$, le théorème suivant identifie exactement les conditions qui garantissent une période maximale (de longueur $m$ dans ce cas).</p>
+            <hr>
             <p><strong>Théorème</strong> (Hull-Dobbell). Le générateur congruentiel linéaire déterminé par les chiffres magiques $a,c,m$ a une période de longueur $m$ si et seulement si les conditions suivantes sont satisfaites:</p>
             <ol>
                 <li>$m$ et $c$ sont relativement premiers</li>
                 <li>$a-1$ est divisible par tous les facteurs premiers de $m$.</li>
-                <li>$a-1$ est divisible par 4 si $m$ l&#39;est aussi.</li>
+                <li>$a-1$ est divisible par 4 si $m$ l'est aussi.</li>
             </ol>
-        </blockquote>
-        <p>La situation est différente pour les générateurs d&#39;incrément $c=0$, appelés parfois <em>générateurs congruentiels multiplicatifs</em>.
-            Dans ce cas, la période est l&#39;entier minimal $\lambda\geq 1$ tel que $a^\lambda \equiv 1 \bmod m$, appelé l&#39;<em>ordre</em> de $a$ modulo $m$.
-            Dans ce cas, la période maximale est bornée par l&#39;<a href="https://fr.wikipedia.org/wiki/Indicatrice_d%27Euler">indicatrice d&#39;Euler</a> $\varphi$:
-            la formule $a^{\varphi(m)} \equiv 1 \mod m$ (le théorème d&#39;Euler) entraîne que la période est un diviseur de $\varphi(m)$.
-            <br>Les multiplicateurs d&#39;ordre maximal sont appelés les <em>éléments primitifs</em> modulo $m$.
-            Un générateur d&#39;un générateur congruentiel multiplicatif de période maximal est donc obtenue en choisissant comme multiplicateur un élément primitif.
-        </p>
-        <p>Pour les modules puissances d&#39;un nombre premier, disons $m=p^k$, alors l&#39;ordre $\lambda(p^k)$ des éléments primitifs est donné par la formule
-            $$
-            \lambda(p^k) =
-            \begin{cases}
-            2^{k-1} &amp; p=2, k\leq 2, \
-            2^{k-2} &amp; p=2, k\geq 3, \
-            p^{k-1}(p-1) &amp; p&gt;2,
-            \end{cases}
-            $$
-            qui remonte aux <em>Disquisitiones arithmeticae</em> de Gauss.
-            Dans les cas où $m=2^k$, $k\geq 3$, un générateur congruentiel multiplicatif de période maximale aura donc deux orbites distinctes, qu&#39;il est possible de déterminer explicitement.</p>
-        <p>Par exemple, un générateur congruentiel linéaire de module $m=2^{64}$ a une période maximale de $m/4 = 2^{62}$.
-            Les éléments primitifs sont les éléments qui satisfont $a\equiv 3$ ou $5\bmod 8$ (cf. <em>The Art of Computer Programming</em>).
-            Si $a\equiv 3\bmod 8$, les deux orbites du générateurs sont
-            $$
-            { x \mid x \equiv 1 \text{ ou } 3 \bmod 8 },
-            { x \mid x \equiv 5 \text{ ou } 7 \bmod 8 },
-            $$
-            alors que pour $a\equiv 5\bmod 8$ les orbites sont
-            $$
-            { x \mid x \equiv 1 \text{ ou } 5 \bmod 8 },
-            { x \mid x \equiv 3 \text{ ou } 7 \bmod 8 }.
-            $$
-            Les orbites forment dans tous les cas une partition des entiers impairs $0\leq x &lt; 2^{64}$ (les valeurs initiales paires donnent des périodes plus petites).</p>
-        <p>Regardons plus en détail le générateur congruentiel défini par les chiffres magiques $a=14627392582107131917$ et $m = 2^{64}$ (tiré d&#39;un article de Steele et Vigna dont je discute plus bas).
-            Voici les 9 premières valeurs produites par ce générateur à partir de la valeur initiale $1$. Les valeurs sont exprimées en format hexadécimal. </p>
-        <pre><code>cafef00ddeadf00d
+            <hr>
+            <p>La situation est différente pour les générateurs d'incrément $c=0$, appelés <em>générateurs congruentiels multiplicatifs</em>.
+                Dans ce cas, la période est l'entier minimal $\lambda\geq 1$ tel que $a^\lambda \equiv 1 \bmod m$, appelé l'<em>ordre</em> de $a$ modulo $m$.
+                L'ordre des éléments est bornée par l'<a href="https://fr.wikipedia.org/wiki/Indicatrice_d%27Euler">indicatrice d'Euler</a> $\varphi$; en fait, la formule $a^{\varphi(m)} \equiv 1 \bmod m$ (le <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_d%27Euler_(arithm%C3%A9tique)">théorème d'Euler</a>) entraîne que l'ordre de tout élément est un diviseur de $\varphi(m)$. Les multiplicateurs d'ordre maximal sont appelés les <em>éléments primitifs</em> modulo $m$.
+                Un générateur congruentiel multiplicatif de période maximal est donc obtenu en choisissant un multiplicateur primitif.</p>
+            <p>Si le module est une puissance de nombre premier, $m=p^k$, alors l'ordre $\lambda(p^k)$ des éléments primitifs est donné par la formule
+                $$
+                \lambda(p^k) =
+                \begin{cases}
+                2^{k-1} &amp; p=2, k\leq 2, \\
+                2^{k-2} &amp; p=2, k\geq 3, \\
+                p^{k-1}(p-1) &amp; p&gt;2,
+                \end{cases}
+                $$
+                (qui remonte aux <em>Disquisitiones arithmeticae</em> de Gauss).
+                Dans les cas où $m=2^k$, $k\geq 3$, un générateur congruentiel multiplicatif de période maximale aura donc deux orbites distinctes, qu'il est aisé de déterminer.</p>
+            <p>Par exemple, un générateur congruentiel linéaire de module $m=2^{64}$ a une période maximale de $m/4 = 2^{62}$, et les éléments primitifs sont les entiers qui satisfont $a\equiv 3$ ou $5\bmod 8$ (cf. <em>The Art of Computer Programming</em>).
+                Si $a\equiv 3\bmod 8$, les deux orbites maximales du générateurs sont
+                $$
+                \lbrace x \mid x \equiv 1 \text{ ou } 3 \bmod 8 \rbrace,\quad
+                \lbrace x \mid x \equiv 5 \text{ ou } 7 \bmod 8 \rbrace,
+                $$
+                alors que pour $a\equiv 5\bmod 8$ les orbites maximales sont
+                $$
+                \lbrace x \mid x \equiv 1 \text{ ou } 5 \bmod 8 \rbrace,\quad
+                \lbrace x \mid x \equiv 3 \text{ ou } 7 \bmod 8 \rbrace.
+                $$
+                Les orbites forment dans tous les cas une partition des entiers impairs $0\leq x &lt; 2^{64}$ (les valeurs initiales paires ont des orbites plus petites).</p>
+            <p>Regardons plus en détail le générateur défini par les chiffres magiques
+                $$a=14\,627\,392\,582\,107\,131\,917,\quad m = 2^{64}$$
+                (tiré d'<a href="https://doi.org/10.1002/spe.3030">un article de Steele et Vigna</a>).
+                Voici les 9 premières valeurs produites par ce générateur avec valeur initiale $x_0=1$ exprimées en format hexadécimal.</p>
+            <pre><code>cafef00ddeadf00d
 5f40e3d6deaa60a9
 44249433e97a5895
 f0714195a0f32f91
@@ -145,11 +144,11 @@ f0714195a0f32f91
 1c6fe342961c9021
 1a396f136adf41ad
 </code></pre>
-        <p>On observe que le dernier chiffre de la représentation a une période de longueur 8, beaucoup plus petite que la période du générateur.
-            Il s&#39;agit d&#39;une faiblesse bien connu des générateurs congruentiels dont le module est une puissance de 2.
-            Si on exprime plutôt les valeurs en format binaire, on peut voir que les bits les moins significatifs (c&#39;est-à-dire à la droite) ont une période beaucoup plus petites.
-            Par exemples, les 4 derniers bits des 9 premières valeurs du générateurs sont:</p>
-        <pre><code>1001
+            <p>On peut voir que le dernier chiffre de la représentation a une période de longueur 8, beaucoup plus petite que la période du générateur.
+                Il s'agit d'une faiblesse bien connu des générateurs congruentiels dont le module est une puissance de 2.
+                Si on exprime plutôt les valeurs en format binaire, on peut voir ce défaut encore plus clairement.
+                Par exemple, voici les 4 bits de droite des premières valeurs du générateur:</p>
+            <pre><code>1001
 0101
 0001
 1101
@@ -159,99 +158,142 @@ f0714195a0f32f91
 1101
 1001
 </code></pre>
-        <p>On note ici que les deux bits de droite sont constants, ce qui provient du fait que l&#39;élément primitif $a$ est congru à 5 modulo 8, donc à 1 modulo 4; dans le cas d&#39;un élément primitif congru à 3 modulo 8, les quatre bits de droite auront une période de longueur 2.
-            Cette périodicité provient du fait que les $n$ bits de droite représente les valeurs du générateur multiplicatif de module $2^{n}$, (ce qui fondamentalement s&#39;explique par le fait que la projection canonique $\mathbb{Z}\to\mathbb{Z}/2^{n}\mathbb{Z}$ se factorise le long de $\mathbb{Z}\to\mathbb{Z}/2^{m}\mathbb{Z}$).
-            Il est donc de n&#39;utiliser que les $k/2$ bits les plus significatifs des valeurs d&#39;un générateurs multiplicatifs de module $2^k$. </p>
-        <h2>RANDU et le théorème de Marsaglia</h2>
-        <p>Si la mauvaise qualité des bits les moins significatifs concernent se limitent aux générateurs de modules $2^n$, il existe un autre défaut, plus subtil, qui affecte tous les générateurs congruentiels multiplicatifs, peu importe le choix du module.
-            Ce défaut a été remarqué notamment par Marsaglia, qui l&#39;a exposé rigoureusement dans un article intitulé <a href="https://doi.org/10.1073/pnas.61.1.25">Random Numbers Fall Mainly in the Planes</a>.
-            Je cite ici un passage de son article que je traduis librement:</p>
-        <blockquote>
-            <p>[...] tous les générateurs congruentiels multiplicatifs ont un défaut -- un défaut qui les rendent mal adaptés pour plusieurs problèmes de Monte Carlo, et qui ne peut être évité en ajustant la valeur initiale, le multiplicateur ou le module. </p>
-        </blockquote>
-        <p>Se défaut est la concentration des vecteurs de coordonnées $(x_n, x_{n+1},\dots,x_{n+d})$ dans un nombre restreint d&#39;hyperplans.
-            Un générateur purement aléatoire aurait une distribution uniforme de ces vecteurs dans le cube $[0,m-1]^d$.
-            Marsaglia a montré cependant que les générateurs congruentiels multiplicatifs concentrent les vecteurs.
-            Il donne une borne supérieure sur le nombre d&#39;hyperplans contenant ces triplets en fonction de la dimension $d$ et du module $m$:
-            $$
-            (d!m)^{1/d}.
-            $$
-            Voici un tableau avec les valeurs $(d!m)^{1/d}$ pour différents $m=2^k$ pour les dimensions $3\leq d\leq 10$ (un tableau similaire apparaît dans l&#39;article de Marsaglia).</p>
-        <table>
-            <thead>
-                <tr>
-                    <th></th>
-                    <th>$d=3$</th>
-                    <th>$d=4$</th>
-                    <th>$d=5$</th>
-                    <th>$d=6$</th>
-                    <th>$d=7$</th>
-                    <th>$d=8$</th>
-                    <th>$d=9$</th>
-                    <th>$d=10$</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>$m=2^{16}$</td>
-                    <td>73</td>
-                    <td>35</td>
-                    <td>24</td>
-                    <td>19</td>
-                    <td>16</td>
-                    <td>15</td>
-                    <td>14</td>
-                    <td>14</td>
-                </tr>
-                <tr>
-                    <td>$m=2^{32}$</td>
-                    <td>2954</td>
-                    <td>567</td>
-                    <td>220</td>
-                    <td>121</td>
-                    <td>80</td>
-                    <td>60</td>
-                    <td>49</td>
-                    <td>42</td>
-                </tr>
-                <tr>
-                    <td>$m=2^{36}$</td>
-                    <td>7443</td>
-                    <td>1133</td>
-                    <td>383</td>
-                    <td>192</td>
-                    <td>119</td>
-                    <td>85</td>
-                    <td>66</td>
-                    <td>55</td>
-                </tr>
-                <tr>
-                    <td>$m=2^{48}$</td>
-                    <td>119087</td>
-                    <td>9066</td>
-                    <td>2022</td>
-                    <td>766</td>
-                    <td>392</td>
-                    <td>241</td>
-                    <td>167</td>
-                    <td>126</td>
-                </tr>
-                <tr>
-                    <td>$m=2^{64}$</td>
-                    <td>4801280</td>
-                    <td>145055</td>
-                    <td>18579</td>
-                    <td>4866</td>
-                    <td>1911</td>
-                    <td>964</td>
-                    <td>573</td>
-                    <td>382</td>
-                </tr>
-            </tbody>
-        </table>
-        <p>Le générateur RANDU, utilisé par IBM dans les années 60, est un exemple emblématique de LCG de qualité douteuse.
-            Il s&#39;agit du LCG utilisant les chiffres magiques $a=65539$, $c=0$ et $m = 2^{32}$.</p>
+            <p>On note ici que les deux bits moins significatifs (ceux à droite) forment une suite constante. C'est dû au fait que l'élément primitif $a$ est congru à 5 modulo 8, donc à 1 modulo 4; dans le cas d'un élément primitif congru à 3 modulo 8, les quatre bits de droite auront une période de longueur 2 (donc tous les éléments primitifs ne sont pas nés égaux).</p>
+            <p>Les courtes périodes observées dans les bits les moins significatifs provient du fait que les $n$ bits de droite représente les valeurs du générateur multiplicatif de module $2^{n}$ (ce qui fondamentalement s'explique par le fait que la projection canonique $\mathbb{Z}\to\mathbb{Z}/2^{n}\mathbb{Z}$ se factorise le long de $\mathbb{Z}\to\mathbb{Z}/2^{m}\mathbb{Z}$).
+                Il est donc préférable de n'utiliser que les $k/2$ bits les plus significatifs des valeurs d'un générateurs multiplicatifs de module $2^k$.</p>
+            <h2>RANDU et le théorème de Marsaglia</h2>
+            <p>Si la mauvaise qualité des bits les moins significatifs est un problème aux générateurs de modules $2^n$, il existe un autre défaut fondamental qui touche tous les générateurs congruentiels multiplicatifs, peu importe le choix du module.
+                Ce défaut a été exposé par Marsaglia dans un article intitulé <a href="https://doi.org/10.1073/pnas.61.1.25"><em>Random Numbers Fall Mainly in the Planes</em></a>.
+                Je cite ici un passage de son article (traduction libre):</p>
+            <blockquote>
+                <p>[...] tous les générateurs congruentiels multiplicatifs ont un défaut — un défaut qui les rendent mal adaptés pour plusieurs problèmes de Monte Carlo, et qui ne peut être évité en ajustant la valeur initiale, le multiplicateur ou le module.</p>
+            </blockquote>
+            <p>Le défaut en question concerne le <em>réseau</em> en dimension $d$ défini par les valeurs $x_n$, $n\in\mathbb{N}$, du générateur,
+                $$
+                \Lambda_d = \lbrace (x_n,x_{n+1}\dots,x_{n+d-1}) \in\mathbb{R}^d \mid n\in\mathbb{N} \rbrace.
+                $$
+                Marsaglia démontre que pour les générateurs congruentiels, le réseau $\Lambda_d$ est couvert par un petit nombre d'hyperplans parallèles: en dimension $d$ et avec un module $m$, $\Lambda_d$ est couvert par moins de
+                $$
+                (d!m)^{1/d}
+                $$
+                hyperplans parallèles; Marsaglia parle de leur <em>nature crystalline</em>.
+                Comme une trop période courte, une recouvrement par un petit nombre d'hyperplans parallèles (ou autrement dit, une <em>structure crystalline</em> trop régulière) révèle une régularité dans les valeurs du générateur, trahissant sa nature déterministe.</p>
+            <p>Voici un tableau avec les valeurs $\lfloor(d!m)^{1/d}\rfloor$ pour différents modules $m=2^k$ aux dimensions $3\leq d\leq 10$ (inspiré d'un tableau similaire apparaissant dans l'article de Marsaglia):</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>$d=3$</th>
+                        <th>$d=4$</th>
+                        <th>$d=5$</th>
+                        <th>$d=6$</th>
+                        <th>$d=7$</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>$m=2^{16}$</td>
+                        <td>73</td>
+                        <td>35</td>
+                        <td>24</td>
+                        <td>19</td>
+                        <td>16</td>
+                    </tr>
+                    <tr>
+                        <td>$m=2^{31}$</td>
+                        <td>2344</td>
+                        <td>476</td>
+                        <td>192</td>
+                        <td>108</td>
+                        <td>73</td>
+                    </tr>
+                    <tr>
+                        <td>$m=2^{32}$</td>
+                        <td>2954</td>
+                        <td>567</td>
+                        <td>220</td>
+                        <td>121</td>
+                        <td>80</td>
+                    </tr>
+                    <tr>
+                        <td>$m=2^{36}$</td>
+                        <td>7443</td>
+                        <td>1133</td>
+                        <td>383</td>
+                        <td>192</td>
+                        <td>119</td>
+                    </tr>
+                    <tr>
+                        <td>$m=2^{48}$</td>
+                        <td>119087</td>
+                        <td>9066</td>
+                        <td>2022</td>
+                        <td>766</td>
+                        <td>392</td>
+                    </tr>
+                    <tr>
+                        <td>$m=2^{64}$</td>
+                        <td>4801280</td>
+                        <td>145055</td>
+                        <td>18579</td>
+                        <td>4866</td>
+                        <td>1911</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p>Ainsi, pour un générateur congruentiel de module $2^{32}$, le réseau $\Lambda_3$ peut toujours être recouvert par $2953$ hyperplans parallèles ou moins; et dans bien des exemples, ce nombre est beaucoup plus petit.</p>
+            <p>La preuve du théorème de Marsaglia nous donne aussi une piste pour trouver ces familles d'hyperplans parallèles.
+                Il suffit de résoudre la congruence
+                $$
+                c_1 + c_2a + \dots + c_d a^{d-1} \equiv 0 \mod m,
+                $$
+                avec les $c_i$ entiers.
+                Ainsi tous les vecteurs de $\Lambda_d$, seront contenus dans des hyperplans de vecteur normal $\vec c = (c_1,\dots, c_d)$,
+                $$
+                H = \lbrace \vec v\in\mathbb{R}^d \mid \langle \vec c, \vec v\rangle = km \rbrace,
+                $$
+                où $k$ est un certain entier.
+                Étant donné que les valeurs du générateur sont dans l'intervalle $[0,m-1]$, on a les bornes
+                $$
+                -m\sum_{c_i&lt;0}c_i &lt; \sum c_ix_{n+i-1} &lt; m\sum_{d_i&gt;0}c_i,
+                $$
+                qui délimite un intervalle contenant $(\sum |c_i|) -1$ multiples de $m$.
+                La partie difficile de la preuve du théorème de Marsaglia est donc d'établir l'existence d'une solution $(c_1,\dots,c_d)$ à la congruence ci-dessus telle que
+                $$
+                \sum|c_i| \leq (d!m)^{1/d},
+                $$
+                ce que Marsaglia fait en réduisant le problème à une question géométrique, qui est ensuite résolue par un théorème de Minkowski.</p>
+            <p>Regardons un exemple célèbre, un générateur appelé <em>RANDU</em>, utilisé par IBM dans les années 60.
+                Il s'agit du générateur le plus fréquemment cité en ligne comme exemple d'un mauvais générateur, notamment parce que
+                Il s'agit du LCG utilisant les chiffres magiques $a=65539$, $c=0$ et $m = 2^{31}$.
+                Le multiplicateur satisfait $a = 2^{16}+3$, ce qui entraîne que $a^2 \equiv 6a - 9\bmod m$, donc pour RANDU, le réseau $\Lambda_3$ est complètement recouvert par les 15 hyperplans parallèles
+                $$
+                \lbrace (x,y,z)\in\mathbb{R}^3 \mid 9x-6y+z = k\cdot 2^{31} \rbrace,\quad -5\leq k\leq 9,
+                <br>
+                $$
+                soit significativement moins d'hyperplans que la borne de 2343 prédit par le théorème de Marsaglia.
+                Dans le cas de RANDU, la structure crystalline de $\Lambda_3$ est aisément visible à l'oeil nu; la figure ci-dessous montre 5000 points du réseau $\Lambda_3$, et on peut y compter à la main les 15 hyperplans parallèles.
+            </p>
+            <p align="center">
+                <img src="/assets/blog/2026/randu.png" alt="Structure crystalline de RANDU" width="400" />
+            </p>
+            <p>Le procédé utilisé pour trouver les équations des hyperplans pour RANDU peut être généraliser à d'autres générateurs et d'autres dimensions.
+                Il suffit d'effectuer les divisions euclidiennes modifiées
+                $$
+                \begin{aligned}
+                b_{d-1} &amp;= q_{d-2}b_{d-2} + r_{d-2}, &amp;-\tfrac{b_{d-2}}2\leq r_{d-2} &lt;\tfrac{b_{d-2}}2\\
+                r_{d-2} &amp;= q_{d-3}b_{d-3} + r_{d-3}, &amp;-\tfrac{b_{d-3}}2\leq r_{d-3} &lt;\tfrac{b_{d-3}}2\\
+                &amp;\vdots \\
+                r_{2} &amp;= q_{1}b_{1} + r_{1}, &amp;-\tfrac{b_{1}}2\leq r_{1} &lt;\tfrac{b_{1}}2
+                \end{aligned}
+                $$
+                où $b_i$ est le représentant de la classe de $a^i$ mod $m$ dans $[0,m-1]$. On a alors
+                $$
+                a^{d-1} \equiv q_{d-2}a^{d-2} + \dots + q_1a + r_1,
+                $$
+                et donc le réseau $\Lambda_d$ est couvert par $\sum |q_i| + |r_1|$ hyperplans.</p>
 
+        </article>
     </main>
 </body>
 <!-- fragment:footer -->

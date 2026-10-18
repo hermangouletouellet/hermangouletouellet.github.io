@@ -9,6 +9,8 @@
     /* fonts */
     --heading-font: 'Jost', system-ui, Helvetica, Arial, sans-serif;
     --body-font: 'Roboto', system-ui, Helvetica, Arial, sans-serif;
+    --mono-font: 'IBM Plex Mono', SFMono-Regular, Consolas, 'Liberation Mono', monospace;
+    --text-font: 'Besley', Georgia, serif;
     /* font sizes */
     --body-font-size: 1.1rem;
     --h1-font-size: 2.0rem;
@@ -18,10 +20,52 @@
     --h4-font-size: 1.25rem;
     --footer-font-size: 1.0rem;
     --abstract-font-size: 1.0rem;
-    --th-font-size: 1.25rem;
     --date-font-size: 0.95rem;
     --numbering-font-size: 0.95rem;
     --links-font-size: 0.9rem
+}
+
+/* ==================================================
+   FONTS
+================================================== */
+
+@font-face {
+    font-family: 'IBM Plex Mono';
+    font-style: normal;
+    font-weight: 100 700;
+    /* Defines the supported variable weight range */
+    font-display: swap;
+    src: url('/assets/fonts/IBM\ Plex\ Mono\ Var-Roman.woff2.woff2') format('woff2-variations'),
+        url('/assets/fonts/IBM\ Plex\ Mono\ Var-Roman.woff2.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'IBM Plex Mono';
+    font-style: italic;
+    font-weight: 100 700;
+    font-display: swap;
+    src: url('/assets/fonts/IBM\ Plex\ Mono\ Var-Italic.woff2') format('woff2-variations'),
+        url('/assets/fonts/IBM\ Plex\ Mono\ Var-Italic.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Besley';
+    font-style: normal;
+    font-weight: 400 900;
+    font-stretch: 87.5% 100%;
+    font-display: swap;
+    src: url('/assets/fonts/Besley[wdth\,wght].woff2') format('woff2-variations'),
+        url('/assets/fonts/Besley[wdth\,wght].woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Besley';
+    font-style: italic;
+    font-weight: 400 900;
+    font-stretch: 87.5% 100%;
+    font-display: swap;
+    src: url('/assets/fonts/Besley-Italic[wdth\,wght].woff2') format('woff2-variations'),
+        url('/assets/fonts/Besley-Italic[wdth\,wght].woff2') format('woff2');
 }
 
 /* ==========================================================================
@@ -65,7 +109,7 @@ body {
     padding-top: 2rem;
 }
 
-h1, h2, h3, th {
+h1, h2, h3 {
     font-family: var(--heading-font);
     color: var(--darkblue);
     font-weight: 400;
@@ -85,6 +129,42 @@ a:link, a:visited {
     color: var(--darkblue);
 }
 
+main p {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+main {
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+time,.gutter-date,code,pre {
+    font-family: var(--mono-font);
+}
+
+pre {
+    background-color: #fffae4;
+    border-radius: 15px;
+    padding: 1rem 1.5rem;
+    overflow-x: auto;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+    margin-top: 0rem;
+    margin-bottom: 1rem;
+}
+
+pre code {
+    font-family: inherit;
+    background-color: transparent;
+    padding: 0;
+    border: none;
+}
+
+strong, b {
+    font-weight: 700 !important;
+}
+
 /* ==========================================================================
    NEWSFEED & BLOG
    ========================================================================== */
@@ -101,6 +181,11 @@ h2.news-article {
     margin-bottom: 0;
 }
 
+.blog-post hgroup {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
 .gutter-date {
     grid-column: gutter-left;
     color: var(--gray);
@@ -108,6 +193,46 @@ h2.news-article {
     justify-self: end;
     text-align: right;
     padding-right: 1rem;
+}
+
+time.pub-date {
+    color: var(--gray);
+    font-size: var(--date-font-size);
+    background-color: #fffae4;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.blog-post p,
+.blog-post li,
+.blog-post blockquote,
+.blog-post table {
+    font-family: var(--text-font);
+}
+
+.blog-post table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem 0;
+    min-width: 500px;
+    font-size: 0.98rem;
+    line-height: 1.6;
+}
+
+.blog-post table code,
+.blog-post table time {
+    font-family: 'IBM Plex Mono', monospace;
+}
+
+.blog-post th {
+    font-weight: 500;
+    text-align: left;
+    padding: 0.9rem 1.25rem;
+}
+
+.blog-post td {
+    padding: 0.85rem 1.2rem;
+    vertical-align: top;
 }
 
 .blog-summary {
@@ -392,7 +517,6 @@ nav>.toggle {
         --banner-font-size: 3.0rem;
         --footer-font-size: 0.95rem;
         --abstract-font-size: 0.95rem;
-        --th-font-size: 1.2rem;
         --h2-font-size:1.2rem;
         --h4-font-size:1.1rem;
         --date-font-size: 0.95rem;

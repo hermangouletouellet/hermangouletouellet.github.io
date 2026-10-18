@@ -18,6 +18,7 @@
         <link rel="dns-prefetch" href="https://fonts.googleapis.com">
         <link rel="dns-prefetch" href="https://fonts.gstatic.com">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,300..600;1,300..600&family=Roboto:ital,wght@0,300..500;1,300..500&display=swap">
+        <link rel="preload" href="/assets/fonts/IBM Plex Mono Var-Roman.woff2" as="font" type="font/woff2" crossorigin>
         <link rel="stylesheet" href="/style.css" />
         <script src="/bin/toggle.js" defer></script>
         <!-- /fragment:head -->
@@ -25,8 +26,7 @@
         <!-- fragment:mathjax -->
         <script>
             window.MathJax = {
-                tex: { inlineMath: { '[+]': [['$', '$']] } },
-                output: { font: 'mathjax-pagella' }
+                tex: { inlineMath: { '[+]': [['$', '$']] }, tags: 'ams' },
             };
         </script>
         <script src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" defer></script>

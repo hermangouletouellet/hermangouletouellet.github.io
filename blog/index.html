@@ -19,6 +19,7 @@
     <link rel="dns-prefetch" href="https://fonts.googleapis.com">
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,300..600;1,300..600&family=Roboto:ital,wght@0,300..500;1,300..500&display=swap">
+    <link rel="preload" href="/assets/fonts/IBM Plex Mono Var-Roman.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="/style.css" />
     <script src="/bin/toggle.js" defer></script>
     <!-- /fragment:head -->
@@ -26,8 +27,7 @@
     <!-- fragment:mathjax -->
     <script>
         window.MathJax = {
-            tex: { inlineMath: { '[+]': [['$', '$']] } },
-            output: { font: 'mathjax-pagella' }
+            tex: { inlineMath: { '[+]': [['$', '$']] }, tags: 'ams' },
         };
     </script>
     <script src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" defer></script>
@@ -100,29 +100,7 @@
                 <a href="/blog/2026/lcg.html">Les générateurs congruentiels</a>
             </h2>
             <div class="blog-description">
-                <p>Où je parle des générateurs aléatoires, du théorème de Marsaglia, de RANDU et d&#39;un article de Steele et Vigna.</p>
-        
-            </div>
-        </article>
-        
-        <article class="blog-summary">
-            <time class="gutter-date">2026/09/29</time>
-            <h2 class="blog-title">
-                <a href="/blog/2026/test.html">Une entrée pour test</a>
-            </h2>
-            <div class="blog-description">
-                <p>Un blog doit avoir une description.</p>
-        
-            </div>
-        </article>
-        
-        <article class="blog-summary">
-            <time class="gutter-date">2026/09/19</time>
-            <h2 class="blog-title">
-                <a href="/blog/2026/leiden-2026.html">Leiden declaration on artificial intelligence and mathematics</a>
-            </h2>
-            <div class="blog-description">
-                <p>This is a short post on the Leiden declaration on artificial intelligence and maths.</p>
+                <p>Un billet sur les générateurs pseudo-aléatoires et le théorème de Marsaglia.</p>
         
             </div>
         </article>

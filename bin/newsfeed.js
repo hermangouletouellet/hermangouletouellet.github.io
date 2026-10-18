@@ -1,13 +1,14 @@
 import fs from 'fs';
 import path from 'path';
 import fm from "front-matter";
-import { marked } from "marked";
 import { PATHS } from "./config.js";
 import beautify from 'js-beautify';
+import MarkdownIt from 'markdown-it';
 
-marked.use({
-    gfm: true,
-    breaks: false
+const md = new MarkdownIt({
+    html: true,
+    linkify: true,
+    typographer: false
 });
 
 const beautifySettings = {
@@ -33,7 +34,7 @@ function createPost(filePath) {
         <time class="gutter-date">${dateStr}</time>
         <h2 class="news-title">${post.attributes.title}</h2>
         <div class="news-body">
-        ${marked.parse(post.body)}
+        ${md.render(post.body)}
         </div>
         </article>`;
     post.html = beautify.html(postHtml,beautifySettings); 

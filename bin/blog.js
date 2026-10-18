@@ -1,13 +1,14 @@
 import fs from 'fs';
 import path from 'path';
 import fm from "front-matter";
-import { marked } from "marked";
 import { PATHS, BEAUTIFY_OPTIONS } from "./config.js";
 import beautify from 'js-beautify';
+import MarkdownIt from 'markdown-it';
 
-marked.use({
-    gfm: true,
-    breaks: false
+const md = new MarkdownIt({
+    html: true,  
+    linkify: true,    
+    typographer: false
 });
 
 const MAX_ITEMS = 5; // maximal number of items in blog main page
@@ -44,7 +45,7 @@ function createPost(filePath) {
         `<a href="${post.path}">${post.attributes.title}</a>`,
         `</h2>`,
         `<div class="blog-description">`,
-        `${marked.parse(post.attributes.description)}`,
+        `${md.render(post.attributes.description)}`,
         `</div>`,
         `</article>`
     ].join("\n")
@@ -74,13 +75,17 @@ function createPage(post) {
         `<body>`,
             `<!-- fragment:navbar-fr -->`,
             `<!-- /fragment:navbar-fr -->`,
-            `<main>`,
+            `<main class="blog-post">`,
                 `<hgroup>`,
                 `<h1>${post.attributes.title}</h1>`,
                 `<h4>${post.attributes.description}</h4>`,
                 `</hgroup>`,
-                `<time>${post.date}</time>`,
-                `${marked.parse(post.body)}`,
+                `<p>
+                <time class="pub-date">PUBLIÉ: ${post.date}</time>
+                </p>`,
+                `<article class="blog-body">`,
+                `${md.render(post.body)}`,
+                `</article>`,
             `</main>`,
         `</body>`,
         `<!-- fragment:footer -->`,
