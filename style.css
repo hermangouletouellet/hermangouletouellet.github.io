@@ -149,7 +149,6 @@ pre {
     border-radius: 15px;
     padding: 1rem 1.5rem;
     overflow-x: auto;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
     margin-top: 0rem;
     margin-bottom: 1rem;
 }
@@ -163,6 +162,11 @@ pre code {
 
 strong, b {
     font-weight: 700 !important;
+}
+
+.scrollable {
+    overflow-x: auto;
+    margin-bottom: 1rem;
 }
 
 /* ==========================================================================
@@ -211,12 +215,12 @@ time.pub-date {
 }
 
 .blog-post table {
-    width: 100%;
     border-collapse: collapse;
-    margin: 2rem 0;
-    min-width: 500px;
     font-size: 0.98rem;
     line-height: 1.6;
+    margin: 0 auto;
+    background-color: #f6fbfe;
+    border-radius: 15px;
 }
 
 .blog-post table code,
@@ -226,13 +230,14 @@ time.pub-date {
 
 .blog-post th {
     font-weight: 500;
+    border-bottom: 3px solid white; 
     text-align: left;
-    padding: 0.9rem 1.25rem;
+    padding: 0.5rem 1rem;
 }
 
 .blog-post td {
-    padding: 0.85rem 1.2rem;
-    vertical-align: top;
+    text-align: left;
+    padding: 0.5rem 1rem;
 }
 
 .blog-summary {
