@@ -6,6 +6,7 @@
     --darkblue: #02488c;
     --darkgray: #231f20;
     --gray: #594e4f;
+    --cream: #fffae4;
     /* fonts */
     --heading-font: 'Jost', system-ui, Helvetica, Arial, sans-serif;
     --body-font: 'Roboto', system-ui, Helvetica, Arial, sans-serif;
@@ -145,7 +146,7 @@ time,.gutter-date,code,pre {
 }
 
 pre {
-    background-color: #fffae4;
+    background-color: var(--cream);
     border-radius: 15px;
     padding: 1rem 1.5rem;
     overflow-x: auto;
@@ -202,15 +203,24 @@ h2.news-article {
 time.pub-date {
     color: var(--gray);
     font-size: var(--date-font-size);
-    background-color: #fffae4;
+    background-color: var(--cream);
     border-radius: 5px;
     padding: 5px;
+}
+
+.blog-post hr {
+    border: none;
+    height: 1px;
+    background-color: #c5c3be;
+    margin: 1rem auto;
+    /* Creates a clean, centered, book-like break */
 }
 
 .blog-post p,
 .blog-post li,
 .blog-post blockquote,
-.blog-post table {
+.blog-post table,
+.blog-post figcaption {
     font-family: var(--text-font);
 }
 
