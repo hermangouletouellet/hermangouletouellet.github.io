@@ -1,23 +1,20 @@
 ---
 title: Les générateurs congruentiels
-date: 2026-10-04
+date: 2026-10-30
 published: true
-description: "Un billet sur les générateurs pseudo-aléatoires et le théorème de Marsaglia." 
-slug: "lcg"
+description: "Quelques notes sur les générateurs congruentiels et le théorème de Marsaglia." 
+slug: "generateurs-congruentiels"
 ---
 
-L'été passé, j'ai supervisé un stage d'initation à la recherche sur le mélange apériodique de générateurs pseudo-aléatoires, d'après [des travaux de Balkova et al.](doi.org/10.1016/j.tcs.2016.07.042) suivant [une idée de Guimond et al.](doi.org/10.1023/a:1017533304855)
-Comme le sujet des générateurs pseudo-aléatoires était aussi un peu nouveau pour moi, j'ai accumulés quelques notes au cours de l'été, que je résume ici.
-
-Un *générateur pseudo-aléatoire* est un algorithme dont l'objectif est de générer de manière déterministe une suite de nombres qui imite le mieux possible le comportement d'une suite aléatoire.
-La qualité d'un générateur est mesurée par des tests statistiques variées, dont on retrouve plusieurs exemples dans le chapitre 3 du livre *The Art of Computer Programming* de Knuth, une excellente référence sur le sujet. 
+L'été passé, j'ai supervisé un stage d'initiation à la recherche sur le thème des *générateurs pseudo-aléatoires*, une famille d'algorithmes dont l'objectif est de générer des suites de nombres *les plus aléatoires possible*. Au cours de l'été, nous nous sommes penchés sur l'amélioration statistique des générateurs congruentiels par des opérateurs de mélange apériodique, d'après [des travaux de Balkova et al.](doi.org/10.1016/j.tcs.2016.07.042) suivant [une idée de Guimond et al.](doi.org/10.1023/a:1017533304855)
+Ce billet résume quelques notes sur la théorie des générateurs congruentiels, incluant un joli théorème de Marsaglia qui révèle une faiblesse importante de ces générateurs.
 
 ## La théorie des générateurs congruentiels linéaires
 
-Les *générateurs congruentiels linéaires* constituent une famille de générateurs pseudo-aléatoires particulièrement populaires, notamment à cause de leur simplicité (qui en fait un bon cas d'étude) et de leur faible coût computationnel.
-Ils obtiennent cependant de mauvais résultats pour plusieurs tests statistiques.
+Parmi les générateurs pseudo-aléatoires, la famille des *générateurs congruentiels linéaires* est particulièrement populaire à cause de leur simplicité, qui en fait un excellent cas d'étude, et de leur faible coût computationnel.
+Ils obtiennent cependant d'assez mauvais résultats pour plusieurs tests statistiques.
 
-Ces générateurs sont définis par la formule
+Les générateurs congruentiels sont définis par la formule
 $$
     x_{n+1} = (ax_n+c) \bmod m,
 $$
@@ -74,7 +71,7 @@ $$
 a=14\,627\,392\,582\,107\,131\,917,\ m = 2^{64},
 $$ 
 tiré d'[un article de Steele et Vigna](https://doi.org/10.1002/spe.3030).
-Si on prend la valeur initiale $x_0=1$ les 9 valeurs suivantes du générateur, en hexadécimal, sont:
+Si on prend la valeur initiale $x_0=1$, les 9 valeurs suivantes du générateur, en hexadécimal, sont:
 ```
 cafef00ddeadf00d
 5f40e3d6deaa60a9
