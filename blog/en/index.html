@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en-CA">
+
+<head>
+    <meta name="description" content="Blog of Herman Goulet-Ouellet" />
+    <title> Herman Goulet-Ouellet </title>
+
+    <link rel="canonical" href="https://hermangouletouellet.github.io/blog/en/" />
+    <link rel="alternate" hreflang="fr" href="https://hermangouletouellet.github.io/blog/" />
+    <link rel="alternate" hreflang="en" href="https://hermangouletouellet.github.io/blog/en/" />
+    <link rel="alternate" hreflang="x-default" href="https://hermangouletouellet.github.io/blog/" />
+
+    <!-- fragment:head -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="icon" href="/assets/favicon.ico" sizes="any">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,300..600;1,300..600&family=Roboto:ital,wght@0,300..500;1,300..500&display=swap">
+    <link rel="preload" href="/assets/fonts/IBM Plex Mono Var-Roman.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/style.css" />
+    <script src="/bin/toggle.js" defer></script>
+    <!-- /fragment:head -->
+
+    <!-- fragment:mathjax -->
+    <script>
+        window.MathJax = {
+            tex: { inlineMath: { '[+]': [['$', '$']] }, tags: 'ams' },
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" defer></script>
+    <!-- /fragment:mathjax -->
+</head>
+
+<body>
+    <!-- fragment:navbar-en -->
+    <nav class="navbar">
+    	<button type="button" class="toggle" aria-label="Toggle Navigation" aria-expanded="false" aria-controls="navbar-links"
+    		onclick="toggle(this)">
+    		<span id="mobile-page-title" class="current-page"></span>
+    		<span class="icon-toggle" aria-hidden="true">
+    			<span class="bar line-left"></span>
+    			<span class="bar line-right"></span>
+    		</span>
+    	</button>
+    
+    	<div id="navbar-links" class="toggle-target">
+    		<div class="navbar-links-inner">
+    			<a href="/en/">Home</a>
+    			<a href="/publications/en/">Publications</a>
+    			<a href="/exposes/en/">Talks</a>
+    			<a href="/enseignement/en/">Teaching</a>
+    			<a href="/blog/">Blog</a>
+    		</div>
+    	</div>
+    
+    	<div class="navbar-lang">
+    		<a href="../">fr</a>
+    		<a href="./" class="active">en</a>
+    	</div>
+    </nav>
+    
+    <script>
+    	(() => {
+    		const path = window.location.pathname.replace(/index\.html$/, '');
+    		const activeLink = document.querySelector(`.navbar-links-inner a[href="${path}"]`);
+    
+    		if (activeLink) {
+    			activeLink.classList.add('active');
+    
+    			const pageTitleLabel = document.getElementById('mobile-page-title');
+    			if (pageTitleLabel) {
+    				pageTitleLabel.textContent = activeLink.textContent;
+    			}
+    		}
+    	})();
+    </script>
+    <!-- /fragment:navbar-en -->
+
+    <header>
+        <hgroup>
+            <h1> My blog </h1>
+            <h4> A place where I write in my free time. </h4>
+        </hgroup>
+    </header>
+
+    <main>
+
+        <!-- fragment:blog -->
+        <!--
+        ================================================================
+        AUTO-GENERATED FILE
+        Content: /content/blog/
+        Script: /blog.js
+        ================================================================
+        -->
+        <article class="blog-summary">
+            <time class="gutter-date">2026/11/03</time>
+            <h2 class="blog-title">
+                <a href="/blog/2026/generateurs-congruentiels.html">Les générateurs congruentiels</a>
+            </h2>
+            <div class="blog-description">
+                <p>Quelques notes sur les générateurs congruentiels et le théorème de Marsaglia.</p>
+        
+            </div>
+        </article>
+        <!-- /fragment:blog -->
+    </main>
+</body>
+
+<!-- fragment:footer -->
+<footer>
+    <h4>Contact</h4>
+    <div class="address-content">
+        <address class="address-text">
+            <div>
+                Université de Moncton, département de mathématiques et de statistique.
+            </div>
+            <div>herman.goulet-ouellet@umoncton.ca</div>
+        </address>
+        <div class="logo-content">
+            <a href="https://nserc-crsng.canada.ca/fr">
+                <img src="/assets/logo_nserc.svg" 
+                    alt="Logo du CRSNG"
+                    data-alt-en="NSERC logo" 
+                    style="height: 3em;"
+                    loading="lazy">
+            </a>
+            <a href="https://www.umoncton.ca/umcm-sciences-mathstat/">
+                <img src="/assets/logo_umoncton.svg" 
+                    alt="Logo de l'Université de Moncton" 
+                    data-alt-en="Université de Moncton logo"
+                    style="height: 3em;"
+                    loading="lazy">
+            </a>
+            
+        </div>
+    </div>
+    <div id="last-update"></div>
+
+    <script>
+        (() => {
+            const lang = document.documentElement.lang || navigator.language || 'fr-CA';
+
+            document.querySelectorAll('[data-alt-en]').forEach(img => {
+                img.alt = lang.slice(0, 2) === "en" ? img.dataset.altEn : img.alt;
+            });
+
+            const updateDiv = document.getElementById("last-update");
+            if (!updateDiv) return;
+
+            const date = new Date(document.lastModified);
+            const options = { year: "numeric", month: "long", day: "numeric" };
+            const dateStr = date.toLocaleDateString(lang, options);
+
+            updateDiv.textContent = (lang.slice(0, 2) === "en" ? "Last updated: " : "Dernière mise à jour : ") + dateStr;
+        })();
+    </script>
+</footer>
+<!-- /fragment:footer -->
+
+</html>
