@@ -1,6 +1,6 @@
 ---
 title: Les générateurs congruentiels
-date: 2026-10-30
+date: 2026-11-03
 published: true
 description: "Quelques notes sur les générateurs congruentiels et le théorème de Marsaglia." 
 slug: "generateurs-congruentiels"
