@@ -2,6 +2,7 @@
     {
         "semester": "A2026",
         "courses": [
+            {"code": "MATH1403", "title": "Raisonnement mathématique"},
             {"code": "MATH6033", "title": "Séminaire de lecture en mathématiques"},
             {"code": "MATH6053", "title": "Travaux dirigés en mathématiques"}
         ]

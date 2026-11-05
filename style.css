@@ -196,8 +196,14 @@ h2.news-article {
     color: var(--gray);
     font-size: var(--date-font-size);
     justify-self: end;
-    text-align: right;
+    text-align: center;
     padding-right: 1rem;
+    background-color: var(--cream);
+    border-radius: 8px;
+    padding: 2px 5px;
+    margin-right: 10px;
+    align-self: baseline;
+    transform: translateY(-2px);
 }
 
 time.pub-date {
@@ -213,7 +219,6 @@ time.pub-date {
     height: 1px;
     background-color: #c5c3be;
     margin: 1rem auto;
-    /* Creates a clean, centered, book-like break */
 }
 
 .blog-post p,
@@ -541,7 +546,7 @@ nav>.toggle {
         --banner-font-size: 3.0rem;
         --footer-font-size: 0.95rem;
         --abstract-font-size: 0.95rem;
-        --h2-font-size:1.2rem;
+        --h2-font-size:1.4rem;
         --h4-font-size:1.1rem;
         --date-font-size: 0.95rem;
     }
