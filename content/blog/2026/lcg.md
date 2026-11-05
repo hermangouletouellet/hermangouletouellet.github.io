@@ -6,7 +6,7 @@ description: "Quelques notes sur les générateurs congruentiels et le théorèm
 slug: "generateurs-congruentiels"
 ---
 
-L'été passé, j'ai supervisé un stage d'initiation à la recherche sur le thème des *générateurs pseudo-aléatoires*, une famille d'algorithmes dont l'objectif est de générer des suites de nombres *les plus aléatoires possible*. Au cours de l'été, nous nous sommes penchés sur l'amélioration statistique des générateurs congruentiels par des opérateurs de mélange apériodique, d'après [des travaux de Balkova et al.](doi.org/10.1016/j.tcs.2016.07.042) suivant [une idée de Guimond et al.](doi.org/10.1023/a:1017533304855)
+L'été passé, j'ai supervisé un stage d'initiation à la recherche sur le thème des *générateurs pseudo-aléatoires*, une famille d'algorithmes dont l'objectif est de générer des suites de nombres *les plus aléatoires possible*. Au cours de l'été, nous nous sommes penchés sur l'amélioration statistique des générateurs congruentiels par des opérateurs de mélange apériodique, d'après [des travaux de Balkova et al.](https://doi.org/10.1016/j.tcs.2016.07.042) suivant [une idée de Guimond et al.](https://doi.org/10.1023/a:1017533304855)
 Ce billet résume quelques notes sur la théorie des générateurs congruentiels, incluant un joli théorème de Marsaglia qui révèle une faiblesse importante de ces générateurs.
 
 ## La théorie des générateurs congruentiels linéaires
@@ -25,8 +25,8 @@ La meilleure performance est obtenue en choisissant $c=0$ et $m = 2^k$, typiquem
 
 Comme n'importe quel générateur dont les valeurs ne dépendent que d'un nombre borné de valeurs précédentes, les générateurs congruentiels sont ultimement périodiques: il existe $i\geq 0,p>0$ tels que $x_{n} = x_{n+p}$ pour tous $n\geq i$ 
 (une conséquence du fait que tout élément d'un semigroupe fini admet une puissance idempotente).
-Une période trop courte trahit la nature déterministe du générateur, se qui se traduit par une mauvaise performance statistique.
-Une longue période est donc souhaitable, bien que non suffisante pour garantir la qualité statistique du générateur; les chiffres magiques $a=1, c=0$, par exemple, donnent une période maximale, mais une qualité statistique minimale.
+Une période trop courte trahit la nature déterministe du générateur, ce qui se traduit par une mauvaise performance statistique.
+Une longue période est donc souhaitable, bien que non suffisante pour garantir la qualité statistique du générateur; les chiffres magiques $a=1, c=1$, par exemple, donnent une période maximale, mais une qualité statistique minimale.
 
 Pour les générateurs congruentiels d'incrément $c\neq 0$, le théorème de Hull–Dobbell caractérise précisément les chiffres magiques garantissent une période maximale (de longueur $m$).
 
@@ -39,7 +39,7 @@ Pour les générateurs congruentiels d'incrément $c\neq 0$, le théorème de Hu
 
 La situation est différente pour les générateurs d'incrément $c=0$, appelés *générateurs congruentiels multiplicatifs*.
 Dans ce cas, la période est l'entier minimal $\lambda\geq 1$ tel que $a^\lambda \equiv 1 \bmod m$, appelé l'*ordre* de $a$ modulo $m$.
-L'ordre des éléments est bornée par l'[indicatrice d'Euler](https://fr.wikipedia.org/wiki/Indicatrice_d%27Euler) $\varphi$; en fait, la formule $a^{\varphi(m)} \equiv 1 \bmod m$ (le [théorème d'Euler](https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_d%27Euler_(arithm%C3%A9tique))) entraîne que l'ordre de tout élément est un diviseur de $\varphi(m)$.
+L'ordre des éléments est borné par l'[indicatrice d'Euler](https://fr.wikipedia.org/wiki/Indicatrice_d%27Euler) $\varphi$; en fait, la formule $a^{\varphi(m)} \equiv 1 \bmod m$ (le [théorème d'Euler](https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_d%27Euler_(arithm%C3%A9tique))) entraîne que l'ordre de tout élément est un diviseur de $\varphi(m)$.
 Les multiplicateurs d'ordre maximal sont appelés les *éléments primitifs* modulo $m$. 
 
 Un générateur congruentiel multiplicatif de période maximal est donc obtenu en choisissant une valeur de $a$ primitive modulo $m$.
@@ -53,7 +53,7 @@ $$
     \end{cases}
 $$
 Dans le cas où $m=2^k$, $k\geq 3$, un générateur congruentiel multiplicatif de période maximale a donc deux orbites distinctes.
-Par exemple, un générateur congruentiel linéaire de module $m=2^{64}$ a une période maximale de $m/4 = 2^{62}$, et les éléments primitifs sont les entiers qui satisfont $a\equiv 3$ ou $5\bmod 8$.
+Par exemple, un générateur congruentiel multiplicatif de module $m=2^{64}$ a une période maximale de $m/4 = 2^{62}$, et les éléments primitifs sont les entiers qui satisfont $a\equiv 3$ ou $5\bmod 8$.
 Si $a\equiv 3\bmod 8$, les deux orbites maximales du générateurs sont 
 $$ 
 \lbrace x \mid x \equiv 1 \text{ ou } 3 \bmod 8 \rbrace,\ 
@@ -83,24 +83,24 @@ f0714195a0f32f91
 1c6fe342961c9021
 1a396f136adf41ad
 ```
-On peut remarquer que le chiffre le moins significatif (celui à droite) des représentations hexadécimales semble avoir une période de longueur 8, beaucoup plus petite que la période du générateur, de longueur $2^{32}$. 
+On peut remarquer que le chiffre le moins significatif (celui à droite) des représentations hexadécimales semble avoir une période de longueur 4, beaucoup plus petite que la période du générateur, de longueur $2^{62}$. 
 Cette observation révèle une faiblesse importante des générateurs congruentiels de module $2^k$. 
 Si on exprime les valeurs en format binaire, on peut voir cette faiblesse encore plus clairement;
-par exemple, voici les 4 bits moins significatifs (c'est-à-dire les bits droite) des 9 valeurs ci-dessus:
+par exemple, voici les 4 bits moins significatifs (c'est-à-dire les plus à droite) des 9 valeurs ci-dessus:
 ```
-1001
-0101
-0001
 1101
 1001
 0101
 0001
 1101
 1001
+0101
+0001
+1101
 ```
 Les 2 bits les moins significatifs sont constants, une conséquence du fait que l'élément primitif $a$ est congru à 5 modulo 8, donc à 1 modulo 4; un élément primitif congru à 3 modulo 8 fait mieux, mais à peine, avec une période de longueur 2 pour les les 2 bits de droite.
 
-Les périodes courtes des bits les moins significatifs provient du fait que les $n$ bits de droite représente les valeurs d'un générateur multiplicatif de module $2^{n}$, ce qui fondamentalement s'explique par le fait que la projection canonique $\mathbb{Z}\to\mathbb{Z}/2^{n}\mathbb{Z}$ se factorise par $\mathbb{Z}\to\mathbb{Z}/2^{m}\mathbb{Z}$. 
+Les périodes courtes des bits les moins significatifs proviennent du fait que les $n$ bits de droite représentent les valeurs d'un générateur multiplicatif de module $2^{n}$, ce qui fondamentalement s'explique par le fait que la projection canonique $\mathbb{Z}\to\mathbb{Z}/2^{n}\mathbb{Z}$ se factorise par $\mathbb{Z}\to\mathbb{Z}/2^{k}\mathbb{Z}$. 
 Une méthode courante pour palier à cette faiblesse est de n'utiliser que les $k/2$ bits les plus significatifs des valeurs d'un générateurs multiplicatifs de module $2^k$.
 Bien sûr cela réduit de moitié l'efficacité du générateur, mesurée en bits par seconde.
 
@@ -136,7 +136,7 @@ $$
 où $k$ est un certain entier. 
 Le fait que les valeurs du générateur sont dans l'intervalle $[0,m-1]$ implique les inégalités
 $$
-    -m\sum_{c_i<0}c_i < \sum c_ix_{n+i-1} < m\sum_{d_i>0}c_i,
+    m\sum_{c_i<0}c_i < \sum c_ix_{n+i-1} < m\sum_{c_i>0}c_i,
 $$
 qui délimitent un intervalle contenant $(\sum |c_i|) -1$ multiples de $m$, où $\sum |c_i| = \Vert \vec c\Vert_1$ est tout simplement la *norme 1* du vecteur normal $\vec c$. 
 La preuve du théorème est donc réduite à l'existence d'un vecteur normal $\vec c$ qui satisfait l'inégalité
@@ -152,7 +152,7 @@ Le réseau $\Lambda_3$ est donc couvert par seulement 15 hyperplans parallèles,
 $$
     \lbrace (x,y,z)\in\mathbb{R}^3 \mid 9x-6y+z = k\cdot 2^{31} \rbrace,\  -5\leq k\leq 9,   
 $$
-nettement moins que la borne de 2343 du théorème de Marsaglia.
+nettement moins que la borne de 2344 du théorème de Marsaglia.
 Il est intéressant de noter que la relation qui est à l'origine de la mauvaise qualité du générateur ($a = 2^{16}+3$) permet en même temps d'optimiser sa performance, et c'est précisément ce qui aurait poussé IBM à l'utiliser.
 
 La structure crystalline de RANDU est visible à l'oeil nu; la figure ci-dessous montre 5000 points du réseau $\Lambda_3$, et on peut facilement y compter à la main les 15 hyperplans couvrant $\Lambda_3$.
@@ -181,7 +181,7 @@ ce qui permet de conclure que le réseau $\Lambda_d$ est couvert par $\sum |q_i|
 
 Cette méthode élémentaire permet d'obtenir un résultat raisonnable pour RANDU en dimension $d=4,5,6$:
 
-- en dimension 4: $x_4 - 4x_3 - 3x_2 + 18x_1 =\pm k\cdot 2^{31}$, $-7 < k < 19$, une famille de 25 hyperplans contre 2344 pour la borne de Marsaglia;
+- en dimension 4: $x_4 - 4x_3 - 3x_2 + 18x_1 =\pm k\cdot 2^{31}$, $-7 < k < 19$, une famille de 25 hyperplans contre 476 pour la borne de Marsaglia ;
 - en dimension 5: $x_5 -4x_4 + 27x_1 = \pm k\cdot 2^{31}$, $-4<k<28$, une famille de 31 hyperplans contre 191 pour la borne de Marsaglia ;
 - en dimension 6: $x_6 -4x_5 + x_4 + 54x_1 = \pm k\cdot 2^{31}$, $-4<k<56$, une famille de 59 hyperplans contre 107 pour la borne de Marsaglia.
 
