@@ -7,6 +7,7 @@
     --darkgray: #231f20;
     --gray: #594e4f;
     --cream: #fffae4;
+    --blue-200: oklch(99% 0.04 265);
     /* fonts */
     --heading-font: 'Jost', system-ui, Helvetica, Arial, sans-serif;
     --body-font: 'Roboto', system-ui, Helvetica, Arial, sans-serif;
@@ -34,7 +35,6 @@
     font-family: 'IBM Plex Mono';
     font-style: normal;
     font-weight: 100 700;
-    /* Defines the supported variable weight range */
     font-display: swap;
     src: url('/assets/fonts/IBM\ Plex\ Mono\ Var-Roman.woff2.woff2') format('woff2-variations'),
         url('/assets/fonts/IBM\ Plex\ Mono\ Var-Roman.woff2.woff2') format('woff2');
@@ -80,10 +80,10 @@
 main, header, footer {
     display: grid;
     grid-template-columns:
-        [gutter-left] minmax(220px, 1fr) 
+        [gutter-left] minmax(0, 1fr) 
         [content] minmax(0, 75ch) 
         [gutter-right] minmax(0, 1fr);
-    padding-inline: 3rem;
+    padding-inline: 1rem;
     justify-content: center;
     align-items: baseline
 }
@@ -271,8 +271,7 @@ h2.blog-title {
     grid-column: content;
 }
 
-.blog-post img,
-main img {
+.blog-post img {
     max-width: 100%;
     height: auto;
     display: block;
@@ -424,11 +423,32 @@ h4 {
 }
 
 #portrait {
-    width: 180px;
+    width: 200px;
     height: auto;
-    grid-column: gutter-left;
-    justify-self:end;
+    float: left;
+    border-radius: 6px;
     margin-right: 2rem;
+}
+
+section.bio {
+    overflow: hidden;    
+    align-items: top;
+    gap: 5%;
+    padding: 2rem;
+    background-color: var(--blue-200);
+    border-radius: 20px;
+}
+
+.dropcap::first-letter {
+    font-size: 3.5em;
+    float: left;
+    margin-right: 0.05em;
+    margin-top: 0.1em;
+    color: var(--text-heading, #111);
+}
+
+section.bio > p {
+    margin: 0;
 }
 
 footer {
@@ -559,8 +579,7 @@ nav>.toggle {
     }
 
     #portrait {
-        grid-column: content;
-        margin: 1rem auto 0 auto;
+        width: 180px;
     }
 
     .gutter-date {
@@ -585,11 +604,6 @@ nav>.toggle {
 
     header h4 {
         text-align:center;
-    }
-
-    header:has(#portrait) h1 {
-        padding-top: 2rem;
-        padding-bottom: 1rem;
     }
 
     #navbar-links {
