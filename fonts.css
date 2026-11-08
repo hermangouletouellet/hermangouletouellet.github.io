@@ -1,0 +1,278 @@
+/* ==========================================================================
+   IBM Plex Mono
+   ========================================================================== */
+@font-face {
+    font-family: 'IBM Plex Mono';
+    font-style: normal;
+    font-weight: 100 700;
+    font-display: swap;
+    src: url('/assets/fonts/IBM\ Plex\ Mono\ Var-Roman.woff2') format('woff2-variations'),
+        url('/assets/fonts/IBM\ Plex\ Mono\ Var-Roman.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'IBM Plex Mono';
+    font-style: italic;
+    font-weight: 100 700;
+    font-display: swap;
+    src: url('/assets/fonts/IBM\ Plex\ Mono\ Var-Italic.woff2') format('woff2-variations'),
+        url('/assets/fonts/IBM\ Plex\ Mono\ Var-Italic.woff2') format('woff2');
+}
+
+/* ==========================================================================
+   Besley
+   ========================================================================== */
+@font-face {
+    font-family: 'Besley';
+    font-style: normal;
+    font-weight: 400 900;
+    font-stretch: 87.5% 100%;
+    font-display: swap;
+    src: url('/assets/fonts/Besley[wdth\,wght].woff2') format('woff2-variations'),
+        url('/assets/fonts/Besley[wdth\,wght].woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Besley';
+    font-style: italic;
+    font-weight: 400 900;
+    font-stretch: 87.5% 100%;
+    font-display: swap;
+    src: url('/assets/fonts/Besley-Italic[wdth\,wght].woff2') format('woff2-variations'),
+        url('/assets/fonts/Besley-Italic[wdth\,wght].woff2') format('woff2');
+}
+
+/* ==========================================================================
+   Atkinson Hyperlegible Next
+   ========================================================================== */
+@font-face {
+    font-family: 'Atkinson Hyperlegible Next';
+    src: url('/assets/fonts/AtkinsonHyperlegibleNext/AtkinsonHyperlegibleNext-Light.woff2') format('woff2');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Atkinson Hyperlegible Next';
+    src: url('/assets/fonts/AtkinsonHyperlegibleNext/AtkinsonHyperlegibleNext-LightItalic.woff2') format('woff2');
+    font-weight: 300;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Atkinson Hyperlegible Next';
+    src: url('../assets/fonts/AtkinsonHyperlegibleNext/AtkinsonHyperlegibleNext-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Atkinson Hyperlegible Next';
+    src: url('../assets/fonts/AtkinsonHyperlegibleNext/AtkinsonHyperlegibleNext-RegularItalic.woff2') format('woff2');
+    font-weight: 400;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Atkinson Hyperlegible Next';
+    src: url('../assets/fonts/AtkinsonHyperlegibleNext/AtkinsonHyperlegibleNext-Medium.woff2') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Atkinson Hyperlegible Next';
+    src: url('../assets/fonts/AtkinsonHyperlegibleNext/AtkinsonHyperlegibleNext-MediumItalic.woff2') format('woff2');
+    font-weight: 500;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Atkinson Hyperlegible Next';
+    src: url('../assets/fonts/AtkinsonHyperlegibleNext/AtkinsonHyperlegibleNext-SemiBold.woff2') format('woff2');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Atkinson Hyperlegible Next';
+    src: url('../assets/fonts/AtkinsonHyperlegibleNext/AtkinsonHyperlegibleNext-SemiBoldItalic.woff2') format('woff2');
+    font-weight: 600;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Atkinson Hyperlegible Next';
+    src: url('../assets/fonts/AtkinsonHyperlegibleNext/AtkinsonHyperlegibleNext-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Atkinson Hyperlegible Next';
+    src: url('../assets/fonts/AtkinsonHyperlegibleNext/AtkinsonHyperlegibleNext-BoldItalic.woff2') format('woff2');
+    font-weight: 700;
+    font-style: italic;
+    font-display: swap;
+}
+
+/* ==========================================================================
+   Ronzino
+   ========================================================================== */
+@font-face {
+    font-family: 'Ronzino';
+    src: url('/assets/fonts/Ronzino/Ronzino-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Ronzino';
+    src: url('/assets/fonts/Ronzino/Ronzino-Oblique.woff2') format('woff2');
+    font-weight: 400;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Ronzino';
+    src: url('/assets/fonts/Ronzino/Ronzino-Medium.woff2') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Ronzino';
+    src: url('/assets/fonts/Ronzino/Ronzino-MediumOblique.woff2') format('woff2');
+    font-weight: 500;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Ronzino';
+    src: url('/assets/fonts/Ronzino/Ronzino-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Ronzino';
+    src: url('/assets/fonts/Ronzino/Ronzino-BoldOblique.woff2') format('woff2');
+    font-weight: 700;
+    font-style: italic;
+    font-display: swap;
+}
+
+/* ==========================================================================
+   Victor Mono
+   ========================================================================== */
+
+@font-face {
+    font-family: 'Victor Mono';
+    src: url('/assets/fonts/VictorMono/VictorMono-ExtraLight.woff2') format('woff2');
+    font-weight: 200;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Victor Mono';
+    src: url('/assets/fonts/VictorMono/VictorMono-ExtraLightItalic.woff2') format('woff2');
+    font-weight: 200;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Victor Mono';
+    src: url('/assets/fonts/VictorMono/VictorMono-Light.woff2') format('woff2');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Victor Mono';
+    src: url('/assets/fonts/VictorMono/VictorMono-LightItalic.woff2') format('woff2');
+    font-weight: 300;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Victor Mono';
+    src: url('/assets/fonts/VictorMono/VictorMono-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Victor Mono';
+    src: url('/assets/fonts/VictorMono/VictorMono-Italic.woff2') format('woff2');
+    font-weight: 400;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Victor Mono';
+    src: url('/assets/fonts/VictorMono/VictorMono-Medium.woff2') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Victor Mono';
+    src: url('/assets/fonts/VictorMono/VictorMono-MediumItalic.woff2') format('woff2');
+    font-weight: 500;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Victor Mono';
+    src: url('/assets/fonts/VictorMono/VictorMono-SemiBold.woff2') format('woff2');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Victor Mono';
+    src: url('/assets/fonts/VictorMono/VictorMono-SemiBoldItalic.woff2') format('woff2');
+    font-weight: 600;
+    font-style: italic;
+    font-display: swap;
+}
+
+/* --- 700: Bold --- */
+@font-face {
+    font-family: 'Victor Mono';
+    src: url('/assets/fonts/VictorMono/VictorMono-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Victor Mono';
+    src: url('/assets/fonts/VictorMono/VictorMono-BoldItalic.woff2') format('woff2');
+    font-weight: 700;
+    font-style: italic;
+    font-display: swap;
+}
